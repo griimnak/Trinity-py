@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trinity 3- Administration</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/trinity.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Administration</h1>
+      <h4>> Dashboard</h4>
+    </header>
+
+    <main>
+      <section class="features">
+        <div class="section-content">
+        <h2>Welcome to the dashboard, {{username}}.</h2>
+          <p>So far, this is it!</p>
+          This is all i've completed so far in terms of admin panel functionality, hopefully this is enough of an example to kickstart your hourney into web development with python and flask!<br />
+          To logout, click <a href="/logout">here</a>.
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
