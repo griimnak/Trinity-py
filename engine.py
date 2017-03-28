@@ -20,6 +20,7 @@ Written by griimnak. Project inspired by Kyle Greene & Chris Pettyjohn
 #---------------------------------------------/
 import apis
 
+from multiprocessing import Process
 from build import app
 from build import settings
 from build import database
@@ -34,5 +35,15 @@ else:
 
 database.validateConnection()
 install.checkInstall()
+
+def serveThreadedInstance():
+	app.run('0.0.0.0', port=settings.server['server_port'], threaded=True)
+
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=settings.server['server_port'], threaded=True)
+	plist = list()
+	for i in range(0, 10):
+		p = Process(target=serveThreadedInstance)
+		p.start()
+		plist.append(p)
+	for p in plist:
+		p.join()
