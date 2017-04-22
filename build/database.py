@@ -11,7 +11,7 @@ conn = pymysql.connect(
 	settings.mysql['db_name']
 	)
 
-def validateConnection():
+def validate_connection():
 	if conn.open == 0:
 		print(' * Database connection failed.')
 	else:

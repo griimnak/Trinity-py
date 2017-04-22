@@ -20,28 +20,31 @@ Written by griimnak. Project inspired by Kyle Greene & Chris Pettyjohn
 #---------------------------------------------/
 import apis
 
-from multiprocessing import Process
 from build import app
-from build import settings
-from build import database
 from build import install
 #---------------------------------------------\
 # Check if configuration has been set.
 #---------------------------------------------/
-if settings.mysql['db_user'] == '' or settings.mysql['db_pass'] == '' or settings.mysql['db_host'] == '' or settings.mysql['db_name'] == '':
-	print (' [NOTICE] Configuration has not been set! (build/settings.py)')
+try:
+  from build import settings
+except:
+	setup = input('\n [NOTICE] Configuration not found, enter setup? (y/n)')
+	if setup == 'n':
+		print(' * Setup aborted, exiting..')
+		exit()
+	elif setup == 'y':
+		print(' * Entering setup..\n\n')
+		install.install_settings()
+	else:
+		print('"'+setup+'" is not an option, exiting..')
+		exit()
 else:
+	from build import settings
 	print (' * Loading config.. \n * Selecting db: ' + settings.mysql['db_name'])
 
-database.validateConnection()
-install.checkInstall()
+from build import database
+database.validate_connection()
+install.install_database()
 
-def serveThreadedInstance():
-		app.run('0.0.0.0', port=settings.server['server_port'], threaded=True)
-
-plist = list()
-p = Process(target=serveThreadedInstance())
-p.start()
-plist.append(p)
-for p in plist:
-	p.join()
+if __name__ == '__main__':
+  app.run('0.0.0.0', port=settings.server['server_port'], threaded=True)

@@ -1,10 +1,60 @@
-from build import database
 from passlib.hash import sha256_crypt as hasher
 import datetime
 # install check
 
+def install_settings():
+	print(' * MySQL Settings --')
+	db_host = input(" * MySQL hostname (usually localhost): ")
+	db_user = input(" * MySQL username: ")
+	db_pass = input(" * MySQL password: ")
+	db_name = input(" * MySQL database (cannot exist already): ")
+	print(' * Site Settings --')
+	site_name = input(" * Site name: ")
+	site_desc = input(" * Site description: ")
+	print(' * Server Settings --')
+	server_skey = input(" * Server secret key (should be random and saved somewhere): ")
+	server_host = input(" * Server hostname (usally localhost): ")
+	server_port = input(" * Server port (should be 80, or enter a custom port): ")
+	server_debug = input(" * Server debug mode (True or False): ")
 
-def checkInstall():
+	print(' * Attempting to write 18 lines into build/settings.py..')
+	try:
+		f = open('build/settings.py', 'a')
+		f.write("")
+		f.write("mysql = dict(\n")
+		f.write("	db_host = '"+str(db_host)+"',\n")
+		f.write("	db_user = '"+str(db_user)+"',\n")
+		f.write("	db_pass = '"+str(db_pass)+"',\n")
+		f.write("	db_name = '"+str(db_name)+"'\n")
+		f.write("	)\n\n")
+		f.write("site = dict(\n")
+		f.write('	site_name = "'+str(site_name)+'",\n')
+		f.write('	site_desc = "'+str(site_desc)+'",\n')
+		f.write("	)\n\n")
+		f.write("server = dict(\n")
+		f.write("	server_skey = '"+str(server_skey)+"',\n")
+		f.write("	server_host = '"+str(server_host)+"',\n")
+		f.write("	server_port = "+str(server_port)+",\n")
+		f.write("	server_debug = "+str(server_debug)+"\n")
+		f.write("	)\n\n")
+	except Exception as e:
+		print(' [NOTICE] Failed writing configuration file! '+str(e))
+	
+	print(' * Configuration set! Attempting to create database "'+db_name+'"..')
+	try:
+		import pymysql
+
+		conn = pymysql.connect(user=str(db_user), passwd=str(db_pass))
+		conn.autocommit(True)
+		conn.cursor().execute("CREATE DATABASE "+db_name+";")
+	except Exception as error:
+		print(' [NOTICE] Failed creating databse! '+str(error))
+
+	print(' * Setup complete! Please re-launch trinity.')
+	exit()
+
+def install_database():
+	from build import database
 	try:
 		#--
 		# Run a dummy query, if it returns true the tables exist.

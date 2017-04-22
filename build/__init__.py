@@ -1,5 +1,18 @@
 from flask import Flask
-from build import settings
+try:
+	from build import settings
+except:
+	setup = input('\n [NOTICE] Configuration not found, enter setup? (y/n)')
+	if setup == 'n':
+		print(' * Setup aborted, exiting..')
+		exit()
+	elif setup == 'y':
+		print(' * Entering setup..\n\n')
+		from build import install
+		install.install_settings()
+	else:
+		print('"'+setup+'" is not an option, exiting..')
+		exit()	
 
 #---------------------------------------------\
 # Set flask application properties
