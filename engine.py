@@ -47,4 +47,4 @@ database.validate_connection()
 install.install_database()
 
 if __name__ == '__main__':
-  app.run('0.0.0.0', port=settings.server['server_port'], threaded=True)
+	app.run('0.0.0.0', port=settings.server['server_port'], threaded=True)
