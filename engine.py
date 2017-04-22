@@ -38,9 +38,9 @@ except:
 	else:
 		print('"'+setup+'" is not an option, exiting..')
 		exit()
-else:
-	from build import settings
-	print (' * Loading config.. \n * Selecting db: ' + settings.mysql['db_name'])
+		
+from build import settings
+print (' * Loading config.. \n * Selecting db: ' + settings.mysql['db_name'])
 
 from build import database
 database.validate_connection()
