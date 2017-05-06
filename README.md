@@ -17,6 +17,8 @@ https://devbest.com/threads/release-trinity-3-an-advanced-fully-automated-cms-bu
 ## Rolling Development
 > Recently Added
 - All error filters done
+- Multiple template support
+- Rewritten core
 - Config file generator
 ![Alt Text](http://image.prntscr.com/image/019c80da5c47430d957787dcfeb3fc01.png)
 - SocketIO integration!
