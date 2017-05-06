@@ -2,7 +2,7 @@
 Trinity 3 [Updated 5/6/17]
 ===================
 <p align="center">
-  <img src="(http://i.imgur.com/k8I15Gh.png" alt="Sublime's custom image"/>
+  <img src="http://i.imgur.com/k8I15Gh.png" alt="Trinity 3"/>
 </p>
 A content management system written in python with flask 
 
