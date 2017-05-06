@@ -47,6 +47,7 @@ $ python core.py
 ```
 
 > Automated installation
+
 Trinity will then take you through an installation proccess and install modules, generate a configuration file with your inputted values, and automatically generate a database and required tables!
 https://youtu.be/JT5VHduOyHE
 
