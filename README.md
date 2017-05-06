@@ -15,7 +15,7 @@ https://devbest.com/threads/release-trinity-3-an-advanced-fully-automated-cms-bu
 ----------
 
 ## Rolling Development
-** Recently Added **
+> Recently Added
 - All error filters done
 - Config file generator
 ![Alt Text](http://image.prntscr.com/image/019c80da5c47430d957787dcfeb3fc01.png)
@@ -28,8 +28,7 @@ https://devbest.com/threads/release-trinity-3-an-advanced-fully-automated-cms-bu
 
 ![Alt Text](http://image.prntscr.com/image/4ae0d358e96f4048a117dd73f58c4588.png)
 
-
-** Todo **
+> Todo
 - Rank permissions
 - "Pretty" index css
 - Admin panel progress
@@ -44,7 +43,7 @@ https://devbest.com/threads/release-trinity-3-an-advanced-fully-automated-cms-bu
 
 2. MySQL. (If you don't know about databases, xampp is a simple solution: https://www.apachefriends.org/index.html just for mysql not apache)
 
-** Launching **
+> Launching
 2. If you're on windows, go to where trinity is located and execute launch.bat
 2.a Otherwise if you're on linux or in cmd launch with python:
 ```
