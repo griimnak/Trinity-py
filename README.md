@@ -35,18 +35,18 @@ https://devbest.com/threads/release-trinity-3-an-advanced-fully-automated-cms-bu
 ## Installation
 
 1. Install Python 3.x.x+ https://www.python.org/
-1.a If you're on windows make sure python is a command. (https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7)
+2. If you're on windows make sure python is a command. (https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7)
 
-2. MySQL. (If you don't know about databases, xampp is a simple solution: https://www.apachefriends.org/index.html just for mysql not apache)
+3. MySQL. (If you don't know about databases, xampp is a simple solution: https://www.apachefriends.org/index.html just for mysql not apache)
 
 > Launching
-2. If you're on windows, go to where trinity is located and execute launch.bat
-2.a Otherwise if you're on linux or in cmd launch with python:
+4. If you're on windows, go to where trinity is located and execute launch.bat
+5. Otherwise if you're on linux or in cmd launch with python:
 ```
 $ python core.py
 ```
 
-** Automated installation **
+> Automated installation
 Trinity will then take you through an installation proccess and install modules, generate a configuration file with your inputted values, and automatically generate a database and required tables!
 https://youtu.be/JT5VHduOyHE
 
