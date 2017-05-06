@@ -1,7 +1,8 @@
 @echo off
-title prj Trinity webserver
+title Trinity 3
 color d
 
-python trinity_server.py
+python core.py
+
 
 pause

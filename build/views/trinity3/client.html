@@ -1,0 +1,172 @@
+<html>
+<head>
+<title>Chat Room</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/chat.css')}}" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+$(document).ready(function() {
+	var socket = io.connect('http://127.0.0.1:80');
+	socket.on('connect', function() {
+		socket.send('User has connected!');
+	});
+	socket.on('message', function(msg) {
+		$("#messages").append('<li>'+msg+'</li>');
+		console.log('Received message');
+	});
+	$('#sendbutton').on('click', function() {
+		socket.send($('#myMessage').val());
+		$('#myMessage').val('');
+	});
+
+	$(window).unload(function () {
+    socket.disconnect();
+  });
+});
+</script>
+<ul id="messages"></ul>
+<input type="text" id="myMessage">
+<button id="sendbutton">Send</button>
+
+
+<div class="menu">
+            <a href="/" class="back"><i class="fa fa-angle-left"></i> <img src="http://i.imgur.com/G4EjwqQ.jpg" draggable="false"/></a>
+            <div class="name">Chat Room</div>
+	<div class="members">griimnak.ga</div>
+        </div>
+    <ol class="chat">
+    <li class="other">
+      <div class="msg">
+          <div class="user">Marga<span class="range admin">Admin</span></div>
+        <p>Dude</p>
+        <p>Want to go dinner? <emoji class="pizza"></emoji></p>
+        <time>20:17</time>
+      </div>
+    </li>
+    <li class="self">
+      <div class="msg">
+        <p>Puff...</p>
+        <p>I'm still doing the Góngora comment... <emoji class="books"></emoji></p>
+        <p>Better other day</p>
+        <time>20:18</time>
+      </div>
+    </li>
+    <li class="other">
+      <div class="msg">
+          <div class="user">Brotons</div>
+        <p>What comment about Góngora? <emoji class="suffocated"></emoji></p>
+        <time>20:18</time>
+      </div>
+    </li>
+    <li class="self">
+      <div class="msg">
+        <p>The comment sent Marialu</p>
+        <p>It's for tomorrow</p>
+        <time>20:18</time>
+      </div>
+    </li>
+    <li class="other">
+      <div class="msg">
+          <div class="user">Brotons</div>
+        <p><emoji class="scream"></emoji></p>
+        <p>Hand it to me! <emoji class="please"></emoji></p>
+        <time>20:18</time>
+      </div>
+    </li>
+    <li class="self">
+      <div class="msg">
+        <img src="http://i.imgur.com/kUPxcsI.jpg" draggable="false"/>
+        <time>20:19</time>
+      </div>
+    </li>
+    <li class="other">
+      <div class="msg">
+          <div class="user">Brotons</div>
+        <p>Thank you! <emoji class="hearth_blue"></emoji></p>
+        <time>20:20</time>
+      </div>
+    </li>
+        <div class="day">Today</div>
+    <li class="self">
+      <div class="msg">
+        <p>Who wants to play Minecraft?</p>
+        <time>18:03</time>
+      </div>
+    </li>
+    <li class="other">
+      <div class="msg">
+          <div class="user">Charo</div>
+        <p>Come on, I didn't play it for four months</p>
+        <time>18:07</time>
+      </div>
+    </li>
+    <li class="self">
+      <div class="msg">
+        <p>Ehh, the launcher crash... <emoji class="cryalot"></emoji></p>
+        <time>18:08</time>
+      </div>
+    </li>
+    <li class="other">
+      <div class="msg">
+          <div class="user">Charo</div>
+        <p><emoji class="lmao"></emoji></p>
+        <p>Sure that is the base code</p>
+        <p>I told it to Mojang</p>
+        <time>18:08</time>
+      </div>
+    </li>
+    <li class="self">
+      <div class="msg">
+        <p>It's a joke</p>
+        <p>Moai attack!</p>
+        <p><emoji class="moai"></emoji><emoji class="moai"></emoji><emoji class="moai"></emoji><emoji class="moai"></emoji><emoji class="moai"></emoji><emoji class="moai"></emoji></p>
+        <time>18:10</time>
+      </div>
+    </li>
+    <li class="other">
+      <div class="msg">
+          <div class="user">Charo</div>
+        <p>XD</p>
+        <p><emoji class="funny"></emoji></p>
+        <p>Heart for this awesome design!</p>
+        <time>18:08</time>
+      </div>
+    </li>
+        <p class="notification">David joined the group <time>18:09</time></p>
+    <li class="self">
+      <div class="msg">
+        <p>Heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeellooooooooooooooooooooooooooooooo David <emoji class="smile"/></p>
+        <time>18:09</time>
+      </div>
+    </li>
+    <li class="other">
+      <div class="msg">
+          <div class="user">David</div>
+          <p>What is that <emoji class="shit"></emoji> ?</p>
+        <time>18:10</time>
+      </div>
+    </li>
+        <p class="notification">David left the group <time>18:11</time></p>
+    <li class="other">
+      <div class="msg">
+          <div class="user">Brotons</div>
+        <p>Lol?</p>
+        <time>18:12</time>
+      </div>
+    </li>
+    <li class="other">
+      <div class="msg">
+          <div class="user">Marga<span class="range admin">Admin</span></div>
+        <p>I'm boring...</p>
+        <p>Who wants to do some logarithms? <emoji class="smile"></emoji></p>
+        <time>18:15</time>
+      </div>
+    </li>
+    </ol>
+<div class="typezone">
+<form><textarea type="text" placeholder="Say something"></textarea><input type="submit" class="send" value=""/></form>
+<div class="emojis"></div></div>
+</body>
+</html>
