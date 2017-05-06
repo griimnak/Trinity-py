@@ -20,15 +20,9 @@ https://devbest.com/threads/release-trinity-3-an-advanced-fully-automated-cms-bu
 - Multiple template support
 - Rewritten core
 - Config file generator
-![Alt Text](http://image.prntscr.com/image/019c80da5c47430d957787dcfeb3fc01.png)
 - SocketIO integration!
 - Database connector rewritten
-- Admin panel progress:
-![Alt Text](http://image.prntscr.com/image/e6951df674ed496b827154942bc91f08.png)
-
-![Alt Text](http://image.prntscr.com/image/52f4fd5e66e74fcaad8fe50ca54ae043.png)
-
-![Alt Text](http://image.prntscr.com/image/4ae0d358e96f4048a117dd73f58c4588.png)
+- Admin panel progress
 
 > Todo
 - Rank permissions
@@ -56,3 +50,8 @@ $ python core.py
 Trinity will then take you through an installation proccess and install modules, generate a configuration file with your inputted values, and automatically generate a database and required tables!
 https://youtu.be/JT5VHduOyHE
 
+## Screenshots
+![Alt Text](http://image.prntscr.com/image/019c80da5c47430d957787dcfeb3fc01.png)
+![Alt Text](http://image.prntscr.com/image/e6951df674ed496b827154942bc91f08.png)
+![Alt Text](http://image.prntscr.com/image/52f4fd5e66e74fcaad8fe50ca54ae043.png)
+![Alt Text](http://image.prntscr.com/image/4ae0d358e96f4048a117dd73f58c4588.png)
