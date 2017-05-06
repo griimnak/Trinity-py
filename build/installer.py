@@ -20,7 +20,7 @@ class Installer:
         # Place your required modules in
         # >> self.modules_to_be_installed
         # --------------------------------------------/
-        self.modules_to_be_installed = ['flask', 'passlib', 'flask_socketio', 'pymysql']
+        self.modules_to_be_installed = ['flask', 'passlib', 'flask-socketio', 'pymysql']
         self.marked = []
 
         print(' [NOTICE] Automated Installation Script -> LOADED!')
