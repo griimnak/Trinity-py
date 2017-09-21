@@ -10,7 +10,7 @@ https://www.python.org/
 - Install MySQL Server
 https://www.apachefriends.org/index.html
 
-- Configure `*"app/Settings.py"*`
+- Configure * `"app/Settings.py"` *
 
 --------------------
 Run the command below to install required modules. (pip or pip3)
