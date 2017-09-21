@@ -25,7 +25,7 @@ How to run
 ```sh
 python3 Core.py
 ```
-
+<br />
 
 > Production
 ```sh
@@ -34,7 +34,7 @@ gunicorn3 -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 Core:ap
 
 ------------------
 
-
+<br />
 
 <p align="center">
   <img src="http://i.imgur.com/k8I15Gh.png" alt="Trinity 3"/>
