@@ -25,7 +25,7 @@ How to run
 ```sh
 python3 Core.py
 ```
-<br />
+--------------------
 
 #### Gunicorn production environment
 ```sh
