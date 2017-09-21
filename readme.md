@@ -4,7 +4,7 @@ Trinity 3.1
 
 How to setup
 -------------------
-Install python 3+
+Install Python 3+
 https://www.python.org/
 
 Install MySQL Server
