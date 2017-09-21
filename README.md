@@ -25,7 +25,7 @@ How to run
 ```sh
 python3 Core.py
 ```
-###### Windows users can simply launch win_launch.bat
+###### Windows users can simply launch *"win_launch.bat"*
 --------------------
 
 #### Gunicorn production environment
