@@ -11,6 +11,7 @@ Install MySQL Server
 https://www.apachefriends.org/index.html
 
 > Configure
+
 app/Settings.py
 
 --------------------
