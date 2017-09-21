@@ -1,4 +1,4 @@
-Trinity 3.1
+Trinity 3.1 [Updated 9/20/17]
 ====
 *WIP*
 
