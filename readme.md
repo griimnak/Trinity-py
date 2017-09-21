@@ -1,9 +1,10 @@
 Trinity 3.1
 ====
+*WIP*
+
 <p align="center">
   <img src="http://i.imgur.com/k8I15Gh.png" alt="Trinity 3"/>
 </p>
-*WIP*
 
 How to setup
 -------------------
