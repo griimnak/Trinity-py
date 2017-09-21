@@ -2,10 +2,6 @@ Trinity 3.1
 ====
 *WIP*
 
-<p align="center">
-  <img src="http://i.imgur.com/k8I15Gh.png" alt="Trinity 3"/>
-</p>
-
 How to setup
 -------------------
 Install Python 3+
@@ -38,7 +34,9 @@ gunicorn3 -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 Core:ap
 ```
 
 ------------------
-
+<p align="center">
+  <img src="http://i.imgur.com/k8I15Gh.png" alt="Trinity 3"/>
+</p>
 ## Screenshots
 ![Alt Text](http://image.prntscr.com/image/8c36a0e9d5eb4c3aa23806032e39f341.png)
 ![Alt Text](http://image.prntscr.com/image/019c80da5c47430d957787dcfeb3fc01.png)
