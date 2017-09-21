@@ -4,13 +4,13 @@ Trinity 3.1
 
 How to setup
 -------------------
-Install Python 3+
+- Install Python 3+
 https://www.python.org/
 
-Install MySQL Server
+- Install MySQL Server
 https://www.apachefriends.org/index.html
 
-> Configure
+- Configure
 
 app/Settings.py
 
