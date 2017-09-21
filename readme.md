@@ -21,17 +21,20 @@ pip3 install -r requirements.txt
 
 How to run
 ----------------
-> Development / Local
+- Development / Local
 ```sh
 python3 Core.py
 ```
 
-> Production
+- Production
 ```sh
 gunicorn3 -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 Core:app
 ```
 
 ------------------
+
+
+
 <p align="center">
   <img src="http://i.imgur.com/k8I15Gh.png" alt="Trinity 3"/>
 </p>
