@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 import os
 import time
+
+# GUNICORN
+from werkzeug.contrib.fixers import ProxyFix
+
+__name__ = 'Trinity'
+__version__ = '3.1.0'
+__author__ = 'griimnak'
+
 stop_watch = time.time()
 os.system('cls' if os.name == 'nt' else 'clear')
 print('''
@@ -12,26 +20,42 @@ print('''
      \ \_\ \_\  \ \_\ \_\ \_\ \_\ \_\ \/`____ \   \ \____/
       \/_/\/_/   \/_/\/_/\/_/\/_/\/__/ `/___/> \   \/___/ 
                                           /\___/          
-           Trinity 3, for Python 3.6.x    \/__/  
-A Python-based Content Management System originally designed for Habbo private servers.
-Written by griimnak. Project inspired by Kyle Greene & Chris Pettyjohn
+           Trinity 3, for Python 3.2+     \/__/  
+ /=============================================================\ 
+ | A Python-based Content Management System originally         |
+ | designed for Habbo private servers.                         |
+ |                                                             |
+ | Written by griimnak.                                        |
+ | Project idea inspired by Kyle Greene & Chris Pettyjohn      |
+ \=============================================================/
+
 ''')
 
-from build import installer
-from build import app, socketio
+from app import app, socketio
 
 print(' * Loading config..')
-from build import settings
+from app import Settings
 
-import build.database as database
-database.validate_connection()
-print(' * Selecting db: ' + settings.mysql['db_name'])
+print(' * Loading routes..')
+import Routes
 
-if __name__ == '__main__':
-    print(' * Binding to: {}:{}..'.format(str(settings.server['server_host']), str(settings.server['server_port'])))
+print(' * Selecting db: ' + Settings.mysql['db_name'])
+from lib.Database import Database
+
+db = Database()
+db.validate()
+
+
+# GUNICORN
+app.wsgi_app = ProxyFix(app.wsgi_app)
+
+if __name__ == 'Trinity' and __author__ == 'griimnak':
+    print(' * Binding..')
     try:
         print('\n * Trinity 3 -> LOADED! in {} seconds'.format(time.time() - stop_watch))
-        socketio.run(app, host='0.0.0.0', port=settings.server['server_port'], debug=settings.server['server_debug'])
+        socketio.run(app, host='0.0.0.0', port=Settings.server['server_port'], debug=Settings.server['server_debug'])
     except Exception as e:
         print(' [NOTICE] Unexpected error occurred: ' + str(e))
         exit()
+else:
+  exit("\n beep boop *self destructing*")

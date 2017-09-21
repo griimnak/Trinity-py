@@ -1,0 +1,6 @@
+flask
+flask-socketio
+pymysql
+passlib
+gevent
+gevent-websocket
