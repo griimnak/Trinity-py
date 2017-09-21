@@ -1,6 +1,7 @@
 from app import app
 from flask import redirect, url_for, session
 
+
 # Define app root
 @app.route('/')
 def index():
@@ -15,6 +16,7 @@ def admin():
     else:
         return redirect(url_for('admin_login'))
 
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)
@@ -28,13 +30,12 @@ def logout():
 def page_not_found(error):
     return ' [NOTICE] ' + str(error)
 
+
 @app.errorhandler(405)
 def method_not_allowed(error):
     return ' [NOTICE] ' + str(error)
 
+
 @app.errorhandler(500)
 def syntax_error(error):
     return ' [NOTICE] ' + str(error)
-
-
-

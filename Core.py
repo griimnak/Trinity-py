@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 import os
 import time
+from app import app, socketio, Settings
+import Routes
+from lib.Database import Database
 
 # GUNICORN
 from werkzeug.contrib.fixers import ProxyFix
@@ -31,20 +34,9 @@ print('''
 
 ''')
 
-from app import app, socketio
-
-print(' * Loading config..')
-from app import Settings
-
-print(' * Loading routes..')
-import Routes
-
 print(' * Selecting db: ' + Settings.mysql['db_name'])
-from lib.Database import Database
-
 db = Database()
 db.validate()
-
 
 # GUNICORN
 app.wsgi_app = ProxyFix(app.wsgi_app)
@@ -52,10 +44,21 @@ app.wsgi_app = ProxyFix(app.wsgi_app)
 if __name__ == 'Trinity' and __author__ == 'griimnak':
     print(' * Binding..')
     try:
-        print('\n * Trinity 3 -> LOADED! in {} seconds'.format(time.time() - stop_watch))
-        socketio.run(app, host='0.0.0.0', port=Settings.server['server_port'], debug=Settings.server['server_debug'])
+        print(
+            '\n * Trinity 3 -> LOADED! in {} seconds'
+            .format(time.time() - stop_watch)
+        )
+
+        app.jinja_env.cache = {}
+
+        socketio.run(
+            app,
+            host='0.0.0.0',
+            port=Settings.server['server_port'],
+            debug=Settings.server['server_debug']
+        )
     except Exception as e:
         print(' [NOTICE] Unexpected error occurred: ' + str(e))
         exit()
 else:
-  exit("\n beep boop *self destructing*")
+    exit("\n beep boop *self destructing*")
