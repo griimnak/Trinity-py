@@ -32,7 +32,7 @@ python3 Core.py
 gunicorn3 -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 Core:app
 ```
 
-------------------
+----------------
 
 <br /><br />
 
