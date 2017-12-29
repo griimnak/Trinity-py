@@ -8,9 +8,9 @@
 
 Recently rewritten for performance
 -------------------
-&#10004; gzip compression (flask-compress)
-&#10004; Jinja2 caching
-&#10004; Werkzeug caching
+&#10004; gzip compression (flask-compress) <br />
+&#10004; Jinja2 caching <br />
+&#10004; Werkzeug caching <br />
 
 How to setup
 -------------------
