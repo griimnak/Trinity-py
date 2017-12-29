@@ -13,10 +13,10 @@ Recently rewritten for performance
 &#10004; Jinja2 caching <br />
 &#10004; Werkzeug caching <br />
 ###### Using least ammount of modules possible
-###### - flask
-###### - flask-compress
-###### - pymysql
-###### - paslib
+- flask
+- flask-compress
+- pymysql
+- passlib
 
 How to setup
 -------------------
