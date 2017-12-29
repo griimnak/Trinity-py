@@ -12,12 +12,11 @@ Recently rewritten for performance
 &#10004; gzip compression (flask-compress) <br />
 &#10004; Jinja2 caching <br />
 &#10004; Werkzeug caching <br />
-<br />
-#### Using least ammount of modules possible
-- flask
-- flask-compress
-- pymysql
-- paslib
+###### Using least ammount of modules possible
+###### - flask
+###### - flask-compress
+###### - pymysql
+###### - paslib
 
 How to setup
 -------------------
