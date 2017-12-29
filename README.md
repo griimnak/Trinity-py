@@ -2,7 +2,7 @@
   <img src="http://i.imgur.com/k8I15Gh.png" alt="Trinity 3"/>
 </p>
 
-![stability-unstable](https://img.shields.io/badge/stability-unstable-yellow.svg)
+[![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
 *WIP* <br /> live demo: http://griimnak.me/trinity
