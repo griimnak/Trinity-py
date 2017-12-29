@@ -1,17 +1,25 @@
-from flask import Flask
-from flask_socketio import SocketIO
+import configparser
+from flask import Flask, url_for
+from flask_compress import Compress
 
-import app.Settings
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+compress = Compress()
 
 app = Flask(
     __name__,
     template_folder="views/",
-    static_folder="views/static"
+    static_folder="../static"
 )
 
-app.config['SECRET_KEY'] = Settings.server['server_skey']
+app.config['SECRET_KEY'] = config['server']['secret_key']
 app.config['THREADED'] = True
-app.config['DEBUG'] = Settings.server['server_debug']
-socketio = SocketIO(app)
+app.config['DEBUG'] = config['server']['debug']
 
-from app.controllers import *
+import routes
+
+compress.init_app(app)
+app.jinja_env.cache = {}
+
+

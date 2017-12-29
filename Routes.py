@@ -1,22 +1,53 @@
 from app import app
 from flask import redirect, url_for, session
+from flask import render_template, make_response, request
+from werkzeug.contrib.cache import SimpleCache
+
+CACHE_TIMEOUT = 300
+cache = SimpleCache()
+class cached(object):
+    def __init__(self, timeout=None):
+        self.timeout = timeout or CACHE_TIMEOUT
+
+    def __call__(self, f):
+        def decorator(*args, **kwargs):
+            response = cache.get(request.path)
+            if response is None:
+                response = f(*args, **kwargs)
+                cache.set(request.path, response, self.timeout)
+            return response
+        return decorator
 
 
-# Define app root
 @app.route('/')
-def index():
-    return redirect(url_for('landing'))
+@cached()
+def landing():
+    from app.controllers.index import splash
+    return splash()
 
 
-# Define admin handlers
+""" Error handlers
+"""
+@app.errorhandler(404)
+def page_not_found(error):
+    return ' [NOTICE] ' + str(error)
+
+@app.errorhandler(405)
+def method_not_allowed(error):
+    return ' [NOTICE] ' + str(error)
+
+@app.errorhandler(500)
+def syntax_error(error):
+    return ' [NOTICE] ' + str(error)
+
+""" Application handlers
+"""
 @app.route('/admin/')
 def admin():
     if session.get('logged_in') is True:
         return redirect(url_for('admin_dashboard'))
     else:
         return redirect(url_for('admin_login'))
-
-
 @app.route('/logout')
 def logout():
     session.pop('username', None)
@@ -24,18 +55,9 @@ def logout():
 
     return redirect(url_for('landing'))
 
-
-# Define error handler
-@app.errorhandler(404)
-def page_not_found(error):
-    return ' [NOTICE] ' + str(error)
-
-
-@app.errorhandler(405)
-def method_not_allowed(error):
-    return ' [NOTICE] ' + str(error)
-
-
-@app.errorhandler(500)
-def syntax_error(error):
-    return ' [NOTICE] ' + str(error)
+""" Signature :p
+"""
+@app.after_request
+def signature(response):
+    response.headers['X-Powered-By'] = 'Trinity3-tr4'
+    return response

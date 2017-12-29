@@ -1,6 +1,4 @@
 flask
-flask-socketio
+flask-compress
 pymysql
 passlib
-gevent
-gevent-websocket

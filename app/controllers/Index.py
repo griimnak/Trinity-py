@@ -1,10 +1,10 @@
-from app import app, Settings
+import configparser
 from flask import render_template
 import sys
 
-
-@app.route('/index')
-def landing():
+def splash():
+    config = configparser.ConfigParser()
+    config.read('config.ini')
 
     try:
         pyinfo = sys.version
@@ -13,8 +13,9 @@ def landing():
 
     return render_template(
         'index.html',
-        sitename=Settings.site['site_name'],
-        sitedesc=Settings.site['site_desc'],
-        siteport=Settings.server['server_port'],
+        sitename=config['site']['name'],
+        sitedesc=config['site']['desc'],
+        siteport=config['server']['port'],
         pyinfo=pyinfo
+
     )

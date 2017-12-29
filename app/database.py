@@ -1,17 +1,20 @@
 import time
+import configparser
 import pymysql
-from app import Settings
-import threading
 
 
 class Database:
     def connect(self):
+
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+
         try:
             self.conn = pymysql.connect(
-                Settings.mysql['db_host'],
-                Settings.mysql['db_user'],
-                Settings.mysql['db_pass'],
-                Settings.mysql['db_name']
+                config['mysqld']['host'],
+                config['mysqld']['user'],
+                config['mysqld']['pass'],
+                config['mysqld']['db']
             )
 
         except (AttributeError, pymysql.OperationalError) as e:
@@ -46,4 +49,3 @@ class Database:
             exit(' * Database connection failed. ' + str(e))
 
         self.close()
-
