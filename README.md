@@ -6,9 +6,11 @@
 
 *WIP* live demo: http://griimnak.me/trinity
 
-Built with performance in mind
+Recently rewritten for performance
 -------------------
-###### &#9989; jinja2 caching enabled
+&#10004; gzip compression (flask-compress)
+&#10004; Jinja2 caching
+&#10004; Werkzeug caching
 
 How to setup
 -------------------
