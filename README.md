@@ -42,7 +42,7 @@ python3 trinity_server.py
 
 #### Gunicorn production environment
 ```sh
-gunicorn3 -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 Core:app
+gunicorn3 -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 2 app:app
 ```
 #### Passenver production environment
 - See `passenger_wsgi.py`
