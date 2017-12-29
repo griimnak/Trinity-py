@@ -1,6 +1,9 @@
 
 Trinity 3 [Updated 5/6/17]
 ===================
+[![stability-frozen](https://img.shields.io/badge/stability-frozen-blue.svg)](https://github.com/emersion/stability-badges#frozen)
+[![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/emersion/stability-badges#stable)
+
 <p align="center">
   <img src="http://i.imgur.com/k8I15Gh.png" alt="Trinity 3"/>
 </p>
