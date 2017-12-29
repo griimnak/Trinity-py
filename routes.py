@@ -1,10 +1,9 @@
-from app import app, cached
+from app import app
 from flask import redirect, url_for, session
 from flask import render_template, make_response, request
 
 
 @app.route('/')
-@cached()
 def landing():
     from app.controllers.index import splash
     return splash()
