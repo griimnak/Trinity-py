@@ -46,8 +46,9 @@ python3 trinity_server.py
 ```sh
 gunicorn3 --workers=4 app:app
 ```
-#### Passenver production environment
+#### Passenger production environment
 - See `passenger_wsgi.py`
+###### (griimnak.me/trinity runs on passenger through cpanel)
 ----------------
 
 <br /><br />
