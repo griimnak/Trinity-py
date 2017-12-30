@@ -48,7 +48,7 @@ gunicorn3 --workers=4 app:app
 ```
 #### Passenger production environment
 - See `passenger_wsgi.py`
-###### (griimnak.me/trinity runs on passenger through cpanel)
+###### (http://griimnak.me/trinity runs on passenger through cpanel)
 ----------------
 
 <br /><br />
