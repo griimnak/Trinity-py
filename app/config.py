@@ -3,8 +3,6 @@ import configparser
 
 """ A class for reading and interacting with 
     the configuration file
-    
-    (trying threading for non blocking config read)
 """
 class Config:
     def __init__(self):
@@ -26,17 +24,3 @@ class Config:
 
     def remove_key(section, key):
         return Confg().parser.remove_option(section, key)
-
-def read_config_threaded():
-    return Config()
-
-""" If threading is breaking the app try
-    removing the lines below and replacing them with:
-    Config()
-"""
-t = threading.Thread(target=read_config_threaded)
-
-if t.isAlive():
-    print('[DEBUG] Thread is alerady opened')
-else:
-    t.start()
