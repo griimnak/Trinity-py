@@ -14,6 +14,17 @@ app.config['SECRET_KEY'] = Config.read_key('server', 'secret_key')
 app.config['THREADED'] = True
 app.config['DEBUG'] = Config.read_key('server', 'debug')
 
+mimetypes = [
+'text/html', 
+'text/css', 
+'text/xml', 
+'application/json',
+'application/javascript',
+'image/jpeg',
+'image/png'
+]
+app.config['COMPRESS_MIMETYPES'] = mimetypes
+
 import routes
 
 from app.middlewares import *

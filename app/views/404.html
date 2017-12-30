@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/404.css')}}">
+</head>
+<body>
+  <div class="night-background">
+    <div id='container1'> 
+    </div>
+    <div id='container2'> 
+    </div>
+    <div id='container3'> 
+    </div>
+    <div id='container4'>
+    </div>
+    <div class="planet">  
+    </div>
+    <div class="text">
+      <h1>Houston, we have a problem!</h1>
+      <h2>404 Not found. I guess, try going <a href="{{url_for('landing')}}">back</a>.</h2>
+    </div>
+  </div>
+ <script src="{{ url_for('static', filename='js/404.js') }}"></script>
+</body>
+</html>

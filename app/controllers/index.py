@@ -2,7 +2,7 @@ from app.config import Config
 from flask import render_template
 import sys
 
-def splash():
+def controller():
     try:
         pyinfo = sys.version
     except:
