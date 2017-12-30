@@ -42,8 +42,9 @@ python3 trinity_server.py
 --------------------
 
 #### Gunicorn production environment
+###### `--workers <1-4>` dedicate as many workers as you wish, this is the fastest setup possible.
 ```sh
-gunicorn3 -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 2 app:app
+gunicorn3 --workers=4 app:app
 ```
 #### Passenver production environment
 - See `passenger_wsgi.py`
