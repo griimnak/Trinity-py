@@ -42,7 +42,7 @@ python3 trinity_server.py
 --------------------
 
 #### Gunicorn production environment
-###### `--workers <1-4>` dedicate as many workers as you wish, this is the fastest setup possible.
+###### *Recommended* (docs: <a href="http://docs.gunicorn.org/en/stable/run.html">gunicorn</a>)
 ```sh
 gunicorn3 --workers=4 app:app
 ```
