@@ -43,7 +43,7 @@ python3 trinity_server.py
 #### Gunicorn production environment
 ###### *Recommended way* (docs: <a href="http://docs.gunicorn.org/en/stable/run.html">gunicorn docs</a> <a href="https://djangodeployment.com/2016/11/30/how-to-setup-apache-with-gunicorn/">apache/nginx+gunicorn docs</a>)
 ```sh
-gunicorn3 --workers=4 app:app
+gunicorn --workers=4 app:app
 ```
 #### Passenger production environment
 - See `passenger_wsgi.py`
