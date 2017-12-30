@@ -31,6 +31,7 @@ def admin():
         return redirect(url_for('admin_dashboard'))
     else:
         return redirect(url_for('admin_login'))
+        
 @app.route('/logout')
 def logout():
     session.pop('username', None)

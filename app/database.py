@@ -1,20 +1,16 @@
 import time
-import configparser
+from app.config import Config
 import pymysql
 
 
 class Database:
     def connect(self):
-
-        config = configparser.ConfigParser()
-        config.read('config.ini')
-
         try:
             self.conn = pymysql.connect(
-                config['mysqld']['host'],
-                config['mysqld']['user'],
-                config['mysqld']['pass'],
-                config['mysqld']['db']
+                Config.read_key('mysqld', 'host'),
+                Config.read_key('mysqld', 'user'),
+                Config.read_key('mysqld', 'pass'),
+                Config.read_key('mysqld', 'db')
             )
 
         except (AttributeError, pymysql.OperationalError) as e:
