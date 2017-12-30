@@ -11,6 +11,7 @@ Recently rewritten for performance
 -------------------
 &#10004; gzip compression (flask-compress) <br />
 &#10004; Jinja2 caching <br />
+&#10004; Threaded config reading <br />
 ###### Using least ammount of modules possible
 flask, flask-compress, pymysql, passlib
 
