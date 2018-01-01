@@ -259,20 +259,66 @@
         <div class="col-lg-8">
           <!-- Example Bar Chart Card-->
           <div class="card mb-3">
-            <div class="card-header">Statistics</div>
+            <div class="card-header">Main</div>
             <div class="card-body">
-              <h3>Welcome</h3>
-              <hr>
+          <h3>Welcome</h3>
+              
               <p>Here in the Administration panel, you can add, remove and manage your site's content dynamically through python.</p>
-              <p>For example, below you can edit the dashboard's html if you wish.</p>
-                <div class="form-group">
-                  <textarea class="form-control" rows="8" id="comment">
-                  
-                      {{html}}
+              <hr>
+              <p><h6>Configuration</h6></p>
+              <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Section</th>
+                    <th scope="col">Key</th>
+                    <th scope="col">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">server</th>
+                    <td>debug</td>
+                    <td>{{debug}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">server</th>
+                    <td>port</td>
+                    <td>{{port}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">server</th>
+                    <td>secret_key</td>
+                    <td>{{secret_key}}</td>
+                  </tr>
 
-                  </textarea>
-                </div>
-              <a class="btn btn-primary" href="https://www.python.org/" target="_blank">Update</a>
+                    <tr>
+                    <th scope="row">site</th>
+                    <td>name</td>
+                    <td>{{name}}</td>
+                  </tr>
+                    <tr>
+                    <th scope="row">site</th>
+                    <td>desc</td>
+                    <td>{{desc}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">mysqld</th>
+                    <td>host</td>
+                    <td>{{mhost}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">mysqld</th>
+                    <td>user</td>
+                    <td>{{muser}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">mysqld</th>
+                    <td>database</td>
+                    <td>{{mdb}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a class="btn btn-primary" href="https://www.python.org/" target="_blank">Edit</a>
               <a class="btn btn-secondary" href="http://flask.pocoo.org/" target="_blank">View edit history</a>
             </div>
           </div>
@@ -281,9 +327,11 @@
           <!-- Example Pie Chart Card-->
           <div class="card mb-3">
             <div class="card-header">
-              Placeholder</div>
+              Templates and Views</div>
             <div class="card-body">
-              <canvas id="myPieChart" width="100%" height="100"></canvas>
+              <p>Try out the html editor!</p>
+              <hr>
+              {{tpls}}
             </div>
           </div>
         </div>

@@ -28,7 +28,7 @@ class Login():
 
     def locate_user_data(self):
         try:
-            import app.database as db
+            import app.mysql as db
 
             db.instance.execute(
                 "SELECT COUNT(1) FROM users WHERE username = %s;", 
