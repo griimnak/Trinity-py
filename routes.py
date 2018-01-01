@@ -10,4 +10,7 @@ def admin_login():
     from app.controllers.__admin__login import controller
     return controller()
 
-
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    from app.controllers.__admin__dash import controller
+    return controller()

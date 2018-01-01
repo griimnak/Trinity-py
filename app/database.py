@@ -1,10 +1,22 @@
 import time
-from app.config import Config
 import pymysql
+from app.config import Config
+import threading
 
 
-class Database:
-    def connect(self):
+""" KeepAlive: [True | False]
+    Pings MySQL every x seconds
+"""
+KeepAlive = dict(
+    enabled=False,
+    duration=300
+)
+
+
+class _Handler:
+    """ Create database instance
+    """
+    def __init__(self):
         try:
             self.conn = pymysql.connect(
                 Config.read_key('mysqld', 'host'),
@@ -12,36 +24,35 @@ class Database:
                 Config.read_key('mysqld', 'pass'),
                 Config.read_key('mysqld', 'db')
             )
+        except Exception as error:
+            self.throw_connection_failed_error(str(error))
 
-        except (AttributeError, pymysql.OperationalError) as e:
-            raise e
+    def throw_connection_failed_error(self, error):
+        print(' [NOTICE] Database connection failed: {}'.format(error))
+        exit()
 
-    def query(self, sql, params = ()):
+
+def validate_connection():
+    if _Handler().conn.open is False:
+        print(' [NOTICE] Database connection failed.')
+    else:
+        print(' * Database connected successfully!')
+
+
+def keep_connection_alive():
+    while True:
+        time.sleep(KeepAlive['duration'])
         try:
-            cursor = self.conn.cursor()
-            cursor.execute(sql, params)
-        except (AttributeError, pymysql.OperationalError) as e:
-            print(' * MySQL -> Exception generated during sql query: ', e)
-            self.connect()
-            cursor = self.conn.cursor()
-            cursor.execute(sql, params)
-        return cursor
+            _Handler().conn.ping()
+            print(' * KeepAlive -> Pinged MySQL')
+        except(Exception, pymysql.OperationalError):
+            print(' [NOTICE] Database connection died, reconnecting..')
+            _Handler()
+_Handler()
 
-    def close(self):
-        try:
-            if self.conn:
-                self.conn.close()
-                print(' * MySQL -> Closed connection: ' + str(self.conn))
-            else:
-                print(' * MySQL -> Ignoring close() request.')
-        except (AttributeError, pymysql.OperationalError) as e:
-            raise e
+if KeepAlive['enabled'] is True:
+    t = threading.Thread(target=keep_connection_alive)
+    t.start()
 
-    def validate(self):
-        try:
-            self.connect()
-            print(' * Database connected successfully!')
-        except Exception as e:
-            exit(' * Database connection failed. ' + str(e))
-
-        self.close()
+instance = _Handler().conn.cursor()
+_Handler().conn.autocommit(True)

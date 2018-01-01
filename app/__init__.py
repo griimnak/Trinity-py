@@ -21,7 +21,11 @@ mimetypes = [
 'application/json',
 'application/javascript',
 'image/jpeg',
-'image/png'
+'image/png',
+
+# Experimental 
+'image/gif',
+'text/javascript'
 ]
 app.config['COMPRESS_MIMETYPES'] = mimetypes
 

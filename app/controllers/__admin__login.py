@@ -1,12 +1,23 @@
-from app.config import Config
-from flask import render_template, session, request
+from flask import render_template, session, request, redirect, url_for
 
+""" Controller for admin login page
+"""
 def controller():
     if session.get('logged_in') is True:
         return redirect(url_for('admin_dashboard'))
     else:
+        error = None
+        """ Post trigger
+        """
         if request.method == "POST":
-            return "another day will come."
+            from app.models.__admin__login import Login
 
+            """ Redirect if verification passed
+            """
+            if Login().verification is True:
+                return redirect(url_for('admin_dashboard'))
 
-        return render_template('__admin__login.html')
+            error = Login().error
+
+        return render_template('__admin__login.html', error=error)
+
