@@ -68,4 +68,4 @@ class Login():
             self.verification = True
         else:
             self.error = 'Incorrect password for ' + self.username
-Login()
+

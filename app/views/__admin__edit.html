@@ -1,21 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Adminstration</title>
-  <!-- Bootstrap core CSS-->
+  <title>Administration</title>
   <link href="{{ url_for('static', filename='__admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <!-- Custom fonts for this template-->
   <link href="{{ url_for('static', filename='__admin/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-  <!-- Custom styles for this template-->
   <link href="{{ url_for('static', filename='__admin/css/sb-admin.css') }}" rel="stylesheet">
-</head>
+  <script src="{{ url_for('static', filename='__admin/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='__admin/ace_editor/ace.js')}}" type="text/javascript" charset="utf-8"></script>
 
+<!-- draggable -->
+  <link rel="stylesheet" href="{{url_for('static', filename='__admin/jquery-ui-1.12.1/jquery-ui.min.css')}}">
+  <script src="{{url_for('static', filename='__admin/jquery-ui-1.12.1/jquery-ui.min.js')}}"></script>
+  <style>
+    #resizable { width: 500px; height: 500px; padding: 5px; border: 3px solid #007bff}
+    #resizable h3 { text-align: center; margin: 0; }
+    #resizable{position: relative}
+    #editor{position: absolute; top:0;left:0;right:0;bottom:0;}
+  </style>
+  <script>
+    $(document).ready(function() {
+      var editor = ace.edit('editor');
+      editor.setTheme('ace/theme/monokai');
+      editor.getSession().setMode('ace/mode/java');
+      var textarea = $('#content');
+
+      setInterval(function() {
+        textarea.val(editor.getSession().getValue());
+      }, 1000);
+
+      $( "#resizable" ).resizable({
+        resize: function( event, ui ) {
+          editor.resize();
+        }
+      });
+    });
+  </script>
+<!-- Start content -->
+</head>
 <body class="sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" id="mainNav">
@@ -26,7 +50,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="/admin">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
@@ -177,170 +201,42 @@
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
+          <a href="/admin">Manage Content</a>
         </li>
-        <li class="breadcrumb-item active">Main</li>
+        <li class="breadcrumb-item active">{{content}}</li>
+        <li class="breadcrumb-item active">{{file}}</li>
       </ol>
-      <!-- Statistics -->
-      <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-3">
-          <div class="card text-white bg-primary o-hidden h-100">
-            <div class="card-body">
-              <div class="card-body-icon">
-                <i class="fa fa-fw fa-database"></i>
-              </div>
-              <div class="mr-5">{{countm}} Models</div>
-            </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
-              <span class="float-left">Manage</span>
-              <span class="float-right">
-                <i class="fa fa-angle-right"></i>
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-          <div class="card text-white bg-secondary o-hidden h-100">
-            <div class="card-body">
-              <div class="card-body-icon">
-                <i class="fa fa-fw fa-file"></i>
-              </div>
-              <div class="mr-5">{{count}} Views</div>
-            </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
-              <span class="float-left">Manage</span>
-              <span class="float-right">
-                <i class="fa fa-angle-right"></i>
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-          <div class="card text-white bg-success o-hidden h-100">
-            <div class="card-body">
-              <div class="card-body-icon">
-                <i class="fa fa-fw fa-hashtag"></i>
-              </div>
-              <div class="mr-5">{{countc}} Controllers</div>
-            </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
-              <span class="float-left">Manage</span>
-              <span class="float-right">
-                <i class="fa fa-angle-right"></i>
-              </span>
-            </a>
-          </div>
-        </div>
 
-      </div>
-      <!-- Content -->
-      <div class="row">
-        <div class="col-lg-8">
-          <!-- Example Bar Chart Card-->
-          <div class="card mb-3">
-            <div class="card-header">Main</div>
-            <div class="card-body">
-          <h2>Welcome</h2>
-              <p>Here in the Administration panel, you can add, remove and manage your site's content dynamically through python.</p>
-              <hr>
-              <p><h5>Configuration  <small class="text-muted">(config.ini)</small></h5> </p>
-              <p><i class="fa fa-server"></i> Server Settings</p>
-              <table class="table table-sm table-bordered table-hover">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Key</th>
-                    <th scope="col">Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">debug</th>
-                    <td >
-                      <input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{debug}}">
-                      <small class="form-text text-muted">True or False. Debug mode controls several development features</small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">port</th>
-                    <td>
-                      <input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{port}}">
-                       <small class="form-text text-muted">Set any port number you please, this is only relevant if you are running the development server.</small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">secret_key</th>
-                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{secret_key}}"><small class="form-text text-muted">Set a secret key so cryptographic components can use this to sign cookies and other things</small></td>
-                  </tr>
-                </tbody>
-              </table>
-              <p><i class="fa fa-globe"></i> Site Settings</p>
-              <table class="table table-sm table-bordered table-hover">
-                <thead class="thead-light">
-                  <tr>
-          
-                    <th scope="col">Key</th>
-                    <th scope="col">Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                    <tr>
-               
-                    <th scope="row">name</th>
-                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{name}}"> <small class="form-text text-muted">The name of your website. Can be called upon by views to automatically set page title, etc.</small></td>
-                  </tr>
-                    <tr>
-                
-                    <th scope="row">desc</th>
-                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{desc}}"><small class="form-text text-muted">And just like the your website's name, the description can also be called easily through views / templates.</small></td>
-                  </tr>
-                
-                </tbody>
-              </table>
-                            <p><i class="fa fa-database"></i> MySQL Settings</p>
-              <table class="table table-sm table-bordered table-hover">
-                <thead class="thead-light">
-                  <tr>
-          
-                    <th scope="col">Key</th>
-                    <th scope="col">Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-              
-                    <th scope="row">host</th>
-                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{mhost}}"><small class="form-text text-muted">Typically left as `localhost` unless the mysql server is hosted elsewhere.</small></td>
-                  </tr>
-                  <tr>
-                
-                    <th scope="row">user</th>
-                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{muser}}"><small class="form-text text-muted">MySQL login username</small></td>
-                  </tr>
-                  <tr>
-              
-                    <th scope="row">database</th>
-                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{mdb}}"><small class="form-text text-muted">MySQL database name</small></td>
-                  </tr>
-                </tbody>
-              </table>
-              <a class="btn btn-primary" href="https://www.python.org/" target="_blank">Update</a>
-              <a class="btn btn-secondary" href="http://flask.pocoo.org/" target="_blank">View update history</a>
-            </div>
-          </div>
+      <form method="post">
+        {% with messages = get_flashed_messages() %} 
+        {% if messages %}
+         <div class="animated pulse infinite alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+          {% for message in messages %}
+          <strong>Success: </strong>{{ message }}
+          {% endfor %}
         </div>
-        <div class="col-lg-4">
-          <!-- Example Pie Chart Card-->
-          <div class="card mb-3">
-            <div class="card-header">
-              Content</div>
-            <div class="card-body">
-              <p>Click on a file below to edit it</p>
-              <hr>
-              {{tpls}}
-            </div>
-          </div>
+        {% endif %}
+        {% endwith %}
+         {% if error %} 
+         <div class="animated pulse infinite alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+          <strong>Error: </strong>{{ error }}
         </div>
+        {% endif %}
+        <input id="update-submit" name="update-submit" type="submit" class="btn btn-primary" value="Update">
+        <a class="btn btn-secondary" href="#" id="toggleNavColor">Clear</a>
+        <br />
+        <div class="row" style="padding: 20px;">
+        <input class="col-md-6" name="content" id="content" type=hidden />
+        <!-- real input ^ -->
+        <div id="resizable">
+          <h3 class="ui-widget-header">(Ace Editor)</h3>
+          <div id="editor">{{html}}</div>
+        </div>
+        <br />
+      </form>
+
       </div>
       <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
       <div style="height: 1000px;"></div>
@@ -376,23 +272,11 @@
         </div>
       </div>
     </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ url_for('static', filename='__admin/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ url_for('static', filename='__admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="{{ url_for('static', filename='__admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="{{ url_for('static', filename='__admin/js/sb-admin.min.js')}}"></script>
-    <!-- Toggle between dark and light navbar-->
-    <script>
-    $('#toggleNavColor').click(function() {
-      $('nav').toggleClass('navbar-dark navbar-light');
-      $('nav').toggleClass('bg-dark bg-light');
-      $('body').toggleClass('bg-dark bg-light');
-    });
 
-    </script>
-  </div>
+<script src="{{ url_for('static', filename='__admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- Core plugin JavaScript-->
+<script src="{{ url_for('static', filename='__admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+<!-- Custom scripts for all pages-->
+<script src="{{ url_for('static', filename='__admin/js/sb-admin.min.js')}}"></script>
 </body>
-
 </html>

@@ -3,7 +3,7 @@ from flask import render_template, session, request, redirect, url_for
 """ Controller for admin login page
 """
 def controller():
-    if session.get('logged_in') is True:
+    if 'logged_in' and 'username' in session:
         return redirect(url_for('admin_dashboard'))
     else:
         error = None

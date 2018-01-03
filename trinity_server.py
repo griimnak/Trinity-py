@@ -1,6 +1,6 @@
 from app import app
 """ 
-Trinity4
+Trinity3 build tr4
 A content managent system server written in python with flask.
 written by griimnak
 

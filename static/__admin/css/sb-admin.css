@@ -13,6 +13,7 @@ body {
 body.sticky-footer {
   margin-bottom: 56px; }
   body.sticky-footer .content-wrapper {
+    background-color:#e9ecef;
     min-height: calc(100vh - 56px - 56px); }
 
 body.fixed-nav {
