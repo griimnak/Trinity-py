@@ -23,6 +23,7 @@ https://www.python.org/
 https://www.apachefriends.org/index.html
 
 - Configure `config.ini`
+- Import `mysqldb.sql` into your database. (default user included tr4-admin:password)
 
 --------------------
 Run the command below to install required modules. (pip or pip3)
