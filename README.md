@@ -55,3 +55,4 @@ gunicorn --workers=4 app:app
 
 ## Screenshots
 ![Alt Text](https://i.imgur.com/80209wU.png)
+![Alt Text](https://image.prntscr.com/image/-MN-_eHZQNKlkJVUqPC0rQ.png)
