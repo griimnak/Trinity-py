@@ -29,14 +29,14 @@ https://www.apachefriends.org/index.html
 Run the command below to install required modules. (pip or pip3)
 
 ```sh
-pip3 install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 How to run
 ----------------
 #### Local / development environment
 ```sh
-python3 trinity_server.py
+$ python3 trinity_server.py
 ```
 ###### Windows users can simply launch `win_launch.bat`
 --------------------
@@ -44,7 +44,7 @@ python3 trinity_server.py
 #### Gunicorn production environment
 ###### *Recommended way* (docs: <a href="http://docs.gunicorn.org/en/stable/run.html">gunicorn docs</a> <a href="https://djangodeployment.com/2016/11/30/how-to-setup-apache-with-gunicorn/">apache/nginx+gunicorn docs</a>)
 ```sh
-gunicorn --workers=4 app:app
+$ gunicorn --workers=4 app:app
 ```
 #### Passenger production environment
 - See `passenger_wsgi.py`
