@@ -4,16 +4,15 @@ import sys
 
 
 def controller():
-    try:
-        pyinfo = sys.version
-    except:
-        pyinfo = 'Could not detect!'
+    cfg = Config()
+    pyinfo = sys.version
+  
 
     return render_template(
         'index.html',
-        sitename=Config.read_key('site', 'name'),
-        sitedesc=Config.read_key('site', 'desc'),
-        siteport=Config.read_key('server', 'port'),
+        sitename=cfg.read_key('site', 'name'),
+        sitedesc=cfg.read_key('site', 'desc'),
+        siteport=cfg.read_key('server', 'port'),
         pyinfo=pyinfo
 
     )

@@ -6,21 +6,26 @@ import configparser
 """
 class Config:
     def __init__(self):
-        config = 'config.ini'
+        self.config = 'config.ini'
         self.parser = configparser.ConfigParser()
-        self.parser.read(config)
+        self.parser.read(self.config)
 
-    def read_key(section, key):
-        return Config().parser[section][key]
+    def read_key(self, section, key):
 
-    def update_key(section, key, value):
-        return Config().parser.set(section, key, value)
+        return self.parser[section][key]
 
-    def add_section(section):
-        return Config().parser.add_section(section)
+    def update_key(self, section, key, value):
 
-    def add_key(section, key, value):
-        return Confg().parser.add_option(section, key, value)
+        return self.parser.set(section, key, value)
 
-    def remove_key(section, key):
-        return Confg().parser.remove_option(section, key)
+    def add_section(self, section):
+
+        return self.parser.add_section(section)
+
+    def add_key(self, section, key, value):
+
+        return self.parser.add_option(section, key, value)
+
+    def remove_key(self, section, key):
+
+        return self.parser.remove_option(section, key)

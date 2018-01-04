@@ -39,7 +39,13 @@ def controller(content, file):
 
                 date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 flash("Updated: " + content + '/' + file + " (" + date + ")")
-                return redirect('/admin/manage/' + content + '/' + file )
+                return redirect(
+                    url_for('admin_manage_home') +
+                    '/' + 
+                    content + 
+                    '/' + 
+                    file 
+                )
 
             else:
                 return "What did you do?"

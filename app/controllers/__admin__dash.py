@@ -9,6 +9,7 @@ def controller():
     if 'logged_in' and 'username' not in session:
         return redirect(url_for('admin_login'))
     else:
+        cfg = Config()
 
         """ This will all be tidy'd up eventually, just for testing,
         """
@@ -33,14 +34,14 @@ def controller():
         return render_template(
             '__admin__dash.html',
             username=session.get('username'),
-            port=Config.read_key('server', 'port'),
-            debug=Config.read_key('server', 'debug'),
-            secret_key=Config.read_key('server', 'secret_key'),
-            name=Config.read_key('site', 'name'),
-            desc=Config.read_key('site', 'desc'),
-            mhost=Config.read_key('mysqld', 'host'),
-            muser=Config.read_key('mysqld', 'user'),
-            mdb=Config.read_key('mysqld', 'db'),
+            port=cfg.read_key('server', 'port'),
+            debug=cfg.read_key('server', 'debug'),
+            secret_key=cfg.read_key('server', 'secret_key'),
+            name=cfg.read_key('site', 'name'),
+            desc=cfg.read_key('site', 'desc'),
+            mhost=cfg.read_key('mysqld', 'host'),
+            muser=cfg.read_key('mysqld', 'user'),
+            mdb=cfg.read_key('mysqld', 'db'),
             tpls=tpls,
             count=count,
             countc=countc,

@@ -1,58 +1,38 @@
 from flask import request, session
 from pymysql import escape_string as clean
 from passlib.hash import sha256_crypt as hasher
+from app import get_db
 
 class Login():
-    def __init__(self):
+    def __init__(self, username, password):
         self.error = None
         self.verification = False
 
-        """ Double check if the submit button was actually pressed.
-            Extra security I guess,
-        """
-        if request.form['login-submit'] != None:
-            self.username = clean(str(request.form['username']))
-            self.password = clean(str(request.form['password']))
-
-            """ Check if fields are blank
-            """
-            if self.username == '' or self.password == '':
-                self.error = 'One or more fields have been left blank.'
-
-            else:
-                """ Query database if input is present
-                """
-                self.locate_user_data()
-        else:
-            return "What did you do?"
+        self.username = clean(username)
+        self.password = clean(password)
+        
+        self.locate_user_data()
 
     def locate_user_data(self):
-        try:
-            import app.mysql as db
+        cursor = get_db().cursor()
 
-            db.instance.execute(
-                "SELECT COUNT(1) FROM users WHERE username = %s;", 
-                [self.username]
-            )
-
-            """ Find password for requested user if exists
+        """ Check if requested user exists
+        """
+        sql = "SELECT username from users WHERE username = (%s);"
+        if cursor.execute(sql, (self.username)):
+            """ Fetch real password if requested user is found,
+                export for comparison with verify_login(password)
             """
-            if db.instance.fetchone()[0]:
-                db.instance.execute(
-                    "SELECT password FROM users WHERE username = %s;", 
-                    [self.username]
-                )
+            sql2 = "SELECT password FROM users WHERE username =(%s);"
+            if cursor.execute(sql2, (self.username)):
+                row = cursor.fetchone()
+                self.passw = row["password"]
 
-                for row in db.instance.fetchall():
-                    self.passw = row[0]
-                
-                """ Verification stage
-                """
                 self.verify_login()
-            else:
-                self.error = 'The user you entered doesn\'t exist in our database.'
-        except Exception as e:
-            print(' 500 ERROR: ' + str(e))
+        else:
+            self.error = 'The user you entered doesn\'t exist in our database.'
+
+        cursor.close()
             
     def verify_login(self):
         """ Compare passwords
