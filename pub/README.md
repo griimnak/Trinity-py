@@ -1,3 +1,3 @@
-##### __trinity__ = frontend engine 
+##### __trinity__  frontend engine 
 
 author: https://github.com/marcus-sa
