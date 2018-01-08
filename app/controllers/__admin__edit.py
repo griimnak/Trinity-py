@@ -9,7 +9,7 @@ def controller(content, file):
     if 'logged_in' and 'username' not in session:
         return redirect(url_for('admin_dashboard'))
     else:
-        from app.__admin.content_editor import ContentEditor
+        from app.__trinity__.content_editor import ContentEditor
 
         error = None
         __content = None

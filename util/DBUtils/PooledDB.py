@@ -141,7 +141,7 @@ Licensed under the MIT license.
 
 from threading import Condition
 
-from DBUtils.SteadyDB import connect
+from util.DBUtils.SteadyDB import connect
 
 __version__ = '1.2'
 

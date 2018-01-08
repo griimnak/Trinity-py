@@ -107,7 +107,7 @@ Licensed under the MIT license.
 
 """
 
-from DBUtils.SteadyPg import SteadyPgConnection
+from util.DBUtils.SteadyPg import SteadyPgConnection
 
 __version__ = '1.2'
 

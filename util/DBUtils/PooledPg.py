@@ -113,7 +113,7 @@ try:
 except ImportError:  # Python 3
     from queue import Queue, Empty, Full
 
-from DBUtils.SteadyPg import SteadyPgConnection
+from util.DBUtils.SteadyPg import SteadyPgConnection
 
 __version__ = '1.2'
 

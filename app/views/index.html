@@ -12,8 +12,12 @@
                 https://griimnak.me                 -->
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Welcome to Trinity 3</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/trinity.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.min.css') }}">
 </head>
 <body>
   <div class="container">
@@ -55,6 +59,7 @@
 <form method=post action="">
     <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
 </form>
+
 
 </body>
 </html>
