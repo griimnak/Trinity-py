@@ -5,7 +5,8 @@
 [![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
-*WIP* <br /> live demo: http://griimnak.me/trinity
+*WIP* <br /> 
+Frontend by: https://github.com/marcus-sa
 
 Recently rewritten for performance
 -------------------
@@ -29,9 +30,15 @@ https://www.apachefriends.org/index.html
 Run the command below to install required modules. (pip or pip3)
 
 ```sh
-pip3 install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
+Install NPM for frontend (temporary)
+```sh
+$ cd pub/__trinity__/
+$ npm install
+$ npm run dev
+```
 How to run
 ----------------
 #### Local / development environment
@@ -41,19 +48,7 @@ python3 trinity_server.py
 ###### Windows users can simply launch `win_launch.bat`
 --------------------
 
-#### Gunicorn production environment
-###### *Recommended way* (docs: <a href="http://docs.gunicorn.org/en/stable/run.html">gunicorn docs</a> <a href="https://djangodeployment.com/2016/11/30/how-to-setup-apache-with-gunicorn/">apache/nginx+gunicorn docs</a>)
-```sh
-gunicorn --workers=4 app:app
-```
-#### Passenger production environment
-- See `passenger_wsgi.py`
-###### (http://griimnak.me/trinity runs on passenger through cpanel)
-----------------
-
 <br /><br />
 
 
 ## Screenshots
-![Alt Text](https://i.imgur.com/80209wU.png)
-![Alt Text](https://image.prntscr.com/image/-MN-_eHZQNKlkJVUqPC0rQ.png)
