@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Trinity 3 Administration</title>
+
+
+		<link href="{{ url_for('static', filename='__trinity__/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{{ url_for('static', filename='__trinity__/css/main.css')}}">
+		<script src="{{ url_for('static', filename='__trinity__/js/main.js')}}"></script>
+    <link href="{{ url_for('static', filename='__trinity__/css/animate.min.css') }}" rel="stylesheet">
+
+
+	</head>
+	<body>
+ 
+  <div id="header" class="header">
+    <!-- modal -->
+    <div class="modal-wrap" id="modal-test">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2 class="modal-title">Are you sure?</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-content">
+          <p>Press logout to destroy user session for {{username}}</p>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae itaque quaerat animi praesentium accusamus
+            expedita rerum unde ipsum nihil est officia, quisquam sunt reiciendis, omnis placeat distinctio similique
+          illum minus.</p>
+          <p>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <p>You will be redirected afterwards.</p>
+        </div>
+      </div>
+    </div>
+
+			<a href="#" id="nav-trigger" class="nav-trigger"><span></span></a>
+		</div>
+		<div id="side-nav" class="side-nav animated fadeInLeft">
+			<div class="logo">
+			</div>
+			<nav>
+				<ul>
+					<li class="active selected">
+						<a class="selected" href="{{url_for('admin_dashboard')}}">
+							<span><i class="fa fa-home"></i>
+							<span>Dashboard</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+
+							<span><i class="fa fa-wrench"></i></span>
+							<span>Content</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span><i class="fa fa-users"></i></span>
+							<span>Users</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span><i class="fa fa-database"></i></span>
+							<span>MySQL</span>
+						</a>
+					</li>
+          <li>
+            <a href="{{url_for('logout')}}">
+              <span><i class="fa fa-sign-out"></i></span>
+              <span>Logout</span>
+            </a>
+          </li>
+				</ul>
+			</nav>
+		</div>
+
+    <div id="content">
+    <div class="main-content">
+      <div class="main-title">
+        Dashboard
+      </div>
+      <div class="main-stats">
+        <div class="stats-widget blue-stats">
+          <div class="stats-icon"><i class="fa fa-database"></i></div>
+          <div class="stats-text">
+            <b>{{countm}}</b><br />
+          Models loaded</div>
+        </div>
+        <div class="stats-widget green-stats">
+          <div class="stats-icon"><i class="fa fa-file-o"></i></div>
+          <div class="stats-text">
+            <b>{{count}}</b><br />
+          Views loaded</div>
+        </div>
+        <div class="stats-widget purple-stats">
+          <div class="stats-icon"><i class="fa fa-hashtag"></i></div>
+          <div class="stats-text">
+            <b>{{countc}}</b><br />
+          Controllers loaded</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="main">
+        <div class="widget-large">
+          <div class="title">Configuration</div>
+          <div class="inner">
+            So we'll keep on waiting.. waiting... waiting on the world the change.
+            It's hard to beat the system, when you're standing at a distance, so we'll keep on waiting. waiting. waiting on the world to change.
+          </div>
+          <div class="inner"><br/>
+            <button id="open-modal" class="triger-modal btn btn-blue" data-triger="modal-demo">Open Modal</button>
+          </div>
+        </div>
+        <div class="widget">
+          <div class="title">Welcome, {{username}}</div>
+          <div class="inner">
+            So we'll keep on waiting.. waiting... waiting on the world the change.
+            It's hard to beat the system, when you're standing at a distance, so we'll keep on waiting. waiting. waiting on the world to change.
+          </div>
+        </div>
+        <div class="widget">
+          <div class="title">dummy</div>
+          <div class="inner"></div>
+        </div>
+        <div class="widget">
+          <div class="title">dummy</div>
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+		<div class="main-content">
+			<div class="main">
+				<div class="widget">
+					<div class="title">dummy</div>
+					<div class="chart"></div>
+				</div>
+				<div class="widget">
+					<div class="title">dummy</div>
+					<div class="chart"></div>
+				</div>
+				<div class="widget">
+					<div class="title">dummy</div>
+					<div class="chart"></div>
+				</div>
+			</div>
+		</div>
+    <div class="footer"><p>IsoLite, designed by griimnak</p></div>
+  </div>
+	</body>
+</html>
