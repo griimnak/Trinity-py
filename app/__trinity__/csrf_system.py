@@ -1,6 +1,5 @@
 import os
 import binascii
-from app import app
 from flask import request, session, abort
 
 """ Simple but effective csrf token generator
@@ -15,5 +14,3 @@ def generate_random_string(n):
 
 def generate_csrf_token():
     return generate_random_string(12)
-
-app.jinja_env.globals['csrf_token'] = generate_csrf_token  
