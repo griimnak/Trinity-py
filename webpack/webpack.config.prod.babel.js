@@ -2,17 +2,14 @@ import webpack from 'webpack'
 import path from 'path'
 
 const appName = 'Trinity3'
-const trinityPath = path.join(__dirname, '..', 'js')
-const outputFile = 'bundle.min.js'
+const trinityPath = path.resolve(__dirname, '..', 'js')
+const outputFile = 'trinity3.min.js'
 
 export default {
   devtool: 'inline-source-map',
-  entry: [
-    'babel-polyfill',
-    trinityPath,
-  ],
+  entry: trinityPath,
   output: {
-    path: path.resolve(__dirname, '..', 'pub', 'js'),
+    path: path.resolve(__dirname, '..', 'pub', 'assets', 'js'),
     filename: outputFile,
     library: appName,
     libraryTarget: 'umd',
@@ -23,7 +20,7 @@ export default {
     rules: [
       {
         test: /(\.jsx|\.js)$/,
-        include: path.join(__dirname, '..', 'js'),
+        include: trinityPath,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader'
       }
@@ -31,14 +28,12 @@ export default {
   },
   resolve: {
     modules: [
-      path.resolve(__dirname, '..', 'js'),
+      trinityPath,
       'node_modules'
     ],
     extensions: ['.json', '.js']
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.optimize.UglifyJsPlugin({ minimize: true })
   ]
 }

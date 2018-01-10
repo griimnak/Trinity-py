@@ -14,7 +14,6 @@
 <html>
   <head>
     <title>Welcome to Trinity 3</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/trinity.css') }}">    
   </head>
   <body>
     <!-- Frontend container -->
@@ -22,7 +21,8 @@
 
     <script type="text/javascript">
       window.__data = JSON.stringify({{ data|tojson|safe }});
+      // {{ env }}
     </script>
-    <script type="text/javascript" src="http://localhost:9000/dist/trinity3.js"></script>
+    <script type="text/javascript" src="{{ script|safe }}"></script>
   </body>
 </html>
