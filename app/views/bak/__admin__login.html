@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Administration - Login</title>
+  <link href="{{ url_for('static', filename='__admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='__admin/css/sb-admin.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='__admin/css/animate.min.css') }}" rel="stylesheet">
+
+    <!-- preloader -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/trinity-preload.css') }}">
+  <script src="{{ url_for('static', filename='js/trinity-preload.js')}}"></script>
+</head>
+  <div id="loading">
+    <hr/><hr/><hr/><hr/>
+  </div>
+<body id="content animate" class="bg-dark">
+  <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header">Login</div>
+      <div class="card-body">
+      {% if error %} 
+        <div class="animated pulse infinite alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+          <strong>Error: </strong>{{ error }}
+        </div>
+      {% endif %}
+        <form method="post">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input name="username" class="form-control" id="username" type="text" aria-describedby="emailHelp" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label name="password" for="password">Password</label>
+            <input name="password" class="form-control" id="password" type="password" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input name="remember" class="form-check-input" type="checkbox"> Remember Password</label>
+            </div>
+          </div>
+          <input id="login-submit" name="login-submit" type="submit" class="btn btn-primary btn-block" value="Login">
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="{{url_for('landing')}}">Return to landing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
