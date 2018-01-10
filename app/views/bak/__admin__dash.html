@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Adminstration</title>
+  <!-- Bootstrap core CSS-->
+  <link href="{{ url_for('static', filename='__admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="{{ url_for('static', filename='__admin/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="{{ url_for('static', filename='__admin/css/sb-admin.css') }}" rel="stylesheet">
+</head>
+
+<body class="sticky-footer bg-dark" id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" id="mainNav">
+    <a class="navbar-brand" href="/admin">Administration</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="index.html">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-wrench"></i>
+            <span class="nav-link-text">Manage Content</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+            <li>
+              <a href="login.html">Models</a>
+            </li>
+            <li>
+              <a href="register.html">Views</a>
+            </li>
+            <li>
+              <a href="forgot-password.html">Controllers</a>
+            </li>
+            <li>
+              <a href="blank.html">Static</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-archive"></i>
+            <span class="nav-link-text">Tools</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseComponents">
+            <li>
+              <a href="navbar.html">Navbar</a>
+            </li>
+            <li>
+              <a href="cards.html">Cards</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="tables.html">
+            <i class="fa fa-fw fa-database"></i>
+            <span class="nav-link-text">Mysql</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-compress"></i>
+            <span class="nav-link-text">Compression</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseMulti">
+            <li>
+              <a href="#">Second Level Item</a>
+            </li>
+            <li>
+              <a href="#">Second Level Item</a>
+            </li>
+            <li>
+              <a href="#">Second Level Item</a>
+            </li>
+            <li>
+              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
+              <ul class="sidenav-third-level collapse" id="collapseMulti2">
+                <li>
+                  <a href="#">Third Level Item</a>
+                </li>
+                <li>
+                  <a href="#">Third Level Item</a>
+                </li>
+                <li>
+                  <a href="#">Third Level Item</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-link"></i>
+            <span class="nav-link-text">Link</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link mr-lg-2" href="#" id="toggleNavColor">
+            <i class="fa fa-fw fa-paint-brush"></i>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-bell"></i>
+            <span class="d-lg-none">Alerts
+              <span class="badge badge-pill badge-warning">6 New</span>
+            </span>
+            <span class="indicator text-warning d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">New Alerts:</h6>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <span class="text-success">
+                <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <span class="text-danger">
+                <strong>
+                  <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <span class="text-success">
+                <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" href="#">View all alerts</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>{{username}}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Main</li>
+      </ol>
+      <!-- Statistics -->
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-3">
+          <div class="card text-white bg-primary o-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fa fa-fw fa-database"></i>
+              </div>
+              <div class="mr-5">{{countm}} Models</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#">
+              <span class="float-left">Manage</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+          <div class="card text-white bg-secondary o-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fa fa-fw fa-file"></i>
+              </div>
+              <div class="mr-5">{{count}} Views</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#">
+              <span class="float-left">Manage</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-3">
+          <div class="card text-white bg-success o-hidden h-100">
+            <div class="card-body">
+              <div class="card-body-icon">
+                <i class="fa fa-fw fa-hashtag"></i>
+              </div>
+              <div class="mr-5">{{countc}} Controllers</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#">
+              <span class="float-left">Manage</span>
+              <span class="float-right">
+                <i class="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <!-- Content -->
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Example Bar Chart Card-->
+          <div class="card mb-3">
+            <div class="card-header">Main</div>
+            <div class="card-body">
+          <h2>Welcome</h2>
+              <p>Here in the Administration panel, you can add, remove and manage your site's content dynamically through python.</p>
+              <hr>
+              <p><h5>Configuration  <small class="text-muted">(config.ini)</small></h5> </p>
+              <p><i class="fa fa-server"></i> Server Settings</p>
+              <table class="table table-sm table-bordered table-hover">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Key</th>
+                    <th scope="col">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">debug</th>
+                    <td >
+                      <input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{debug}}">
+                      <small class="form-text text-muted">True or False. Debug mode controls several development features</small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">port</th>
+                    <td>
+                      <input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{port}}">
+                       <small class="form-text text-muted">Set any port number you please, this is only relevant if you are running the development server.</small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">secret_key</th>
+                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{secret_key}}"><small class="form-text text-muted">Set a secret key so cryptographic components can use this to sign cookies and other things</small></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p><i class="fa fa-globe"></i> Site Settings</p>
+              <table class="table table-sm table-bordered table-hover">
+                <thead class="thead-light">
+                  <tr>
+          
+                    <th scope="col">Key</th>
+                    <th scope="col">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr>
+               
+                    <th scope="row">name</th>
+                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{name}}"> <small class="form-text text-muted">The name of your website. Can be called upon by views to automatically set page title, etc.</small></td>
+                  </tr>
+                    <tr>
+                
+                    <th scope="row">desc</th>
+                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{desc}}"><small class="form-text text-muted">And just like the your website's name, the description can also be called easily through views / templates.</small></td>
+                  </tr>
+                
+                </tbody>
+              </table>
+                            <p><i class="fa fa-database"></i> MySQL Settings</p>
+              <table class="table table-sm table-bordered table-hover">
+                <thead class="thead-light">
+                  <tr>
+          
+                    <th scope="col">Key</th>
+                    <th scope="col">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+              
+                    <th scope="row">host</th>
+                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{mhost}}"><small class="form-text text-muted">Typically left as `localhost` unless the mysql server is hosted elsewhere.</small></td>
+                  </tr>
+                  <tr>
+                
+                    <th scope="row">user</th>
+                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{muser}}"><small class="form-text text-muted">MySQL login username</small></td>
+                  </tr>
+                  <tr>
+              
+                    <th scope="row">database</th>
+                    <td><input type="text" class="form-control form-control-success" id="inputSuccess1" value="{{mdb}}"><small class="form-text text-muted">MySQL database name</small></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a class="btn btn-primary" href="https://www.python.org/" target="_blank">Update</a>
+              <a class="btn btn-secondary" href="http://flask.pocoo.org/" target="_blank">View update history</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Example Pie Chart Card-->
+          <div class="card mb-3">
+            <div class="card-header">
+              Content</div>
+            <div class="card-body">
+              <p>Click on a file below to edit it</p>
+              <hr>
+              {{tpls}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
+      <div style="height: 1000px;"></div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Trinity3</small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below to end user session: <b>{{username}}</b></div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ url_for('static', filename='__admin/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='__admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ url_for('static', filename='__admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ url_for('static', filename='__admin/js/sb-admin.min.js')}}"></script>
+    <!-- Toggle between dark and light navbar-->
+    <script>
+    $('#toggleNavColor').click(function() {
+      $('nav').toggleClass('navbar-dark navbar-light');
+      $('nav').toggleClass('bg-dark bg-light');
+      $('body').toggleClass('bg-dark bg-light');
+    });
+
+    </script>
+  </div>
+</body>
+
+</html>
