@@ -27,7 +27,7 @@ export default {
     rules: [
       {
         test: /(\.jsx|\.js)$/,
-        include: [srcPath],
+        include: srcPath,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader'
       }

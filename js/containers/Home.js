@@ -1,6 +1,8 @@
-import { Component } from 'trinity-web'
+import * as Trinity from 'trinity-web'
 
-export default class Home extends Component {
+console.log(Trinity)
+
+export default class Home extends Trinity.Component {
 
   render = ({ store }) => {
     const { pyinfo, site } = store.get()

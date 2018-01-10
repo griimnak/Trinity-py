@@ -2,16 +2,26 @@ import { Component, helpers } from 'trinity-web'
 
 import { required } from 'utils/validation'
 
-export default class AdminLogin extends Component {
+export default class Login extends Component {
 
   initialState = () => ({
     errors: null
   })
 
-  login = ({ event }) => {
-    const data = helpers.getFormData(event.target)
+  beforeRender() {
+    this.addHeadTags(
+      { tag: 'link', href: 'pub/__trinity__/vendor/font-awesome/css/font-awesome.min.css' },
+      { tag: 'link', href: 'pub/__trinity__/css/main.css' },
+      { tag: 'link', href: 'pub/__trinity__/css/animate.min.css' }
+    )
+  }
 
-    const errors = helpers.createValidator(data, {
+  routeWillLeave = () => this.removeHeadTags()
+
+  login = ({ event }) => {
+    const data = helpers.form.getFormData(event.target)
+
+    const errors = helpers.form.createValidator(data, {
       username: [required],
       password: [required]
     })
@@ -52,12 +62,12 @@ export default class AdminLogin extends Component {
                 ${state.errors ? `
                   <div class="animated pulse infinite alert alert-danger alert-dismissible" role="alert">
                     
-                    ${helpers.map(Object.keys(state.errors),
+                    ${helpers.objectMap(state.errors,
                       (error) => `
                         <a class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                         </a>
-                        <strong>Error: </strong>${state.errors[error]}<br />`
+                        <strong>Error: </strong>${error}<br />`
                     )}
                   </div>`
                 : ''}

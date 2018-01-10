@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "hola",
   "scripts": {
-    "dev": "concurrently --kill-others \"npm run watch-client\" \"python3 trinity_server.py\"",
+    "dev": "concurrently --kill-others \"npm run watch-client\" \"python3 trinity_server.py --env=development\"",
     "watch-client": "better-npm-run watch-client",
     "prestart": "npm run build",
-    "start": "concurrently --kill-others \"python3 trinity_server.py\"",
-    "build": "webpack --progress --colors --config=./src/webpack/webpack.config.prod.babel.js"
+    "start": "concurrently --kill-others \"python3 trinity_server.py --env=production\"",
+    "build": "webpack --progress --colors --config=./webpack/webpack.config.prod.babel.js"
   },
   "betterScripts": {
     "watch-client": {
@@ -30,8 +30,8 @@
   },
   "homepage": "hhttps://github.com/griimnak/Trinity3#readme",
   "dependencies": {
-    "trinity-plugin-api": "^1.0.0",
-    "trinity-web": "^1.1.1"
+    "trinity-plugin-api": "^1.1.0",
+    "trinity-web": "github:marcus-sa/trinity-js#dev"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

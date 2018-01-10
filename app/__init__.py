@@ -6,6 +6,11 @@ from flask_compress import Compress
 from util.DBUtils.PersistentDB import PersistentDB
 import json
 import sys
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--env')
+args = parser.parse_args()
 
 cfg = Config()
 compress = Compress()
@@ -37,19 +42,27 @@ app.config['COMPRESS_MIMETYPES'] = mimetypes
 @app.route('/', defaults={'path': ''})
 @app.route('/<path>')
 def index(path):
+    print(args.env)
+    if (args.env == 'development'):
+        jsfile = "http://localhost:9000/dist/trinity3.js"
+    else:
+        jsfile = url_for('static', filename='assets/js/trinity3.min.js')
+
     data = {
         "site": {
             "name": cfg.read_key('site', 'name'),
             "desc": cfg.read_key('site', 'desc'),
             "port": cfg.read_key('server', 'port')
         },
+        "csrfToken": generate_csrf_token(),
         "pyinfo": sys.version
     }
 
     return render_template(
        'index.html',
        data=data,
-       csrf_token=generate_csrf_token()
+       env=args.env,
+       script=jsfile
     )
 
 from app.middlewares import *
