@@ -1,9 +1,11 @@
 from app.config import Config
 import pymysql
+from app.__trinity__.csrf_system import generate_csrf_token
 from flask import Flask, url_for, render_template
 from flask_compress import Compress
 from util.DBUtils.PersistentDB import PersistentDB
-from app.__trinity__.csrf_system import generate_csrf_token
+import json
+import sys
 
 cfg = Config()
 compress = Compress()
@@ -35,7 +37,20 @@ app.config['COMPRESS_MIMETYPES'] = mimetypes
 @app.route('/', defaults={'path': ''})
 @app.route('/<path>')
 def index(path):
-    return render_template('index.html', csrf_token=generate_csrf_token())
+    data = {
+        "site": {
+            "name": cfg.read_key('site', 'name'),
+            "desc": cfg.read_key('site', 'desc'),
+            "port": cfg.read_key('server', 'port')
+        },
+        "pyinfo": sys.version
+    }
+
+    return render_template(
+       'index.html',
+       data=data,
+       csrf_token=generate_csrf_token()
+    )
 
 from app.middlewares import *
 
