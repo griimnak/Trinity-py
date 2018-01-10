@@ -1,0 +1,1 @@
+export LastPage from './LastPage'

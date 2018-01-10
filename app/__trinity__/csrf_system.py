@@ -1,5 +1,6 @@
 import os
 import binascii
+import app
 from flask import request, session, abort
 
 """ Simple but effective csrf token generator
