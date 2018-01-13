@@ -1,5 +1,6 @@
 import { Trinity, helpers } from 'trinity-web'
 
+import TrinityDOM from 'trinity-dom'
 import ApiClient from 'trinity-plugin-api'
 
 import { Home, Admin } from './containers'
@@ -13,6 +14,7 @@ helpers.dom.addHeadTags(
   { tag: 'link', href: 'pub/assets/css/trinity.css' }
 )
 
+app.context('render', TrinityDOM(require('./utils/dom.js')))
 app.context('api', new ApiClient('http://localhost:5000'))
 
 if (window.__page) {
