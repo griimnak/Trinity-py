@@ -2,7 +2,7 @@ import webpack from 'webpack'
 import path from 'path'
 
 const appName = 'Trinity3'
-const trinityPath = path.resolve(__dirname, '..', 'js')
+const trinityPath = path.resolve(__dirname, '..', 'src')
 const outputFile = 'trinity3.min.js'
 
 export default {

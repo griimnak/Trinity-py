@@ -30,6 +30,7 @@
   },
   "homepage": "hhttps://github.com/griimnak/Trinity3#readme",
   "dependencies": {
+    "trinity-dom": "^1.0.2",
     "trinity-plugin-api": "^1.1.0",
     "trinity-web": "github:marcus-sa/trinity-js#dev"
   },

@@ -5,7 +5,7 @@ const port = process.env.WEBPACK_PORT || 9000
 const publicPath = `http://localhost:${port}/dist/`
 const appName = 'Trinity3'
 
-const srcPath = path.resolve(__dirname, '..', 'js')
+const srcPath = path.resolve(__dirname, '..', 'src')
 const trinityPath = path.join(srcPath, 'index.js')
 const outputFile = appName.toLowerCase() + '.js'
 

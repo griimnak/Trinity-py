@@ -1,7 +1,6 @@
 import express from 'express'
 import webpack from 'webpack'
 import config from './webpack.config.dev.js'
-//const paths = require('./paths')
 
 const port = process.env.WEBPACK_PORT || 9000
 const compiler = webpack(config)
