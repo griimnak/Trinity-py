@@ -55,6 +55,6 @@ def logout():
 
 @app.after_request
 def signature(response):
-    response.headers['X-Powered-By'] = 'Trinity3-tr4.2'
+    response.headers['X-Powered-By'] = 'Trinity-py-tr4.4'
     return response
 
