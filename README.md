@@ -47,7 +47,19 @@ python3 local_server.py
 ###### Windows users can simply launch `win_launch.bat`
 --------------------
 
+#### Gunicorn production environment
+###### *Recommended way* (docs: <a href="http://docs.gunicorn.org/en/stable/run.html">gunicorn docs</a> <a href="https://djangodeployment.com/2016/11/30/how-to-setup-apache-with-gunicorn/">apache/nginx+gunicorn docs</a>)
+```sh
+$ gunicorn --workers=4 app:app
+```
+#### Passenger production environment
+- See `passenger_wsgi.py`
+###### (http://griimnak.me/trinity runs on passenger through cpanel)
+----------------
+
 <br /><br />
 
 
 ## Screenshots
+![Alt Text](https://i.imgur.com/80209wU.png)
+![Alt Text](https://image.prntscr.com/image/-MN-_eHZQNKlkJVUqPC0rQ.png)
