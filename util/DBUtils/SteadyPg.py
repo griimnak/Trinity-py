@@ -45,7 +45,7 @@ and you can specify whether is is allowed to close the connection
 database is lost or has been used too often, it will be automatically
 reset, without further notice.
 
-    from DBUtils.SteadyPg import SteadyPgConnection
+    from util.DBUtils.SteadyPg import SteadyPgConnection
     db = SteadyPgConnection(10000, ["set datestyle to german"],
         host=..., dbname=..., user=..., ...)
     ...

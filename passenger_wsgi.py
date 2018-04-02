@@ -1,4 +1,3 @@
-import os
-import sys
+""" Wsgi for passenger phusion """
 
 from app import app as application

@@ -1,0 +1,29 @@
+{
+    "mysqld":{
+        "host":"localhost",
+        "user":"root",
+        "pass":"secret",
+        "db":"phpsite"
+    },
+    "site":{
+        "name":"hmmddd",
+        "desc":"My space on the web"
+    },
+    "server":{
+        "port":80,
+        "secret_key":"ef3f3434f",
+        "debug":true
+    },
+
+    "mimetypes":[
+        "text/html", 
+        "text/css",
+        "text/xml",
+        "application/json",
+        "application/javascript",
+        "image/jpeg", 
+        "image/png",
+        "image/gif", 
+        "text/javascript"
+    ]
+}

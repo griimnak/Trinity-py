@@ -5,11 +5,11 @@ color d
 :Launch
 setlocal
 %@Try%
-    python3 trinity_server.py
+    python3 local_server.py
 %@EndTry%
 :@Catch
     cls
-    echo $-'python3' not a command, using 'python' instead..
-    python trinity_server.py
+    echo 'python3' not a command, using 'python' instead..
+    python local_server.py
 :@EndCatch
 pause

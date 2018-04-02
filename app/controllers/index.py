@@ -4,15 +4,14 @@ import sys
 
 
 def controller():
-    cfg = Config()
+    conf = Config()
     pyinfo = sys.version
-  
 
     return render_template(
         'index.html',
-        sitename=cfg.read_key('site', 'name'),
-        sitedesc=cfg.read_key('site', 'desc'),
-        siteport=cfg.read_key('server', 'port'),
+        sitename=conf.read_key('site', 'name'),
+        sitedesc=conf.read_key('site', 'desc'),
+        siteport=conf.read_key('server', 'port'),
+        mimetypes=conf.read_section('mimetypes'),
         pyinfo=pyinfo
-
     )

@@ -58,7 +58,7 @@ too often, it will be transparently reset in most situations,
 without further notice.
 
     import pgdb  # import used DB-API 2 module
-    from DBUtils.SteadyDB import connect
+    from util.DBUtils.SteadyDB import connect
     db = connect(pgdb, 10000, ["set datestyle to german"],
         host=..., database=..., user=..., ...)
     ...

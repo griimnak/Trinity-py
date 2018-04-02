@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link href="{{ url_for('static', filename='css/animate.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='admin/css/trinity-admin.css') }}" type="text/css" rel="stylesheet">
+
+  <!-- Ace editor resources -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/ace_editor/ace.js')}}" type="text/javascript" charset="utf-8"></script>
+  <script>
+    $(document).ready(function() {
+      var editor = ace.edit('editor');
+      editor.setTheme('ace/theme/monokai');
+      editor.getSession().setMode('ace/mode/java');
+      var textarea = $('#content');
+      setInterval(function() {
+        textarea.val(editor.getSession().getValue());
+      }, 1000);
+      $( "#resizable" ).resizable({
+        resize: function( event, ui ) {
+          editor.resize();
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="navi" class="navi">
+      <a href="#" id="nav-trigger" class="nav-trigger"><span></span></a>
+    </div>
+    <div id="side-nav" class="side-nav">
+      <div class="logo">
+      </div>
+      <nav>
+        <ul>
+          <li class="active selected">
+            <a class="selected" href="/admin/dashboard">
+              <i class="fa fa-home selected"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-wrench"></i>
+              <span>Content</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-users"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-database"></i>
+              <span>MySQL</span>
+            </a>
+          </li>
+          <li>
+            <a href="/logout">
+              <span><i class="fa fa-sign-out"></i></span>
+              <span>Logout</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-users"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-database"></i>
+              <span>MySQL</span>
+            </a>
+          </li>
+          <li>
+            <a href="/logout">
+              <span><i class="fa fa-sign-out"></i></span>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+        <div class="footer light-text">
+          <a href="#">IsoLite</a> by griimnak
+        </div>
+      </nav>
+    </div>
+    <div id="right" class="wrapper">
+      <div class="header">
+        <h4>Dashboard</h4>
+      </div>
+      <div class="container">
+        <div class="default-box">
+          <div class="box-title">Welcome, {{username}}</div>
+          <div class="box-desc">Here's a general overview of the admin panel.</div>
+          On my way.
+        </div>
+      </div>
+      <h4 class="highlight">Configuration</h4>
+      <div class="light-text">
+       
+        <p class="tweak">Below you may modify any value(s) of the configuration. 
+          Updating will overwrite current configuration with data in editor.
+        </p>
+      </div>
+      <form method="post">
+        {% with messages = get_flashed_messages() %} 
+        {% if messages %}
+          {% for message in messages %}
+            <div id="pop" class="success animated bounce">Success: {{ message }}</div>
+            <script>
+              setTimeout(function(){
+                var pop = document.getElementById('pop');
+                pop.classList.remove('animated', 'bounce');
+                pop.style.opacity = '0.5';
+              }, 3000);
+            </script>
+          {% endfor %}
+        
+        {% endif %}
+        {% endwith %}
+        {% if error %} 
+        <div id="error_pop" class="error animated bounce">Error: {{ error }}</div>
+        <script>
+          setTimeout(function(){
+            var error_pop = document.getElementById('error_pop');
+            error_pop.classList.remove('animated', 'bounce');
+            error_pop.style.opacity = '0.5';
+          }, 3000);
+        </script>
+        {% endif %}
+        <br />
+        <div style="padding-bottom: 20px;" class="btn-span">
+            <button id="update-submit" name="update-submit" type="submit" class="btn btn-blue" value="Update">Update</button> 
+            <span>or <a href="{{url_for('index')}}">clear data</a></span>
+        </div>
+        <div class="row" style="position:sticky;">
+          <input name="content" id="content" type=hidden />
+          <!-- real input ^ -->
+          
+            <h3 class="ui-widget-header">(Ace Editor)</h3>
+            <div style="display:inline-block">
+              <div id="editor">{{html}}</div>
+            </div>
+          
+          <br />
+        </div>
+
+
+      </form>
+  <div style="height: 600px;"></div>  
+</div>
+<script src="{{ url_for('static', filename='admin/js/main.js')}}"></script>
+</body>
+</html>
