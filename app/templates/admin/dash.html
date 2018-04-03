@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Dashboard</title>
   <link href="{{ url_for('static', filename='css/animate.min.css') }}" type="text/css" rel="stylesheet">
-  <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
   <link href="{{ url_for('static', filename='vendor/ionicons/css/ionicons.min.css') }}" type="text/css" rel="stylesheet">
   <link href="{{ url_for('static', filename='admin/css/trinity-admin.css') }}" type="text/css" rel="stylesheet">
 
@@ -89,7 +88,21 @@
       </div>
     
       <div class="container">
-
+      {% with messages = get_flashed_messages(category_filter=["login-welcome"]) %} 
+        {% if messages %}
+          {% for message in messages %}
+            <div id="pop" style="margin-bottom: 40px;" class="success animated bounce">{{ message }}</div>
+            <script>
+              setTimeout(function(){
+                var pop = document.getElementById('pop');
+                pop.classList.remove('animated', 'bounce');
+                pop.style.opacity = '0.5';
+              }, 3000);
+            </script>
+          {% endfor %}
+        
+        {% endif %}
+        {% endwith %}
         <div class="hold">
           <div class="urls-box">
             <div class="box-title">Route List</div>
@@ -130,7 +143,7 @@
         </p>
       </div>
       <form method="post">
-        {% with messages = get_flashed_messages() %} 
+        {% with messages = get_flashed_messages(category_filter=["success"]) %} 
         {% if messages %}
           {% for message in messages %}
             <div id="pop" class="success animated bounce">Success: {{ message }}</div>

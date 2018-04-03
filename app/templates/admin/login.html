@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Login</title>
   <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/ionicons/css/ionicons.min.css') }}" type="text/css" rel="stylesheet">
   <link href="{{ url_for('static', filename='admin/css/trinity-admin.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -43,7 +44,9 @@
 
           
           <div class="btn-span">
-            <button id="login-submit" name="login-submit" type="submit" class="btn btn-blue" value="Login">Login</button> 
+            <button id="login-submit" name="login-submit" type="submit" class="btn btn-blue" value="Login">
+              <i class="ion-android-unlock"> </i> Login
+            </button> 
             <span>or <a href="{{url_for('index')}}">return</a></span>
           </div>
         </form>

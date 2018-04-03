@@ -1,5 +1,6 @@
-from flask import render_template, session, request, redirect, url_for
+from flask import render_template, session, request, redirect, url_for, flash
 from app.auth.admin_auth import Login
+from datetime import datetime
 from pymysql import escape_string as clean
 """ Controller for admin login page """
 
@@ -25,7 +26,15 @@ def controller():
                     submit = Login(username, password)
 
                     if submit.verification is True:
+                        date = datetime.now().strftime('%H:%M%p - %m-%d-%Y')
+
+                        flash(
+                            u'Welcome back, ' + username +
+                            '. Logged in at: '+ date, 
+                            'login-welcome'
+                        )
                         return redirect(url_for('admin_dashboard'))
+
 
                     error = submit.error
             else:

@@ -53,8 +53,8 @@ def controller():
                 except Exception as write_error:
                     error = "Couldn't write content.\n" + str(write_error)
 
-                date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                flash("updated config.json (" + date + ")")
+                date = datetime.now().strftime('%H:%M%p - %m-%d-%Y')
+                flash(u"updated config.json (" + date + ")", 'success')
                 return redirect(url_for('admin_dashboard'))
 
             else:
