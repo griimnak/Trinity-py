@@ -251,8 +251,7 @@ body {
 
 
 /* Generic */
-#editor {
-  position:absolute; 
+#editor { 
   right:0;top:0;left:0;bottom:0; 
   min-height: 600px;
   border: 3px solid #4482ff; 

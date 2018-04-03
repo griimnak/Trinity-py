@@ -22,11 +22,6 @@
       setInterval(function() {
         textarea.val(editor.getSession().getValue());
       }, 1000);
-      $( "#resizable" ).resizable({
-        resize: function( event, ui ) {
-          editor.resize();
-        }
-      });
     });
   </script>
 </head>
@@ -169,11 +164,9 @@
           <input name="content" id="content" type=hidden />
           <!-- real input ^ -->
           
-            <h3 class="ui-widget-header">(Ace Editor)</h3>
-            <div style="display:inline-block">
+            <div>
               <div id="editor">{{html}}</div>
             </div>
-          
           <br />
         </div>
 
