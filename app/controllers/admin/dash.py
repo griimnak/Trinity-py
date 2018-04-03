@@ -1,13 +1,29 @@
 from flask import render_template, session
 from flask import request, redirect, url_for, flash
 from datetime import datetime
+import urllib
+from app import app
 
+
+def list_routes():
+    output = []
+    for rule in app.url_map.iter_rules():
+        options = {}
+        for arg in rule.arguments:
+            options[arg] = "[{0}]".format(arg)
+
+        methods = ','.join(rule.methods)
+        url = url_for(rule.endpoint, **options)
+        line = urllib.parse.unquote("{}".format(url))
+        output.append(line)
+
+    return output
 
 def controller():
     """ Verify session
     """
     if 'logged_in' and 'username' not in session:
-        return redirect(url_for('admin_dashboard'))
+        return redirect(url_for('admin_login'))
     else:
         from app.modules.content_editor import ContentEditor
 
@@ -44,6 +60,7 @@ def controller():
             else:
                 return "What did you do?"
 
+
         return render_template(
             'admin/dash.html',
             html=__content,
@@ -52,4 +69,5 @@ def controller():
             error=error,
             success=success,
             username=session.get('username'),
+            urls=list_routes()
         )

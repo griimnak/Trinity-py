@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Python Explorer</title>
+  <link href="{{ url_for('static', filename='css/animate.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/ionicons/css/ionicons.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='admin/css/trinity-admin.css') }}" type="text/css" rel="stylesheet">
+
+  <!-- Ace editor resources -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/ace_editor/ace.js')}}" type="text/javascript" charset="utf-8"></script>
+  <script>
+    $(document).ready(function() {
+      var editor = ace.edit('editor');
+      editor.setTheme('ace/theme/monokai');
+      editor.getSession().setMode('ace/mode/java');
+      var textarea = $('#content');
+      setInterval(function() {
+        textarea.val(editor.getSession().getValue());
+      }, 1000);
+      $( "#resizable" ).resizable({
+        resize: function( event, ui ) {
+          editor.resize();
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="navi" class="navi">
+      <a href="#" id="nav-trigger" class="nav-trigger"><span></span></a>
+    </div>
+    <div id="side-nav" class="side-nav">
+      <div class="logo">
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="{{url_for('admin_dashboard')}}">
+              <i class="ion-ios-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="selected">
+            <a class="selected active" href="{{url_for('admin_py_explorer')}}">
+              <i class="ion-social-python"></i>
+              <span>Python Files</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="ion-android-globe"></i>
+              <span>Public Assets</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="ion-settings"></i>
+              <span>Database</span>
+            </a>
+          </li>
+          <li>
+            <a href="/logout">
+              <i class="ion-pound"></i>
+              <span>Trinity-Shell</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="ion-android-time"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li>
+            <a href="/logout">
+              <i class="ion-android-exit"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+        <div class="footer light-text">
+          <a href="#">IsoLite</a> by griimnak
+        </div>
+      </nav>
+    </div>
+    <div id="right" class="wrapper">
+      <div class="header">
+        <h4>Python Explorer</h4>
+      </div>
+
+      <div class="container">
+        <div class="full-box">
+          <div class="box-title">Full box</div>
+          <div class="box-desc">This is a demonstration of a full page box. It is centered, and does nothing at the moment.</div>
+          <p>And here is our P content</p>
+        </div>
+
+      </div>
+
+
+  <div style="height: 600px;"></div>  
+</div>
+<script src="{{ url_for('static', filename='admin/js/main.js')}}"></script>
+</body>
+</html>

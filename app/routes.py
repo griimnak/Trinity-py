@@ -22,6 +22,11 @@ def admin_dashboard():
     return controller()
 
 
+@app.route('/admin/py_explorer', methods=['POST', 'GET'])
+def admin_py_explorer():
+    from app.controllers.admin.py_explorer import controller
+    return controller()
+
 """ Error handlers """
 
 
@@ -57,4 +62,3 @@ def logout():
 def signature(response):
     response.headers['X-Powered-By'] = 'Trinity-py-tr4.4'
     return response
-

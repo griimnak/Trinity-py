@@ -7,6 +7,7 @@
   <title>Admin Dashboard</title>
   <link href="{{ url_for('static', filename='css/animate.min.css') }}" type="text/css" rel="stylesheet">
   <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/ionicons/css/ionicons.min.css') }}" type="text/css" rel="stylesheet">
   <link href="{{ url_for('static', filename='admin/css/trinity-admin.css') }}" type="text/css" rel="stylesheet">
 
   <!-- Ace editor resources -->
@@ -39,51 +40,45 @@
       </div>
       <nav>
         <ul>
-          <li class="active selected">
-            <a class="selected" href="/admin/dashboard">
-              <i class="fa fa-home selected"></i>
+          <li class="selected">
+            <a class="selected active" href="{{url_for('admin_dashboard')}}">
+              <i class="ion-ios-home"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="fa fa-wrench"></i>
-              <span>Content</span>
+            <a href="{{url_for('admin_py_explorer')}}">
+              <i class="ion-social-python"></i>
+              <span>Python Files</span>
             </a>
           </li>
           <li>
             <a href="#">
-              <i class="fa fa-users"></i>
-              <span>Users</span>
+              <i class="ion-android-globe"></i>
+              <span>Public Assets</span>
             </a>
           </li>
           <li>
             <a href="#">
-              <i class="fa fa-database"></i>
-              <span>MySQL</span>
+              <i class="ion-settings"></i>
+              <span>Database</span>
             </a>
           </li>
           <li>
             <a href="/logout">
-              <span><i class="fa fa-sign-out"></i></span>
-              <span>Logout</span>
+              <i class="ion-pound"></i>
+              <span>Trinity-Shell</span>
             </a>
           </li>
           <li>
             <a href="#">
-              <i class="fa fa-users"></i>
-              <span>Users</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-database"></i>
-              <span>MySQL</span>
+              <i class="ion-android-time"></i>
+              <span>Logs</span>
             </a>
           </li>
           <li>
             <a href="/logout">
-              <span><i class="fa fa-sign-out"></i></span>
+              <i class="ion-android-exit"></i>
               <span>Logout</span>
             </a>
           </li>
@@ -98,6 +93,40 @@
         <h4>Dashboard</h4>
       </div>
     
+      <div class="container">
+
+        <div class="hold">
+          <div class="urls-box">
+            <div class="box-title">Route List</div>
+            <div class="box-desc">Here's a list of all public routes availible.</div>
+            {% if urls %}
+            {% for url in urls %}
+
+            <p><i class="ion-link"></i><a href="{{request.url_root}}{{url}}">{{url}}</a></p>
+
+            {% endfor %}
+            {% endif %}
+          </div>
+          <div class="big-box">
+            <div class="box-title">Add Routes</div>
+            <div class="box-desc">Generating a route will also generate a generic controller along with a hello world template.</div>
+            {{request.url_root}}<input type="text" name="url_add">
+            <div style="padding-bottom: 20px;" class="btn-span">
+              <button id="update-submit" name="update-submit" type="submit" class="btn btn-blue" value="Update">Add Route</button> 
+
+            </div> 
+          </div>
+
+          <div class="big-box">
+            <div class="box-title">Remove Routes</div>
+            <div class="box-desc">Below you may remove any routes, <b>controllers bound to selected route will also be removed.</b></div>
+            idk how to go about that but
+          </div>
+        </div>
+
+      </div>
+
+
       <h4 class="highlight">Configuration</h4>
       <div class="light-text">
        
