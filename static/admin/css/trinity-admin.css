@@ -20,7 +20,7 @@ body {
 }
 
 /* Content wrapper */
-.wrapper {max-width: 80%; margin: auto; height: 100vh;}
+.wrapper { max-width: 80%; margin: auto; height: 100vh; }
 
 /* Navigation */
 .navi {
@@ -140,14 +140,7 @@ body {
   margin: auto;
 }
 
-
-.hold {
-  margin: 0 auto;
-  width: 100%;
-  vertical-align: top;
-  
-}
-
+.hold { margin: 0 auto; width: 100%; vertical-align: top; }
 
 .generic-box {
   vertical-align: top;
@@ -171,12 +164,11 @@ body {
   background-color: #ffffff;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  
 }
 
 .side-box {
   display: inline-block;
-  max-width: 250px;
+  max-width: 220px;
   min-height: 40px;
   margin: 0 15px 25px;
   padding: 25px;
@@ -184,7 +176,6 @@ body {
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
-
 
 .big-box {
   vertical-align: top;
@@ -198,10 +189,7 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.container {
-  width: 100%;
-  padding-bottom: 60px;
-}
+.container { width: 100%; padding-bottom: 60px; }
 
 /* Box properties */
 .box-title {
@@ -232,10 +220,7 @@ table {
 
 }
 
-table caption {
-  font-size: 1.5em;
-  margin: .5em 0 .75em;
-}
+table caption { font-size: 1.5em; margin: .5em 0 .75em; }
 
 table tr {
   background-color: #f8f8f8;
@@ -243,11 +228,7 @@ table tr {
   padding: .35em;
 }
 
-table th,
-table td {
-  font-size: 12px;
-  padding: .625em;
-}
+table th, table td { font-size: 12px; padding: .625em; }
 
 table th {
   font-size: .85em;
@@ -311,6 +292,15 @@ table th {
   border-radius: 2px;
 }
 
+#time { 
+    margin-top:6px; 
+    display: inline-block; 
+    float: right;  
+    opacity: 0.8; 
+    color: #797979; 
+    font-size: 13px; 
+}
+
 .stat-icon {
   font-size: 21px;
   padding-right: 7px;
@@ -365,6 +355,7 @@ select {
 
 /* Responsive tweaks */
 @media screen and (max-width: 768px) {
+
   .header { height: 100px; }
   .header h4 { margin-top: 77px; }
   .wrapper { max-width: 100%; }
@@ -377,27 +368,11 @@ select {
     text-align: center;
   }
 
-  .side-box {
-    max-width: 100%;
-    margin: 15px 0;
-  }
+  .side-box { max-width: 100%; margin: 15px 0; }
+  .generic-box { min-width: 100%; margin: 15px 0; }
+  .routes-box { width: 100%; margin: 15px 0; }
+  .big-box { max-width: 100%; margin: 15px 0; }
 
-  .generic-box {
-    min-width: 100%;
-    margin: 15px 0;
-  }
-
-  .routes-box {
-    width: 100%;
-    margin: 15px 0;
-  }
-
-  .big-box {
-    max-width: 100%;
-    margin: 15px 0;
-  }
-
-  
 }
 
 @media screen and (max-width: 320px) {
@@ -407,6 +382,7 @@ select {
 
 @media screen and (max-width: 300px) {
   .header h4 { font-size: 15px; } 
+  #time { font-size: 10px; }
 }
 
 @media screen and (max-width: 950px) {
@@ -414,13 +390,8 @@ select {
 }
 
 @media screen and (max-width: 600px) {
-  table {
-    border: 0;
-  }
-
-  table caption {
-    font-size: 1.3em;
-  }
+  table { border: 0; }
+  table caption { font-size: 1.3em; }
   
   table thead {
     border: none;
@@ -433,19 +404,13 @@ select {
     width: 1px;
   }
   
-  table tr {
-    border-bottom: 3px solid #ddd;
-    display: block;
-    margin-bottom: .625em;
-  }
-  
+  table tr { border-bottom: 3px solid #ddd; display: block; margin-bottom: .625em; }
   table td {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: .8em;
     text-align: right;
   }
-  
   table td::before {
     /*
     * aria-label has no advantage, it won't be read inside a table
@@ -456,7 +421,6 @@ select {
     font-weight: bold;
     text-transform: uppercase;
   }
-  
   table td:last-child {
     border-bottom: 0;
   }

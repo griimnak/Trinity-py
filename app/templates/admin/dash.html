@@ -84,7 +84,7 @@
     </div>
     <div id="right" class="wrapper">
       <div class="header">
-        <h4>Dashboard</h4>
+        <h4>Dashboard <div id="time"></div></h4>
       </div>
       <div class="container">
         {% with messages = get_flashed_messages(category_filter=["login-welcome"]) %} 
@@ -107,16 +107,16 @@
             <div class="box-desc">Here's an overview of Trinity's current statistics.</div>
             
             <p><i class="ion-social-python stat-icon"></i> Python info</p>
-            <div style="padding-bottom: 10px;" class="light-text">Python {{pyinfo}}</div>
+            <div style="padding-bottom: 5px;" class="light-text">Python {{pyinfo}}</div>
 
             <p><i class="ion-android-star stat-icon"></i> Site name</p>
-            <div style="padding-bottom: 10px;" class="light-text">"{{sitename}}"</div>
+            <div style="padding-bottom: 5px;" class="light-text">"{{sitename}}"</div>
 
             <p><i class="ion-android-more-horizontal stat-icon"></i> Site desc</p>
-            <div style="padding-bottom: 10px;" class="light-text">"{{sitedesc}}"</div>
+            <div style="padding-bottom: 5px;" class="light-text">"{{sitedesc}}"</div>
 
             <p><i class="ion-ios-pulse stat-icon"></i> Server port</p>
-            <div style="padding-bottom: 10px;" class="light-text">Port {{siteport}}</div>
+            <div style="padding-bottom: 5px;" class="light-text">Port {{siteport}}</div>
 
 
           </div>

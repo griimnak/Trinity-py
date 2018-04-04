@@ -1,15 +1,15 @@
 from flask import render_template, session
 from flask import request, redirect, url_for, flash
 from datetime import datetime
-import sys
+from sys import version_info
 from app.config import Config
-import urllib
+from urllib import parse
 from app import app
 
 
 """ Lists routes for dash table """
 conf = Config()
-pyinfo = ".".join(map(str, sys.version_info[:3]))
+pyinfo = ".".join(map(str, version_info[:3]))
 
 def list_routes():
     output = []
@@ -21,9 +21,9 @@ def list_routes():
         methods = ','.join(rule.methods)
 
         url = url_for(rule.endpoint, **options)
-        __endpoint = urllib.parse.unquote("{}".format(rule.endpoint))
-        __methods = urllib.parse.unquote("{}".format(methods))
-        __url = urllib.parse.unquote("{}".format(url))
+        __endpoint = parse.unquote("{}".format(rule.endpoint))
+        __methods = parse.unquote("{}".format(methods))
+        __url = parse.unquote("{}".format(url))
 
         stored = {}
         stored['endpoint'] = __endpoint
