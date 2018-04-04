@@ -42,7 +42,7 @@ How to run
 ----------------
 #### Local / development environment
 ```sh
-python3 local_server.py
+$ python local_server.py
 ```
 ###### Windows users can simply launch `win_launch.bat`
 --------------------
@@ -55,6 +55,12 @@ $ gunicorn --workers=4 app:app
 #### Passenger production environment
 - See `passenger_wsgi.py`
 ###### (http://griimnak.me/trinity runs on passenger through cpanel)
+#### Windows waitress production environment
+###### *Waitress is a gunicorn alternative for windows.* 
+```sh
+$ pip install waitress
+$ waitress-serve --listen=127.0.0.1:80 -w 4 app:app
+```
 ----------------
 
 <br /><br />
