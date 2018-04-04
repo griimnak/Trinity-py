@@ -86,107 +86,125 @@
       <div class="header">
         <h4>Dashboard</h4>
       </div>
-    
       <div class="container">
-      {% with messages = get_flashed_messages(category_filter=["login-welcome"]) %} 
+        {% with messages = get_flashed_messages(category_filter=["login-welcome"]) %} 
         {% if messages %}
-          {% for message in messages %}
-            <div id="pop" style="margin-bottom: 40px;" class="success animated bounce">{{ message }}</div>
-            <script>
-              setTimeout(function(){
-                var pop = document.getElementById('pop');
-                pop.classList.remove('animated', 'bounce');
-                pop.style.opacity = '0.5';
-              }, 3000);
-            </script>
-          {% endfor %}
-        
+        {% for message in messages %}
+        <div id="pop" style="margin-bottom: 40px;" class="success animated bounce">{{ message }}</div>
+        <script>
+          setTimeout(function(){
+            var pop = document.getElementById('pop');
+            pop.classList.remove('animated', 'bounce');
+            pop.style.opacity = '0.5';
+          }, 3000);
+        </script>
+        {% endfor %}
         {% endif %}
         {% endwith %}
         <div class="hold">
-          <div class="urls-box">
-            <div class="box-title">Route List</div>
-            <div class="box-desc">Here's a list of all public routes availible.</div>
-            {% if urls %}
-            {% for url in urls %}
+          <div class="side-box">
+            <div class="box-title">Statistics</div>
+            <div class="box-desc">Here's an overview of Trinity's current statistics.</div>
+            
+            <p><i class="ion-social-python stat-icon"></i> Python info</p>
+            <div style="padding-bottom: 10px;" class="light-text">Python {{pyinfo}}</div>
 
-            <p><i class="ion-link"></i><a href="{{request.url_root}}{{url}}">{{url}}</a></p>
+            <p><i class="ion-android-star stat-icon"></i> Site name</p>
+            <div style="padding-bottom: 10px;" class="light-text">"{{sitename}}"</div>
 
-            {% endfor %}
-            {% endif %}
-          </div>
-          <div class="big-box">
-            <div class="box-title">Add Routes</div>
-            <div class="box-desc">Generating a route will also generate a generic controller along with a hello world template.</div>
-            {{request.url_root}}<input type="text" name="url_add">
-            <div style="padding-bottom: 20px;" class="btn-span">
-              <button id="update-submit" name="update-submit" type="submit" class="btn btn-blue" value="Update">Add Route</button> 
+            <p><i class="ion-android-more-horizontal stat-icon"></i> Site desc</p>
+            <div style="padding-bottom: 10px;" class="light-text">"{{sitedesc}}"</div>
 
-            </div> 
+            <p><i class="ion-ios-pulse stat-icon"></i> Server port</p>
+            <div style="padding-bottom: 10px;" class="light-text">Port {{siteport}}</div>
+
+
           </div>
 
-          <div class="big-box">
-            <div class="box-title">Remove Routes</div>
-            <div class="box-desc">Below you may remove any routes, <b>controllers bound to selected route will also be removed.</b></div>
-            idk how to go about that but
-          </div>
-        </div>
-
-      </div>
-
-
-      <h4 class="highlight">Configuration</h4>
-      <div class="light-text">
-       
-        <p class="tweak">Below you may modify any value(s) of the configuration. 
-          Updating will overwrite current configuration with data in editor.
-        </p>
-      </div>
-      <form method="post">
-        {% with messages = get_flashed_messages(category_filter=["success"]) %} 
-        {% if messages %}
-          {% for message in messages %}
-            <div id="pop" class="success animated bounce">Success: {{ message }}</div>
-            <script>
-              setTimeout(function(){
-                var pop = document.getElementById('pop');
-                pop.classList.remove('animated', 'bounce');
-                pop.style.opacity = '0.5';
-              }, 3000);
-            </script>
-          {% endfor %}
-        
-        {% endif %}
-        {% endwith %}
-        {% if error %} 
-        <div id="error_pop" class="error animated bounce">Error: {{ error }}</div>
-        <script>
-          setTimeout(function(){
-            var error_pop = document.getElementById('error_pop');
-            error_pop.classList.remove('animated', 'bounce');
-            error_pop.style.opacity = '0.5';
-          }, 3000);
-        </script>
-        {% endif %}
-        <br />
-        <div style="padding-bottom: 20px;" class="btn-span">
-            <button id="update-submit" name="update-submit" type="submit" class="btn btn-blue" value="Update">Update</button> 
-            <span>or <a href="{{url_for('index')}}">clear data</a></span>
-        </div>
-        <div class="row" style="position:sticky;">
-          <input name="content" id="content" type=hidden />
-          <!-- real input ^ -->
-          
-            <div>
-              <div id="editor">{{html}}</div>
+          <div class="routes-box">
+            <div style="padding: 25px 25px 0 25px;">
+              <div class="box-title">Routes</div>
+              <div class="box-desc">All public routes that are currently active are displayed below.</div>
             </div>
-          <br />
+
+            <div class="table-area">
+              <table class="blueTable">
+                <thead>
+                  <tr>
+                    <th>Endpoint</th>
+                    <th>Methods</th>
+                    <th>Url</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if urls %}
+                  {% for row in urls %}
+                  <tr>
+                    <td>{{row['endpoint']}}</td>
+                    <td>{{row['methods']}}</td>
+                    <td><a href="{{row['url']}}">{{row['url']}}</a></td>
+                  </tr>
+                  {% endfor %}
+                  {% endif %}
+                </tbody>
+              </tr>
+            </table>
+          </div>
         </div>
+      </div>
+    </div>
 
+    <h4 class="highlight">Configuration</h4>
+    <div class="light-text">
 
-      </form>
-  <div style="height: 600px;"></div>  
-</div>
-<script src="{{ url_for('static', filename='admin/js/main.js')}}"></script>
+      <p class="tweak">Below you may modify any value(s) of the configuration. 
+        Updating will overwrite current configuration with data in editor.
+      </p>
+    </div>
+    <form method="post">
+      {% with messages = get_flashed_messages(category_filter=["success"]) %} 
+      {% if messages %}
+      {% for message in messages %}
+      <div id="pop" class="success animated bounce">Success: {{ message }}</div>
+      <script>
+        setTimeout(function(){
+          var pop = document.getElementById('pop');
+          pop.classList.remove('animated', 'bounce');
+          pop.style.opacity = '0.5';
+        }, 3000);
+      </script>
+      {% endfor %}
+
+      {% endif %}
+      {% endwith %}
+      {% if error %} 
+      <div id="error_pop" class="error animated bounce">Error: {{ error }}</div>
+      <script>
+        setTimeout(function(){
+          var error_pop = document.getElementById('error_pop');
+          error_pop.classList.remove('animated', 'bounce');
+          error_pop.style.opacity = '0.5';
+        }, 3000);
+      </script>
+      {% endif %}
+      <br />
+      <div style="padding-bottom: 20px;" class="btn-span">
+        <button id="update-submit" name="update-submit" type="submit" class="btn btn-blue" value="Update">Update</button> 
+        <span>or <a href="{{url_for('index')}}">clear data</a></span>
+      </div>
+      <div class="row" style="position:sticky;">
+        <input name="content" id="content" type=hidden />
+        <!-- real input ^ -->
+
+        <div>
+          <div id="editor">{{html}}</div>
+        </div>
+        <br />
+      </div>
+
+    </form>
+    <div style="height: 600px;"></div>  
+  </div>
+  <script src="{{ url_for('static', filename='admin/js/main.js')}}"></script>
 </body>
 </html>

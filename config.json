@@ -6,8 +6,8 @@
         "db":"phpsite"
     },
     "site":{
-        "name":"ok testing123",
-        "desc":"stop"
+        "name":"Trinity-py",
+        "desc":"A python-based content management system using flask."
     },
     "server":{
         "port":80,

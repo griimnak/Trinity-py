@@ -5,7 +5,7 @@ import sys
 
 def controller():
     conf = Config()
-    pyinfo = sys.version
+    pyinfo = ".".join(map(str, sys.version_info[:3]))
 
     return render_template(
         'index.html',

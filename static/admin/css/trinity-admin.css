@@ -150,19 +150,33 @@ body {
 
 
 .generic-box {
+  vertical-align: top;
   display: inline-block;
-  max-width: 150px;
-  min-height: 40px;
-  margin: 15px;
+  min-width: 600px;
+  min-height: 220px;
+  margin: 0 15px 25px;
   padding: 25px;
   background-color: #ffffff;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  
 }
 
-.urls-box {
+.routes-box {
+  vertical-align: top;
   display: inline-block;
-  max-width: 200px;
+  width: 600px;
+  min-height: 220px;
+  margin: 0 15px 25px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  
+}
+
+.side-box {
+  display: inline-block;
+  max-width: 250px;
   min-height: 40px;
   margin: 0 15px 25px;
   padding: 25px;
@@ -184,9 +198,6 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-
-
-
 .container {
   width: 100%;
   padding-bottom: 60px;
@@ -202,6 +213,45 @@ body {
 }
 
 .box-desc { margin-bottom: 40px; }
+
+
+/* Table styles */
+.table-area {
+  padding: 8px;
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  font-size: 12px;
+  padding: .625em;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-align: left;
+}
 
 
 /* Error and Success */
@@ -256,6 +306,13 @@ body {
   min-height: 600px;
   border: 3px solid #4482ff; 
   border-radius: 2px;
+}
+
+.stat-icon {
+  font-size: 21px;
+  padding-right: 7px;
+  width: 21px;
+  height: 21px;
 }
 
 .highlight { margin: 0 2px -5px; }
@@ -317,8 +374,18 @@ select {
     text-align: center;
   }
 
-  .urls-box {
+  .side-box {
     max-width: 100%;
+    margin: 15px 0;
+  }
+
+  .generic-box {
+    min-width: 100%;
+    margin: 15px 0;
+  }
+
+  .routes-box {
+    width: 100%;
     margin: 15px 0;
   }
 
@@ -327,6 +394,7 @@ select {
     margin: 15px 0;
   }
 
+  
 }
 
 @media screen and (max-width: 320px) {
@@ -340,4 +408,53 @@ select {
 
 @media screen and (max-width: 950px) {
  
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
 }

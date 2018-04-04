@@ -1,9 +1,15 @@
 from flask import render_template, session
 from flask import request, redirect, url_for, flash
 from datetime import datetime
+import sys
+from app.config import Config
 import urllib
 from app import app
 
+
+""" Lists routes for dash table """
+conf = Config()
+pyinfo = ".".join(map(str, sys.version_info[:3]))
 
 def list_routes():
     output = []
@@ -13,15 +19,26 @@ def list_routes():
             options[arg] = "[{0}]".format(arg)
 
         methods = ','.join(rule.methods)
-        url = url_for(rule.endpoint, **options)
-        line = urllib.parse.unquote("{}".format(url))
-        output.append(line)
 
+        url = url_for(rule.endpoint, **options)
+        __endpoint = urllib.parse.unquote("{}".format(rule.endpoint))
+        __methods = urllib.parse.unquote("{}".format(methods))
+        __url = urllib.parse.unquote("{}".format(url))
+
+        stored = {}
+        stored['endpoint'] = __endpoint
+        stored['methods'] = __methods
+        stored['url'] = __url
+
+        output.append(stored)
     return output
 
+
+""" Controller start """
+
+
 def controller():
-    """ Verify session
-    """
+    """ Verify session """
     if 'logged_in' and 'username' not in session:
         return redirect(url_for('admin_login'))
     else:
@@ -64,10 +81,12 @@ def controller():
         return render_template(
             'admin/dash.html',
             html=__content,
-            #content=content,
-            #file=file,
             error=error,
             success=success,
             username=session.get('username'),
-            urls=list_routes()
+            urls=list_routes(),
+            sitename=conf.read_key('site', 'name'),
+            sitedesc=conf.read_key('site', 'desc'),
+            siteport=conf.read_key('server', 'port'),
+            pyinfo=pyinfo
         )

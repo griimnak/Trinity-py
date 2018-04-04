@@ -27,6 +27,7 @@ def admin_py_explorer():
     from app.controllers.admin.py_explorer import controller
     return controller()
 
+
 """ Error handlers """
 
 
