@@ -40,6 +40,8 @@ $ pip -V
 
 How to run
 ----------------
+Trinity was built with compatibility in mind for multiple setups. 
+
 #### Local / development environment
 ```sh
 $ python local_server.py
