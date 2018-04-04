@@ -76,5 +76,7 @@ $ waitress-serve --listen=127.0.0.1:80 -w 4 app:app
 [4/4/2018]
 ![Alt Text](https://image.prntscr.com/image/4H2mSa3fRjuOc_1Tc1xCOQ.png)
 
-[4/2/2018]
-![Alt Text](https://image.prntscr.com/image/Zz-AOXKQQHy8PcqfH2EAzQ.png)
+<details> 
+  <summary>[4/2/2018]</summary>
+   <p> ![Alt Text](https://image.prntscr.com/image/Zz-AOXKQQHy8PcqfH2EAzQ.png) </p> 
+</details>
