@@ -218,6 +218,8 @@ body {
 /* Table styles */
 .table-area {
   padding: 8px;
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 table {
@@ -227,6 +229,7 @@ table {
   padding: 0;
   width: 100%;
   table-layout: fixed;
+
 }
 
 table caption {
