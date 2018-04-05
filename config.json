@@ -11,7 +11,7 @@
     },
     "server":{
         "port":80,
-        "secret_key":"2323j2jj3j2k2k",
+        "secret_key":"letitbeeee",
         "debug":true
     },
 

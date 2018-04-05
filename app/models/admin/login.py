@@ -1,4 +1,3 @@
-from flask import request, session
 from pymysql import escape_string as clean
 from passlib.hash import argon2 as hasher
 from app import get_db
@@ -39,11 +38,6 @@ class Login:
         verify = hasher.verify(self.password, clean(genuine_pass))
 
         if verify is True:
-            """ Begin session and send verification signal to
-                controller if verify is True
-            """
-            session['username'] = self.username
-            session['logged_in'] = True
             self.verification = True
         else:
             self.error = 'Incorrect password for ' + self.username

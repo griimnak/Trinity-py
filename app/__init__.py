@@ -18,10 +18,15 @@ app = Flask(
 app.config['THREADED'] = True
 app.config['SECRET_KEY'] = conf.read_key('server', 'secret_key')
 app.config['DEBUG'] = conf.read_key('server', 'debug')
-
 app.config['COMPRESS_MIMETYPES'] = conf.read_section('mimetypes')
 
 import app.routes as routes
+
+
+@app.after_request
+def signature(response):
+    response.headers['X-Powered-By'] = 'Trinity-py-tr4.4'
+    return response
 
 
 def connect_db():
@@ -35,7 +40,9 @@ def connect_db():
 
 
 def get_db():
-    """ Opens a new connection per app """
+    """ Return existing connection,
+        generate a new one if not hasattr
+    """
     if not hasattr(app, 'db'):
         app.db = connect_db()
 

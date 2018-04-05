@@ -19,17 +19,23 @@
         <div class="box-desc">
           Please login below to continue.
         </div>
-        {% if error %}
-        <div id="error_pop" class="error animated bounce">Error: {{ error }}</div>
+        {% with messages = get_flashed_messages(category_filter=["error"]) %} 
+        {% if messages %}
+        {% for message in messages %}
+        <div id="error_pop" class="error animated bounce">Error: {{ message }}</div>
         <script>
           setTimeout(function(){
-            var error_pop = document.getElementById('error_pop');
+            var error_pop = document.getElementById('pop');
             error_pop.classList.remove('animated', 'bounce');
             error_pop.style.opacity = '0.5';
           }, 3000);
         </script>
+        {% endfor %}
+
         {% endif %}
-        <form method="post">
+        {% endwith %}
+
+        <form action="{{url_for('admin_login_submit')}}" method="post">
           <p>Username</p>
           <input name="username" class="form-control" id="username" type="text">
           

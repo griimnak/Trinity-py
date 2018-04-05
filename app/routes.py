@@ -1,46 +1,40 @@
 from app import app
 from flask import redirect, url_for, session, render_template
 
-""" Application routes """
+""" Public routes 
+    <public routes>
+"""
 
 
 @app.route('/')
-def index():
-    from app.controllers.index import controller
-    return controller()
+def index(): from app.views.index import view; return view()
 
 
-@app.route('/admin/login', methods=['POST', 'GET'])
-def admin_login():
-    from app.controllers.admin.login import controller
-    return controller()
+""" </public routes>
+"""
+
+@app.route('/admin/login')
+def admin_login(): from app.views.admin.login import view; return view()
 
 
 @app.route('/admin/dashboard', methods=['POST', 'GET'])
-def admin_dashboard():
-    from app.controllers.admin.dash import controller
-    return controller()
+def admin_dashboard(): from app.views.admin.dash import view; return view()
 
 
 @app.route('/admin/py_explorer', methods=['POST', 'GET'])
-def admin_py_explorer():
-    from app.controllers.admin.py_explorer import controller
-    return controller()
-
-
-""" Error handlers """
+def admin_py_explorer(): from app.views.admin.py_explorer import view; return view()
 
 
 @app.errorhandler(404)
-def page_not_found(error): return render_template('404.html', error=error)
+def page_not_found(error): return render_template('admin/error.html', error=error)
 
 
 @app.errorhandler(405)
-def method_not_allowed(error): return render_template('404.html', error=error)
+def method_not_allowed(error): return render_template('admin/error.html', error=error)
 
 
 @app.errorhandler(500)
-def syntax_error(error): return render_template('404.html', error=error)
+def syntax_error(error): return render_template('admin/error.html', error=error)
 
 
 @app.route('/admin/')
@@ -59,7 +53,10 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.after_request
-def signature(response):
-    response.headers['X-Powered-By'] = 'Trinity-py-tr4.4'
-    return response
+@app.route('/admin/login/submit', methods=['POST'])
+def admin_login_submit():
+    from app.auth.login_submit import login_submit
+
+    return login_submit()
+
+

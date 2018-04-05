@@ -12,13 +12,13 @@ function updateClock() {
 
   document.getElementById('time').innerHTML =  date+' '+time;
 
-  setInterval(updateClock, 1000); //loop
+   //loop
 }
 
 
 trigger.addEventListener("click", open_nav);
 
-window.onload = updateClock;
+window.onload = setInterval(updateClock, 1000);
 
 
 

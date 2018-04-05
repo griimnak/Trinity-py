@@ -17,6 +17,7 @@
       var editor = ace.edit('editor');
       editor.setTheme('ace/theme/monokai');
       editor.getSession().setMode('ace/mode/java');
+      editor.renderer.setShowGutter(false);
       var textarea = $('#content');
       setInterval(function() {
         textarea.val(editor.getSession().getValue());
@@ -147,7 +148,7 @@
                   {% endfor %}
                   {% endif %}
                 </tbody>
-              </tr>
+             
             </table>
           </div>
         </div>
@@ -197,7 +198,7 @@
         <!-- real input ^ -->
 
         <div>
-          <div id="editor">{{html}}</div>
+          <div id="editor">{{config}}</div>
         </div>
         <br />
       </div>

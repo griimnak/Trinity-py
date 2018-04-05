@@ -3,7 +3,7 @@ from flask import render_template
 import sys
 
 
-def controller():
+def view():
     conf = Config()
     pyinfo = ".".join(map(str, sys.version_info[:3]))
 

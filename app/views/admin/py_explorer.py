@@ -2,7 +2,7 @@ from flask import render_template, session
 from flask import redirect, url_for
 
 
-def controller():
+def view():
     """ Verify session
     """
     if 'logged_in' and 'username' not in session:

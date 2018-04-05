@@ -6,12 +6,12 @@ class ContentEditor:
 
     def read(self):
         try:
-            self.html = open(self.path, 'r+')
+            self.content = open(self.path, 'r+')
 
         except Exception as error:
             print(error)
 
-        return self.html.read()
+        return self.content.read()
         
     def write(self, data):
         try:
