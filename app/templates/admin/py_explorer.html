@@ -49,7 +49,7 @@
           <li class="selected">
             <a class="selected active" href="{{url_for('admin_py_explorer')}}">
               <i class="ion-social-python"></i>
-              <span>Python Files</span>
+              <span>File Explorer</span>
             </a>
           </li>
           <li>
@@ -90,7 +90,7 @@
     </div>
     <div id="right" class="wrapper">
       <div class="header">
-        <h4>Python Explorer <div id="time"></div></h4>
+        <h4>File Explorer <div id="time"></div></h4>
       </div>
 
       <div class="container">
@@ -124,61 +124,133 @@
       {% endwith %}
       <br />
         <div class="hold">
-        <div id="dirs-box" style="float:left;" class="dirs-box">
+          <div class="explorer-side">
+        <div class="manage-box">
+          <div style="padding-top: 20px;" class="light-text">Add a new file</div>
+
+               <select style="max-width: 60px;">
+                  <option value="app">app</option>
+                  <option value="app/auth">app/auth</option>
+                  <option value="app/models">app/models</option>
+                  <option value="app/models">app/modules</option>
+                  <option value="app/models">app/views</option>
+                  <option value="app/models">app/templates</option>
+                </select>
+                <input style="max-width: 88px;" placeholder="File name" class="input-width" type="text" name="new-file">
+
+                <select>
+                  <option value=".py">.py</option>
+                  <option value=".html">.html</option>
+                  <option value=".json">.json</option>
+                </select>
+                <div class="btn-span">
+                
+
+                
+              </div>
+
+              <button class="btn btn-blue bottom-margin" value="Delete">Add</button>
+
+              <div class="light-text">Delete a file</div>
+
+              <div class="btn-span">
+                <select>
+                  {% if root %}
+                  {% for files in root %}
+                  <option value="{{ files }}">app/{{ files }}</option>
+                  {% endfor %}
+                  {% endif %}
+
+                  {% if auth %}
+                  {% for file in auth %}
+                  <option value="{{ file }}">app/auth/{{ file }}</option>
+                  {% endfor %}
+                  {% endif %}
+
+                  {% if models %}
+                  {% for model in models %}
+                  <option value="{{ model }}">app/models/{{ model }}</option>
+                  {% endfor %}
+                  {% endif %}
+
+                  {% if modules %}
+                  {% for module in modules %}
+                  <option value="{{ module }}">app/modules/{{ module }}</option>
+                  {% endfor %}
+                  {% endif %}
+
+                  {% if views %}
+                  {% for view in views %}
+                  <option value="{{ view }}">app/views/{{ view }}</option>
+                  {% endfor %}
+                  {% endif %}
+
+                  {% if tpls %}
+                  {% for template in tpls %}
+                  <option value="{{ template }}">app/templates/{{ template }}</option>
+                  {% endfor %}
+                  {% endif %}
+                </select>
+              </div>              
+            <button class="btn btn-red top-margin" value="Delete">Delete</button>
+        </div>  
+
+
+        <div id="dirs-box" class="dirs-box">
           <div class="box-title">Trinity-py Map </div>
           <div id="text" class="box-desc light-text">Click a file below to view or modify.</div>
           <div class="dir-area">
             <ul id="tree" class="dir-tree">
               <li class="root">
-                <b class="dir-tree-bold"><i class="ion-ios-arrow-forward"></i> app</b>
+                <b class="dir-tree-bold"><i class="ion-ios-arrow-forward stat-icon"></i> app</b>
               </li>
               <li>
-                <b class="dir-tree-bold"><i class="ion-folder"></i> auth</b>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> auth</b>
                 <ul class="dir-tree">
                   {% if auth %}
                   {% for file in auth %}
-                  <li><i class="ion-android-document"></i> <a href="{{url_for('admin_py_explorer')}}/auth/{{file}}">{{ file }}</a></li>
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_py_explorer')}}/auth/{{file}}">{{ file }}</a></li>
                   {% endfor %}
                   {% endif %}
                 </ul>  
               </li>
 
               <li>
-                <b class="dir-tree-bold"><i class="ion-folder"></i> models</b>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> models</b>
                 <ul class="dir-tree">
                   {% if models %}
                   {% for model in models %}
-                  <li><i class="ion-android-document"></i> <a href="{{url_for('admin_py_explorer')}}/models/{{model}}">{{ model }}</a></li>
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_py_explorer')}}/models/{{model}}">{{ model }}</a></li>
                   {% endfor %}
                   {% endif %}
                 </ul>  
               </li>
               <li>
-                <b class="dir-tree-bold"><i class="ion-folder"></i> modules</b>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> modules</b>
                 <ul class="dir-tree">
                   {% if modules %}
                   {% for module in modules %}
-                  <li><i class="ion-android-document"></i> <a href="{{url_for('admin_py_explorer')}}/modules/{{module}}">{{ module }}</a></li>
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_py_explorer')}}/modules/{{module}}">{{ module }}</a></li>
                   {% endfor %}
                   {% endif %}
                 </ul>  
               </li>
               <li>
-                <b class="dir-tree-bold"><i class="ion-folder"></i> views</b>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> views</b>
                 <ul class="dir-tree">
                   {% if views %}
                   {% for view in views %}
-                  <li><i class="ion-android-document"></i> <a href="{{url_for('admin_py_explorer')}}/views/{{view}}">{{ view }}</a></li>
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_py_explorer')}}/views/{{view}}">{{ view }}</a></li>
                   {% endfor %}
                   {% endif %}
                 </ul>  
               </li>
               <li>
-                <b class="dir-tree-bold"><i class="ion-folder"></i> templates</b>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> templates</b>
                 <ul class="dir-tree">
                   {% if tpls %}
                   {% for template in tpls %}
-                  <li><i class="ion-android-document"></i> <a href="{{url_for('admin_py_explorer')}}/templates/{{template}}">{{ template }}</a></li>
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_py_explorer')}}/templates/{{template}}">{{ template }}</a></li>
                   {% endfor %}
                   {% endif %}
                 </ul>  
@@ -186,19 +258,31 @@
 
               {% if root %}
               {% for files in root %}
-              <li><i class="ion-android-document"></i> <a href="{{url_for('admin_py_explorer')}}/app/{{files}}">{{ files }}</a></li>
+              <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_py_explorer')}}/app/{{files}}">{{ files }}</a></li>
               {% endfor %}
               {% endif %}
             </ul>  
           </div>
-        </div>
 
+        </div>
+      </div>
         <div id="right-editor" class="right-editor">
           <div style="display:inline;width: 100%;">
-            <div style="padding-bottom: 20px;" class="btn-span">
-              <button id="update" name="update" onclick="modal_open()" class="btn btn-blue" value="Update">Update</button>         
-              <span>  Click <a onclick="collapse()">here </a>to collapse directory tree.</span>
+
+            <div class="generic-box">
+              {% if dir and file %}
+              <div class="box-title">File loaded </div>
+              <i style="text-decoration:underline;color:#4482ff;">{{ dir }}/{{ file }}</i>
+              {% endif %}
+              <div style="padding-top:15px;padding-bottom: 10px;" class="btn-span">
+                {% if content %}
+
+                <button id="update" name="update" onclick="modal_open()" class="btn btn-blue" value="Update">Update</button>         
+                {% endif %}
+                <span>  Click <a onclick="collapse()">here </a>to collapse controls.</span>
+              </div>
             </div>
+
             <form method="post">
 
               <!-- Update modal -->
@@ -231,19 +315,21 @@
                   <div class="big" id="editor">{{ content }}</div>
                   {% else %}
                   <div class="big" id="editor">
-""" 
-    Welcome to the File Explorer
+"""
+    Welcome to the editor. 
 
-    Here you can view manage and modify all of Trinity's public files. 
-    Admin files are not availible through this editor. 
+    Here, view and manage all of Trinity's content.
+
+
+
+
+
+    Click a file to begin.
+
+    Or you can use the side box to add or delete a file.
 
 """
-
-supported_syntaxes = 'Python and' + 'HTML'
-
-print('This editor fully supports {}').format(supported_syntaxes) 
-# This editor fully supports Python and HTML
-
+explorer.ready(True)
                   </div>
                   {% endif %}
 

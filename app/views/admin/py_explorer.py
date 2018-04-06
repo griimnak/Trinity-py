@@ -74,5 +74,7 @@ def edit_file(directory, file):
             modules=list_files('app/modules'),
             auth=list_files('app/auth'),
             root=list_files('app'),
-            content=content
+            content=content,
+            dir=directory,
+            file=file
         )

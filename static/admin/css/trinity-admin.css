@@ -19,6 +19,13 @@ body {
   font: 400 14px/1.6 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #323332;
+}
+
+*{
+  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;   
+  box-sizing: border-box;       
 }
 
 /* Content wrapper */
@@ -115,7 +122,7 @@ body {
   font-weight: 700;
   color: #333;
   font-size: 18px;
-  margin-top: 100px;
+  margin-top: 79px;
   text-shadow: 1px 1px 1px rgba(0,0,0,.004);
 }
 
@@ -133,7 +140,7 @@ body {
 
 .dirs-box {
   display: inline-block;
-  max-width: 240px;
+  max-width: 290px;
   min-height: 40px;
   margin: 0 0px 25px;
   margin-right: 25px;
@@ -145,19 +152,6 @@ body {
 }
 
 .hold { margin: 0 auto; width: 100%; vertical-align: top; }
-
-.generic-box {
-  vertical-align: top;
-  display: inline-block;
-  min-width: 600px;
-  min-height: 220px;
-  margin: 0 15px 25px;
-  padding: 25px;
-  background-color: #ffffff;
-  border-radius: 2px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  
-}
 
 .routes-box {
   vertical-align: top;
@@ -172,7 +166,7 @@ body {
 
 .side-box {
   display: inline-block;
-  max-width: 220px;
+  max-width: 270px;
   min-height: 40px;
   margin: 0 15px 25px;
   padding: 25px;
@@ -181,16 +175,33 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.big-box {
+.generic-box {
   vertical-align: top;
   display: inline-block;
-  max-width: 280px;
-  min-height: 100px;
-  margin: 0 15px 25px;
+  min-width: 340px;
+  min-height: 40px;
+
+  margin-bottom: 25px;
   padding: 25px;
   background-color: #ffffff;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.explorer-side {
+  float:left
+}
+
+.manage-box {
+  max-width: 290px;
+  min-height: 40px;
+  margin: 0 0px 25px;
+  margin-right: 25px;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  
 }
 
 .container { width: 100%; padding-bottom: 60px; }
@@ -204,21 +215,21 @@ body {
   margin: 0 -5px 25px;
 }
 
-.box-desc { margin-bottom: 40px; }
+.box-desc { margin-bottom: 40px; font-size: 14px; }
 .right-editor { vertical-align: top; width: 100%; }
 
 /* Modal */
 #overlay {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
 }
 
 .modal-box {
@@ -368,6 +379,12 @@ table th {
   border-color: #71be1d;
 }
 
+.btn-red {
+  background-color: #f64744;
+  border-color: #f64744;
+  color: #ffffff;
+}
+
 /* Generic */
 #editor { 
   right:0;top:0;left:0;bottom:0; 
@@ -378,6 +395,9 @@ table th {
 
 .editor-toggle { display: inline-block; }
 .toggle-off { display: none; }
+.bottom-margin { margin-bottom: 20px; }
+.top-margin { margin-top: 20px; }
+.input-width { max-width:60px; }
 
 .big {
   height: 1000px;
@@ -419,7 +439,7 @@ input {
   margin-bottom: 20px;
   padding: 4px 10px;
   width: 95%;
-  height: 25px;
+  height: 35px;
   cursor: text;
   text-align: left;
   font-size: 13px;
@@ -433,7 +453,7 @@ input {
   outline: none;
 }
 select {
-  height: 25px;
+  height: 35px;
   background-color: #fff;
   background-image: none;
   border: 1px solid #e9e9e9;
@@ -448,7 +468,7 @@ select {
 @media screen and (max-width: 768px) {
 
   .header { height: 100px; }
-  .header h4 { margin-top: 77px; }
+  .header h4 { margin-top: 58px; }
   .wrapper { max-width: 100%; }
   .side-nav { width: 100%; }
 
@@ -460,12 +480,15 @@ select {
   }
 
   .side-box { max-width: 100%; margin: 15px 0; }
-  .generic-box { min-width: 100%; margin: 15px 0; }
+  .generic-box { width: 100%; margin: 15px 0; }
   .routes-box { width: 100%; margin: 15px 0; }
+  .dirs-box { min-width: 100%; margin: 15px 0; }
+  .manage-box { max-width: 100%; margin: 15px 0; }
   .big-box { max-width: 100%; margin: 15px 0; }
-  .right-editor { display: inline-block; }
-
+  .explorer-side { width: 100% }
 }
+
+
 
 @media screen and (max-width: 320px) {
   .header { padding: 10px 5px; }
@@ -477,8 +500,8 @@ select {
   #time { font-size: 10px; }
 }
 
-@media screen and (max-width: 1092px) {
- .right-editor { display: inline-block; }
+@media screen and (max-width: 880px) {
+ 
 }
 
 @media screen and (max-width: 600px) {
