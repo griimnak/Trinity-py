@@ -113,7 +113,7 @@ body {
 .header {
   border-bottom: 1px dashed #858991;
   padding: 10px 20px;
-  height: 122px;
+  height: 143px;
   margin-bottom: 70px;
 }
 
@@ -122,7 +122,7 @@ body {
   font-weight: 700;
   color: #333;
   font-size: 18px;
-  margin-top: 79px;
+  margin-top: 100px;
   text-shadow: 1px 1px 1px rgba(0,0,0,.004);
 }
 
@@ -467,8 +467,8 @@ select {
 /* Responsive tweaks */
 @media screen and (max-width: 768px) {
 
-  .header { height: 100px; }
-  .header h4 { margin-top: 58px; }
+  .header { height: 135px; }
+  .header h4 { margin-top: 91px; }
   .wrapper { max-width: 100%; }
   .side-nav { width: 100%; }
 

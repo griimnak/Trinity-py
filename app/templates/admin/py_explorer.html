@@ -272,13 +272,15 @@
             <div class="generic-box">
               {% if dir and file %}
               <div class="box-title">File loaded </div>
-              <i style="text-decoration:underline;color:#4482ff;">{{ dir }}/{{ file }}</i>
+              Working with <i style="text-decoration:underline;color:#4482ff;">{{ dir }}/{{ file }}</i>
               {% endif %}
-              <div style="padding-top:15px;padding-bottom: 10px;" class="btn-span">
+              
                 {% if content %}
-
-                <button id="update" name="update" onclick="modal_open()" class="btn btn-blue" value="Update">Update</button>         
+                <div>
+                <button style="width: 100%;margin: 25px 0px 15px;" id="update" name="update" onclick="modal_open()" class="btn btn-blue" value="Update">Update</button>
+                </div>         
                 {% endif %}
+                <div style="padding-top:5px;" class="btn-span">
                 <span>  Click <a onclick="collapse()">here </a>to collapse controls.</span>
               </div>
             </div>
