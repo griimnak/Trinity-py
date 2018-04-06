@@ -16,7 +16,7 @@
     $(document).ready(function() {
       var editor = ace.edit('editor');
       editor.setTheme('ace/theme/monokai');
-      editor.getSession().setMode('ace/mode/java');
+      editor.getSession().setMode('ace/mode/json');
       editor.renderer.setShowGutter(false);
       var textarea = $('#content');
       setInterval(function() {
@@ -72,7 +72,7 @@
             </a>
           </li>
           <li>
-            <a href="/logout">
+            <a href="{{url_for('logout')}}">
               <i class="ion-android-exit"></i>
               <span>Logout</span>
             </a>
@@ -91,7 +91,7 @@
         {% with messages = get_flashed_messages(category_filter=["login-welcome"]) %} 
         {% if messages %}
         {% for message in messages %}
-        <div id="pop" style="margin-bottom: 40px;" class="success animated bounce">{{ message }}</div>
+        <div id="pop" style="margin-bottom: 40px;" class="success animated bounce"><i class="ion-happy-outline"> </i> {{ message }}</div>
         <script>
           setTimeout(function(){
             var pop = document.getElementById('pop');
@@ -162,11 +162,10 @@
         Updating will overwrite current configuration with data in editor.
       </p>
     </div>
-    <form method="post">
       {% with messages = get_flashed_messages(category_filter=["success"]) %} 
       {% if messages %}
       {% for message in messages %}
-      <div id="pop" class="success animated bounce">Success: {{ message }}</div>
+      <div id="pop" style="margin-top: 10px;" class="success animated bounce">Success: {{ message }}</div>
       <script>
         setTimeout(function(){
           var pop = document.getElementById('pop');
@@ -179,7 +178,7 @@
       {% endif %}
       {% endwith %}
       {% if error %} 
-      <div id="error_pop" class="error animated bounce">Error: {{ error }}</div>
+      <div id="error_pop" style="margin-top: 10px;" class="error animated bounce">Error: {{ error }}</div>
       <script>
         setTimeout(function(){
           var error_pop = document.getElementById('error_pop');
@@ -189,10 +188,37 @@
       </script>
       {% endif %}
       <br />
+
       <div style="padding-bottom: 20px;" class="btn-span">
-        <button id="update-submit" name="update-submit" type="submit" class="btn btn-blue" value="Update">Update</button> 
-        <span>or <a href="{{url_for('index')}}">clear data</a></span>
+        <button id="update" name="update" onclick="modal_open()" class="btn btn-blue" value="Update">Update</button>         
+        <span>or <a href="{{url_for('admin_dashboard')}}">clear data</a></span>
       </div>
+      <form method="post">
+
+        <!-- Update modal -->
+        <div onclick="modal_close()" id="overlay">
+          <div class="modal-outer">
+            <div class="modal-middle">
+              <div class="modal-inner">
+                <div class="modal-box">
+                  <div class="box-title">Are you sure? </div>
+                  <div class="box-desc">Be sure to check for missing quotes or commas.</div>
+                  <div style="padding-bottom: 20px;" class="light-text">
+                    Please double check your data <b>or your site could easily break.</b>
+                    In some instances the whole configuration could be erased all because of one silly mis-quote or missing comma.
+                  </div>
+                  <div class="btn-span">
+                    <button id="update-submit" name="update-submit" type="submit" class="btn btn-blue" value="Update">
+                      <i class="ion-checkmark"> </i>Confirm
+                    </button>
+                    <span>or <a onclick="modal_close()">cancel</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       <div class="row" style="position:sticky;">
         <input name="content" id="content" type=hidden />
         <!-- real input ^ -->
@@ -207,5 +233,13 @@
     <div style="height: 600px;"></div>  
   </div>
   <script src="{{ url_for('static', filename='admin/js/main.js')}}"></script>
+  <script>
+  function modal_open() {
+      document.getElementById("overlay").style.display = "block";
+  }
+  function modal_close() {
+      document.getElementById("overlay").style.display = "none";
+  }
+  </script>
 </body>
 </html>

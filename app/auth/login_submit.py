@@ -28,6 +28,6 @@ def login_submit():
 
                     flash(submit.error, 'error')
         else:
-            flash('What did you do?', 'error')
+            flash(u'What did you do?', 'error')
 
     return redirect(url_for('admin_login'))

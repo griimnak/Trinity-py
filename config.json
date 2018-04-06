@@ -11,7 +11,7 @@
     },
     "server":{
         "port":80,
-        "secret_key":"letitbeeee",
+        "secret_key":"modal is done",
         "debug":true
     },
 

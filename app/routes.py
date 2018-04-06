@@ -25,6 +25,9 @@ def admin_dashboard(): from app.views.admin.dash import view; return view()
 def admin_py_explorer(): from app.views.admin.py_explorer import view; return view()
 
 
+@app.route('/admin/py_explorer/<dir>/<file>', methods=['POST', 'GET'])
+def admin_py_explorer_edit(dir, file): from app.views.admin.py_explorer import edit_file; return edit_file(dir, file)
+
 @app.errorhandler(404)
 def page_not_found(error): return render_template('admin/error.html', error=error)
 
