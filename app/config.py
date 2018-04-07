@@ -1,5 +1,5 @@
 import ujson
-""" A class for reading and interacting with 
+""" A class for reading and interacting with
     the configuration file
 """
 
@@ -11,7 +11,6 @@ class Config:
         try:
             with open(self.config, 'r') as json_data_file:
                 self.buffer = ujson.load(json_data_file)
-                print('config read!!!!')
         except Exception as e:
             raise ValueError('Trinity3 failed to initialize. ' + str(e))
 

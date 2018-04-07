@@ -1,6 +1,8 @@
-from pymysql import escape_string as clean
-from passlib.hash import argon2 as hasher
 from app import get_db
+
+from passlib.hash import argon2 as hasher
+
+from pymysql import escape_string as clean
 
 
 class Login:
@@ -32,7 +34,7 @@ class Login:
             self.error = 'The user you entered doesn\'t exist in our database.'
 
         cursor.close()
-            
+
     def verify_login(self, genuine_pass):
         """ Compare passwords """
         verify = hasher.verify(self.password, clean(genuine_pass))
@@ -41,4 +43,3 @@ class Login:
             self.verification = True
         else:
             self.error = 'Incorrect password for ' + self.username
-

@@ -1,9 +1,13 @@
+from app.config import Config
+
+from flask import Flask
+
+from flask_compress import Compress
+
 import pymysql
 """ from util.DBUtils.PersistentDB import PersistentDB """
+
 from util.DBUtils.PersistentDB import PersistentDB
-from flask import Flask
-from flask_compress import Compress
-from app.config import Config
 
 
 conf = Config()
@@ -33,7 +37,8 @@ def connect_db():
     """ Persistent connection for high concurrency """
     return PersistentDB(
         creator=pymysql, host=conf.read_key('mysqld', 'host'),
-        user=conf.read_key('mysqld', 'user'), password=conf.read_key('mysqld', 'pass'),
+        user=conf.read_key('mysqld', 'user'),
+        password=conf.read_key('mysqld', 'pass'),
         database=conf.read_key('mysqld', 'db'), autocommit=True,
         charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor
     )

@@ -1,13 +1,12 @@
-from flask import render_template, session
-from flask import request, redirect, url_for, flash
 from datetime import datetime
 from sys import version_info
-from app import conf
 from urllib import parse
+
 from app import app
+from app import conf
 
-
-""" Lists routes for dash table """
+from flask import flash, redirect, request, url_for
+from flask import render_template, session
 pyinfo = ".".join(map(str, version_info[:3]))
 
 
@@ -50,7 +49,7 @@ def view():
         try:
             config = ContentEditor('config.json').read()
         except Exception as load_error:
-            error = "Couldn't find what you requested.\n" + str(load_error)    
+            error = "Couldn't find what you requested.\n" + str(load_error)
 
         """ Update config trigger """
 

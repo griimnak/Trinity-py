@@ -1,14 +1,21 @@
-from flask import render_template, session
-from flask import redirect, url_for, request, flash
-from datetime import datetime
 import os
+# from datetime import datetime
+
+from flask import flash, redirect, request, url_for
+from flask import render_template, session
 
 
 def list_files(path):
     try:
-        files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+        files = [
+            f for f in os.listdir(path)
+            if os.path.isfile(os.path.join(path, f))
+        ]
     except Exception as e:
-        raise ValueError('Trinity could not list files for: ' + path + ' Detailed error: ' + str(e))
+        raise ValueError(
+            'Trinity could not list files for: ' + path +
+            ' Detailed error: ' + str(e)
+        )
 
     return files
 
@@ -42,25 +49,42 @@ def edit_file(directory, file):
                 replace = 'app'
                 content = ContentEditor(replace+'/'+file).read()
             else:
-                content = ContentEditor('app/' + directory + '/' + file).read()
+                content = ContentEditor(
+                    'app/' + directory + '/' + file
+                ).read()
         except Exception as e:
-            flash(u'Could not fulfil request  "' + directory + '/' + file + '" was not found. ', 'error')
+            flash(u'Could not fulfil request  "' + directory + '/' +
+                  file + '" was not found. ', 'error')
 
         if request.method == "POST":
             if request.form['update-submit'] is not None:
-                date = datetime.now().strftime('%H:%M%p - %m-%d-%Y')
+                # date = datetime.now().strftime('%H:%M%p - %m-%d-%Y')
 
                 try:
                     if directory == 'app':
-                        ContentEditor(directory + '/' + file).write(request.form['content'])
-                        flash(u'Changes successfully written to "' + directory + '/' + file + '" ', 'success')
+                        ContentEditor(directory + '/' + file).write(
+                            request.form['content']
+                        )
+                        flash(
+                            u'Changes successfully written to "' +
+                            directory + '/' + file + '" ', 'success')
                     else:
-                        ContentEditor('app/' + directory + '/'+file).write(request.form['content'])
-                        flash(u'Changes successfully written to "' + 'app/' + directory + '/'+file + '" ', 'success')
+                        ContentEditor(
+                            'app/' + directory + '/'+file).write(
+                            request.form['content']
+                        )
+                        flash(
+                            u'Changes successfully written to "' +
+                            'app/' + directory + '/'+file + '" ', 'success')
 
-                    return redirect(url_for('admin_py_explorer') + '/' + directory + '/' + file)
+                    return redirect(
+                        url_for('admin_py_explorer') +
+                        '/' + directory + '/' + file
+                    )
                 except Exception as write_error:
-                    flash(u'Could not write changes ' + str(write_error), 'error')
+                    flash(
+                        u'Could not write changes ' +
+                        str(write_error), 'error')
 
             else:
                 return "What did you do?"
