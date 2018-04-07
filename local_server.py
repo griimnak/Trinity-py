@@ -1,11 +1,6 @@
-from os import system
-
 from app import app
 from app import conf
 
-system("title (DEV) [{}:{}] Trinity-py- build tr4.4".format(
-    conf.read_key('server', 'host'), conf.read_key('server', 'port')))
-system("color 3E")
 """
  Trinity-py build tr4.4
  A python-based content management system using flask,
