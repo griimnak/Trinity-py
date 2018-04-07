@@ -1,10 +1,9 @@
-from app.config import Config
+from app import conf
 from flask import render_template
 import sys
 
 
 def view():
-    conf = Config()
     pyinfo = ".".join(map(str, sys.version_info[:3]))
 
     return render_template(

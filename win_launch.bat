@@ -1,6 +1,4 @@
 @echo off
-title Trinity
-color d
 
 :Launch
 setlocal
@@ -9,7 +7,7 @@ setlocal
 %@EndTry%
 :@Catch
     cls
-    echo 'python3' not a command, using 'python' instead..
+    echo  * 'python3' not a command, using 'python' instead..
     python local_server.py
 :@EndCatch
 pause

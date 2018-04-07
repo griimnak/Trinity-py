@@ -2,13 +2,12 @@ from flask import render_template, session
 from flask import request, redirect, url_for, flash
 from datetime import datetime
 from sys import version_info
-from app.config import Config
+from app import conf
 from urllib import parse
 from app import app
 
 
 """ Lists routes for dash table """
-conf = Config()
 pyinfo = ".".join(map(str, version_info[:3]))
 
 
