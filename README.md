@@ -12,6 +12,7 @@ Recently rewritten for performance
 &#10004; gzip compression (flask-compress) <br />
 &#10004; jinja2 caching <br />
 &#10004; py3.6+ f-strings <a href="https://cito.github.io/img/f-strings-1.png">bench</a> <br />
+&#10004; mysql high concurrency <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTgKrdlePZ0VoWyrpZI8MuzDOf-PR5Vsa2VPoXb3dCQxEVt3d3y-4-6oHNSyQxMraGgSVf1HZQHsk0m/pubchart?oid=75267628&amp;format=image">bench</a> <br />
 &#10004; ujson ultra fast json <br />
 ###### Using least ammount of modules possible
 flask, flask-compress, pymysql, passlib, ujson, argon2_cffi (encryption backend)
