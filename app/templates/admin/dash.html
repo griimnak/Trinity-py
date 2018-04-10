@@ -42,7 +42,7 @@
             </a>
           </li>
           <li>
-            <a href="{{url_for('admin_py_explorer')}}">
+            <a href="{{url_for('admin_explorer')}}">
               <i class="ion-social-python"></i>
               <span>File Explorer</span>
             </a>
@@ -88,7 +88,7 @@
         <h4>Dashboard <div id="time"></div></h4>
       </div>
       <div class="container">
-        {% with messages = get_flashed_messages(category_filter=["login-welcome"]) %} 
+        {% with messages = get_flashed_messages(category_filter=["login-welcome"]) %}
         {% if messages %}
         {% for message in messages %}
         <div id="pop" style="margin-bottom: 40px;" class="success animated bounce"><i class="ion-happy-outline"> </i> {{ message }}</div>
@@ -106,7 +106,7 @@
           <div class="side-box">
             <div class="box-title">Statistics</div>
             <div class="box-desc">Here's an overview of Trinity's current statistics.</div>
-            
+
             <p><i class="ion-social-python stat-icon"></i> Python info</p>
             <div style="padding-bottom: 5px;" class="light-text">Python {{pyinfo}}</div>
 
@@ -148,7 +148,7 @@
                   {% endfor %}
                   {% endif %}
                 </tbody>
-             
+
             </table>
           </div>
         </div>
@@ -158,11 +158,11 @@
     <h4 class="highlight">Configuration</h4>
     <div class="light-text">
 
-      <p class="tweak">Below you may modify any value(s) of the configuration. 
+      <p class="tweak">Below you may modify any value(s) of the configuration.
         Updating will overwrite current configuration with data in editor.
       </p>
     </div>
-      {% with messages = get_flashed_messages(category_filter=["success"]) %} 
+      {% with messages = get_flashed_messages(category_filter=["success"]) %}
       {% if messages %}
       {% for message in messages %}
       <div id="pop" style="margin-top: 10px;" class="success animated bounce">Success: {{ message }}</div>
@@ -177,7 +177,7 @@
 
       {% endif %}
       {% endwith %}
-      {% if error %} 
+      {% if error %}
       <div id="error_pop" style="margin-top: 10px;" class="error animated bounce">Error: {{ error }}</div>
       <script>
         setTimeout(function(){
@@ -195,7 +195,7 @@
       <form method="post">
 
         <!-- Update modal -->
-        <div onclick="modal_close()" id="overlay">
+        <div onclick="modal_close()" class="overlay" id="overlay">
           <div class="modal-outer">
             <div class="modal-middle">
               <div class="modal-inner">
@@ -230,7 +230,7 @@
       </div>
 
     </form>
-    <div style="height: 600px;"></div>  
+    <div style="height: 600px;"></div>
   </div>
   <script src="{{ url_for('static', filename='admin/js/main.js')}}"></script>
   <script>

@@ -7,12 +7,12 @@
     },
     "site":{
         "name":"Trinity-py",
-        "desc":"A python-based content management system using flask!!"
+        "desc":"A python-based content management system using flask"
     },
     "server":{
         "port":5000,
         "host":"127.0.0.1",
-        "secret_key":"modal is done",
+        "secret_key":"kk53asdasdada645r",
         "debug":true
     },
 

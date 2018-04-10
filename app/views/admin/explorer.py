@@ -1,5 +1,4 @@
 import os
-# from datetime import datetime
 
 from flask import flash, redirect, request, url_for
 from flask import render_template, session
@@ -33,7 +32,7 @@ def view():
             modules=list_files('app/modules'),
             views=list_files('app/views'),
             tpls=list_files('app/templates'),
-            auth=list_files('app/auth'),
+            auth=list_files('app/posts'),
             root=list_files('app')
         )
 
@@ -44,17 +43,21 @@ def edit_file(directory, file):
     else:
         content = None
         from app.modules.content_editor import ContentEditor
+
         try:
             if directory == 'app':
-                replace = 'app'
-                content = ContentEditor(replace+'/'+file).read()
+                req = directory + '/' + file
             else:
-                content = ContentEditor(
-                    'app/' + directory + '/' + file
-                ).read()
+                req = 'app/' + directory + '/' + file
+
+            content = ContentEditor(req).read()
+
+            if content == '':
+                content = '[Blank file]'
+
         except Exception as e:
-            flash(u'Could not fulfil request  "' + directory + '/' +
-                  file + '" was not found. ', 'error')
+            ready = False
+            flash(f'"{directory}/{file}" was not found.', 'error')
 
         if request.method == "POST":
             if request.form['update-submit'] is not None:
@@ -70,15 +73,15 @@ def edit_file(directory, file):
                             directory + '/' + file + '" ', 'success')
                     else:
                         ContentEditor(
-                            'app/' + directory + '/'+file).write(
+                            'app/' + directory + '/' + file).write(
                             request.form['content']
                         )
                         flash(
                             u'Changes successfully written to "' +
-                            'app/' + directory + '/'+file + '" ', 'success')
+                            'app/' + directory + '/' + file + '" ', 'success')
 
                     return redirect(
-                        url_for('admin_py_explorer') +
+                        url_for('admin_explorer') +
                         '/' + directory + '/' + file
                     )
                 except Exception as write_error:
@@ -89,6 +92,7 @@ def edit_file(directory, file):
             else:
                 return "What did you do?"
 
+
         return render_template(
             'admin/py_explorer.html',
             username=session.get('username'),
@@ -96,7 +100,7 @@ def edit_file(directory, file):
             views=list_files('app/views'),
             tpls=list_files('app/templates'),
             modules=list_files('app/modules'),
-            auth=list_files('app/auth'),
+            auth=list_files('app/posts'),
             root=list_files('app'),
             content=content,
             dir=directory,

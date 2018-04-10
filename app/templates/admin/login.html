@@ -21,17 +21,14 @@
         </div>
         {% with messages = get_flashed_messages(category_filter=["error"]) %} 
         {% if messages %}
-        {% for message in messages %}
-        <div id="error_pop" class="error animated bounce">Error: {{ message }}</div>
+        <div id="error_pop" class="error animated bounce bottom-margin">Error: {{ messages[0] }}</div>
         <script>
           setTimeout(function(){
-            var error_pop = document.getElementById('pop');
+            var error_pop = document.getElementById('error_pop');
             error_pop.classList.remove('animated', 'bounce');
             error_pop.style.opacity = '0.5';
           }, 3000);
         </script>
-        {% endfor %}
-
         {% endif %}
         {% endwith %}
 

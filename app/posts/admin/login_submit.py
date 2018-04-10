@@ -8,7 +8,6 @@ from pymysql import escape_string as clean
 
 
 def login_submit():
-    """ Post trigger """
     if request.method == 'POST':
         if request.form['login-submit'] == 'Login':
             username = clean(request.form['username'])
@@ -23,10 +22,10 @@ def login_submit():
                 submit = Login(username, password)
                 timestamp = datetime.now().strftime('%H:%M%p - %m-%d-%Y')
 
+                wmsg = f'Welcome back, {username}. Logged in at {timestamp}'
+
                 if submit.verification is True:
-                    printed = 'Session started at {}'.format(timestamp)
-                    flash(u'Welcome back, {}. {}'.format(username, printed),
-                          'login-welcome')
+                    flash(wmsg, 'login-welcome')
 
                     session['username'] = username
                     session['logged_in'] = True
