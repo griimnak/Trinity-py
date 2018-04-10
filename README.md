@@ -42,7 +42,7 @@ $ pip -V
 
 How to run
 ----------------
-Trinity was built with compatibility in mind for multiple setups. 
+<b>Trinity was built with compatibility in mind for multiple setups.</b> 
 
 #### Local / development environment
 ```sh
