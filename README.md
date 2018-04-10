@@ -19,7 +19,7 @@ flask, flask-compress, pymysql, passlib, ujson, argon2_cffi (encryption backend)
 
 How to setup
 -------------------
-- Install Python 3+
+- Install Python 3.6+
 https://www.python.org/
 
 - Install MySQL Server
