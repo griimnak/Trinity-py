@@ -63,6 +63,7 @@ def admin_login_submit():
 
     return login_submit()
 
+
 @app.route('/admin/explorer/addfile', methods=['POST'])
 def admin_newfile_submit():
     from app.posts.admin.file_add_remove import add_file

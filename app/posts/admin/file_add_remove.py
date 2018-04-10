@@ -34,7 +34,7 @@ def add_file():
                     flash(u'A field has been left empty.', 'error')
                 else:
                     formatted = f'{path}/{file}{typeof}'
-
+                
                     add_file_submit(formatted)
 
                 return redirect(url_for('admin_explorer'))
