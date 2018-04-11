@@ -12,7 +12,7 @@ class Config:
             with open(self.config, 'r') as json_data_file:
                 self.buffer = ujson.load(json_data_file)
         except Exception as e:
-            raise ValueError('Trinity3 failed to initialize. ' + str(e))
+            raise ValueError('Trinity-py failed to initialize. ' + str(e))
 
     """ Read functions """
     def read_key(self, section, key):

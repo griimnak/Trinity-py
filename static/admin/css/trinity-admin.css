@@ -22,14 +22,14 @@ body {
   color: #323332;
 }
 
-*{
+* {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 /* Content wrapper */
-.wrapper { max-width: 80%; margin: auto; height: 100vh; }
+.wrapper { max-width: 80%; margin: auto; height: 100%; }
 
 /* Navigation */
 .navi {
@@ -201,7 +201,66 @@ body {
   background-color: #ffffff;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
 
+.shell-box {
+  max-width: 800px;
+  min-height: 380px;
+  margin: 15px;
+  padding: 5px;
+  background-color: #141414;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  margin: auto;
+
+}
+
+.shell-body {
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  background: #141414;
+  color: #45D40C;
+  font: 0.8em 'Andale Mono', Consolas, 'Courier New';
+  line-height: 1.6em;
+
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.shell-body li:before {
+  content: '$';
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.shell-body li {
+  word-wrap: break-word;
+  position: relative;
+  padding: 0 0 0 15px;
+  white-space: pre;
+}
+
+.shell-form {
+  display: block;
+}
+
+.shell-input {
+  border: none;
+  background: transparent;
+  color: #45D40C;
+  outline: none;
+  max-width: 320px;
+}
+
+.shell-button {
+  float:right;
+  background: transparent;
+  border: 0;
+  color: #45D40C;
 }
 
 .container { width: 100%; padding-bottom: 60px; }

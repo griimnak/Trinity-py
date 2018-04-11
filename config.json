@@ -12,7 +12,7 @@
     "server":{
         "port":5000,
         "host":"127.0.0.1",
-        "secret_key":"kk53asdasdada645r",
+        "secret_key":"seckey123",
         "debug":true
     },
 

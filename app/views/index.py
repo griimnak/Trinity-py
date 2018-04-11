@@ -1,6 +1,8 @@
-from app import conf
-from flask import render_template
 import sys
+
+from app import conf
+
+from flask import render_template
 
 
 def view():
