@@ -74,10 +74,12 @@ def admin_deletefile_submit():
     from app.posts.admin.file_add_remove import delete_file
     return delete_file()
 
+
 @app.route('/admin/shell')
 def admin_trinity_shell():
     from app.views.admin.trinity_shell import view
     return view()
+
 
 @app.route('/admin/shell/submit')
 def admin_trinity_shell_submit():
@@ -87,6 +89,7 @@ def admin_trinity_shell_submit():
         from app.modules.trinity_shell import TrinityShell
         shell_request = TrinityShell(request.args.get('shellinput'))
         return shell_request.response
+
 
 @app.errorhandler(404)
 def page_not_found(error):

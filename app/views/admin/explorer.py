@@ -27,13 +27,13 @@ def view():
 
         return render_template(
             'admin/py_explorer.html',
-            username=session.get('username'),
+            auth=list_files('app/posts'),
             models=list_files('app/models'),
             modules=list_files('app/modules'),
-            views=list_files('app/views'),
+            root=list_files('app'),
             tpls=list_files('app/templates'),
-            auth=list_files('app/posts'),
-            root=list_files('app')
+            username=session.get('username'),
+            views=list_files('app/views')
         )
 
 
@@ -92,17 +92,16 @@ def edit_file(directory, file):
             else:
                 return "What did you do?"
 
-
         return render_template(
             'admin/py_explorer.html',
-            username=session.get('username'),
-            models=list_files('app/models'),
-            views=list_files('app/views'),
-            tpls=list_files('app/templates'),
-            modules=list_files('app/modules'),
             auth=list_files('app/posts'),
-            root=list_files('app'),
             content=content,
             dir=directory,
-            file=file
+            file=file,
+            models=list_files('app/models'),
+            modules=list_files('app/modules'),
+            root=list_files('app'),
+            tpls=list_files('app/templates'),
+            username=session.get('username'),
+            views=list_files('app/views')
         )

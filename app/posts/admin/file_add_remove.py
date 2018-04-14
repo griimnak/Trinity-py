@@ -2,6 +2,7 @@ import os
 
 from flask import flash, redirect, request, session, url_for
 
+
 def add_file_submit(formatted):
     try:
         open(formatted, 'a').close()
@@ -11,13 +12,13 @@ def add_file_submit(formatted):
         flash(f'It seems "{formatted}" already exists. {str(e)}', 'error')
 
 
-def delete_file_submit(path_to):
+def delete_file_submit(path):
     try:
-        os.remove(path_to)
+        os.remove(path)
 
-        flash(f'"{path_to}" has been successfully deleted.', 'success')
+        flash(f'"{path}" has been successfully deleted.', 'success')
     except Exception as e:
-        flash(f'Unexpected error while deleting "{path_to}"; {str(e)}', 'error')
+        flash(f'Unexpected error while deleting "{path}"; {str(e)}', 'error')
 
 
 def add_file():

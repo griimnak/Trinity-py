@@ -16,18 +16,25 @@ class TrinityShell:
     def query_basic_commands(self, command):
         if command == 'help':
             self.respond("TOGGLE_HELP")
+
         elif command == 'clear':
             self.respond("TOGGLE_CLEAR")
+
         elif command == 'stats':
             self.respond("TOGGLE_STATS")
+
         elif command == 'exit':
-            self.respond("To leave, simply navigate to a new page on the left.")
+            self.respond(
+                "To leave, simply navigate to a new page on the left.")
+
         elif command == f'ls {command[3:]}' or command == 'ls':
             self.ls(command)
+
         elif command == f'emu {command[4:]}' or command == 'emu':
             self.emu(command)
         else:
-            self.respond("You didn't enter a command! Type help to get started")
+            self.respond(
+                "You didn't enter a command! Type help to get started")
 
     def emu(self, command):
         if command == 'emu':
@@ -52,10 +59,8 @@ class TrinityShell:
 
     def respond(self, command):
         self.response = ujson.dumps(
-            {"response": command}, sort_keys=False, indent=2
-        )
+            {"response": command}, sort_keys=False, indent=2)
 
     def respond_array(self, command, data):
         self.response = ujson.dumps(
-            {"response": command, "array": data}, sort_keys=False, indent=2
-        )
+            {"response": command, "array": data}, sort_keys=False, indent=2)
