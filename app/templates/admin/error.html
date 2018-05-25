@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='admin/css/error.css')}}">
+  <title>Whoops</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.min.css') }}">
+</head>
+<body>
+  <div class="night-background">
+    <div id='container1'> </div>
+    <div id='container2'> </div>
+    <div id='container3'> </div>
+    <div id='container4'> </div>
+    <div class="planet"> </div>
+    <div class="text">
+      <h1 class="animated fadeIn">{{error}}</h1>
+      <h2>Click <a class="animated fadeIn infinite" href="{{url_for('index')}}">here</a> 
+        to return to {{request.url_root}}
+      </h2>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='admin/js/error.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link href="{{ url_for('static', filename='css/animate.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/ionicons/css/ionicons.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='admin/css/trinity-admin.css') }}" type="text/css" rel="stylesheet">
+
+  <!-- Ace editor resources -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/ace_editor/ace.js')}}" type="text/javascript" charset="utf-8"></script>
+  <script>
+    $(document).ready(function() {
+      var editor = ace.edit('editor');
+      editor.setTheme('ace/theme/monokai');
+      editor.getSession().setMode('ace/mode/json');
+      editor.renderer.setShowGutter(false);
+      var textarea = $('#content');
+      setInterval(function() {
+        textarea.val(editor.getSession().getValue());
+      }, 1000);
+    });
+  </script>
+</head>
+
+<body>
+  <div id="navi" class="navi">
+      <a href="#" id="nav-trigger" class="nav-trigger"><span></span></a>
+    </div>
+    <div id="side-nav" class="side-nav">
+      <div class="logo">
+      </div>
+      <nav>
+        <ul>
+          <li class="selected">
+            <a class="selected active" href="{{url_for('admin_dashboard')}}">
+              <i class="ion-ios-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{url_for('admin_explorer')}}">
+              <i class="ion-social-python"></i>
+              <span>File Explorer</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="ion-android-globe"></i>
+              <span>Public Assets</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="ion-settings"></i>
+              <span>Database</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{url_for('admin_trinity_shell')}}">
+              <i class="ion-pound"></i>
+              <span>Trinity-Shell</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="ion-android-time"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{url_for('logout')}}">
+              <i class="ion-android-exit"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+        <div class="footer light-text">
+          <a href="#">IsoLite</a> by griimnak
+        </div>
+      </nav>
+    </div>
+    <div id="right" class="wrapper">
+      <div class="header">
+        <h4>Dashboard <div id="time"></div></h4>
+      </div>
+      <div class="container">
+        {% with messages = get_flashed_messages(category_filter=["login-welcome"]) %}
+        {% if messages %}
+        {% for message in messages %}
+        <div id="pop" style="margin-bottom: 40px;" class="success animated bounce"><i class="ion-happy-outline"> </i> {{ message }}</div>
+        <script>
+          setTimeout(function(){
+            var pop = document.getElementById('pop');
+            pop.classList.remove('animated', 'bounce');
+            pop.style.opacity = '0.5';
+          }, 3000);
+        </script>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="hold">
+          <div class="side-box">
+            <div class="box-title">Statistics</div>
+            <div class="box-desc">Here's an overview of Trinity's current statistics.</div>
+
+            <p><i class="ion-social-python stat-icon"></i> Python info</p>
+            <div style="padding-bottom: 5px;" class="light-text">Python {{pyinfo}}</div>
+
+            <p><i class="ion-android-star stat-icon"></i> Site name</p>
+            <div style="padding-bottom: 5px;" class="light-text">"{{sitename}}"</div>
+
+            <p><i class="ion-android-more-horizontal stat-icon"></i> Site desc</p>
+            <div style="padding-bottom: 5px;" class="light-text">"{{sitedesc}}"</div>
+
+            <p><i class="ion-ios-pulse stat-icon"></i> Server port</p>
+            <div style="padding-bottom: 5px;" class="light-text">Port {{siteport}}</div>
+
+
+          </div>
+
+          <div class="routes-box">
+            <div style="padding: 25px 25px 0 25px;">
+              <div class="box-title">Routes</div>
+              <div class="box-desc">All public routes that are currently active are displayed below.</div>
+            </div>
+
+            <div class="table-area">
+              <table class="blueTable">
+                <thead>
+                  <tr>
+                    <th>Endpoint</th>
+                    <th>Methods</th>
+                    <th>Url</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if urls %}
+                  {% for row in urls %}
+                  <tr>
+                    <td>{{row['endpoint']}}</td>
+                    <td>{{row['methods']}}</td>
+                    <td><a href="{{row['url']}}">{{row['url']}}</a></td>
+                  </tr>
+                  {% endfor %}
+                  {% endif %}
+                </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="highlight">Configuration</h4>
+    <div class="light-text">
+
+      <p class="tweak">Below you may modify any value(s) of the configuration.
+        Updating will overwrite current configuration with data in editor.
+      </p>
+    </div>
+      {% with messages = get_flashed_messages(category_filter=["success"]) %}
+      {% if messages %}
+      {% for message in messages %}
+      <div id="pop" style="margin-top: 10px;" class="success animated bounce">Success: {{ message }}</div>
+      <script>
+        setTimeout(function(){
+          var pop = document.getElementById('pop');
+          pop.classList.remove('animated', 'bounce');
+          pop.style.opacity = '0.5';
+        }, 3000);
+      </script>
+      {% endfor %}
+
+      {% endif %}
+      {% endwith %}
+      {% if error %}
+      <div id="error_pop" style="margin-top: 10px;" class="error animated bounce">Error: {{ error }}</div>
+      <script>
+        setTimeout(function(){
+          var error_pop = document.getElementById('error_pop');
+          error_pop.classList.remove('animated', 'bounce');
+          error_pop.style.opacity = '0.5';
+        }, 3000);
+      </script>
+      {% endif %}
+      <br />
+
+      <div style="padding-bottom: 20px;" class="btn-span">
+        <button id="update" name="update" onclick="modal_open()" class="btn btn-blue" value="Update">Update</button>
+      </div>
+      <form method="post">
+
+        <!-- Update modal -->
+        <div onclick="modal_close()" class="overlay" id="overlay">
+          <div class="modal-outer">
+            <div class="modal-middle">
+              <div class="modal-inner">
+                <div class="modal-box">
+                  <div class="box-title">Are you sure? </div>
+                  <div class="box-desc">Be sure to check for missing quotes or commas.</div>
+                  <div style="padding-bottom: 20px;" class="light-text">
+                    <b>Note:</b>
+                    Depending on your setup, values already in use may possibly not update until next application restart. <br />
+                    They will definitely write to the file, though.
+                  </div>
+                  <div class="btn-span">
+                    <button id="update-submit" name="update-submit" type="submit" class="btn btn-blue" value="Update">
+                      <i class="ion-checkmark"> </i>Confirm
+                    </button>
+                    <span>or <a onclick="modal_close()">cancel</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="row" style="position:sticky;">
+        <input name="content" id="content" type=hidden />
+        <!-- real input ^ -->
+
+        <div>
+          <div id="editor">{{config}}</div>
+        </div>
+        <br />
+      </div>
+
+    </form>
+    <div style="height: 600px;"></div>
+  </div>
+  <script src="{{ url_for('static', filename='admin/js/main.js')}}"></script>
+  <script>
+  function modal_open() {
+      document.getElementById("overlay").style.display = "block";
+  }
+  function modal_close() {
+      document.getElementById("overlay").style.display = "none";
+  }
+  </script>
+</body>
+</html>

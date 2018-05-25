@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Login</title>
+  <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/ionicons/css/ionicons.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='admin/css/trinity-admin.css') }}" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <h4>Authentication Required</h4>
+    </div>
+    <div class="login-box">
+      <div class="box-title">Login</div>
+        <div class="box-desc">
+          Please login below to continue.
+        </div>
+        {% with messages = get_flashed_messages(category_filter=["error"]) %} 
+        {% if messages %}
+        <div id="error_pop" class="error animated bounce bottom-margin">Error: {{ messages[0] }}</div>
+        <script>
+          setTimeout(function(){
+            var error_pop = document.getElementById('error_pop');
+            error_pop.classList.remove('animated', 'bounce');
+            error_pop.style.opacity = '0.5';
+          }, 3000);
+        </script>
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{url_for('admin_login_submit')}}" method="post">
+          <p>Username</p>
+          <input name="username" class="form-control" id="username" type="text">
+          
+          <p>Password</p>
+          <input name="password" class="form-control" id="password" type="password">
+          <div style="margin-bottom: 10px;" class="light-text">
+            <span>{{origin}}</span>
+            <p>{{user_agent}}</p>
+          </div>
+          <div class="btn-span">
+            <button id="login-submit" name="login-submit" type="submit" class="btn btn-blue" value="Login">
+              <i class="ion-android-unlock"> </i> Login
+            </button> 
+            <span>or <a href="{{url_for('index')}}">return</a></span>
+          </div>
+        </form>
+    </div>
+
+  <div style="height: 600px;"></div>  
+  </div>
+</body>
+</html>

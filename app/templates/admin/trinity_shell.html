@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Trinity Shell</title>
+  <link href="{{ url_for('static', filename='css/animate.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/ionicons/css/ionicons.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='admin/css/trinity-admin.css') }}" type="text/css" rel="stylesheet">
+  <!-- Ace editor resources -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+</head>
+
+<body>
+  <div id="navi" class="navi">
+    <a href="#" id="nav-trigger" class="nav-trigger"><span></span></a>
+  </div>
+  <div id="side-nav" class="side-nav">
+    <div class="logo">
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="{{url_for('admin_dashboard')}}">
+            <i class="ion-ios-home"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url_for('admin_explorer')}}">
+            <i class="ion-social-python"></i>
+            <span>File Explorer</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="ion-android-globe"></i>
+            <span>Public Assets</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="ion-settings"></i>
+            <span>Database</span>
+          </a>
+        </li>
+        <li class="selected">
+          <a class="selected active" href="{{url_for('admin_trinity_shell')}}">
+            <i class="ion-pound"></i>
+            <span>Trinity-Shell</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="ion-android-time"></i>
+            <span>Logs</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url_for('logout')}}">
+            <i class="ion-android-exit"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+      <div class="footer light-text">
+        <a href="#">IsoLite</a> by griimnak
+      </div>
+    </nav>
+  </div>
+  <div id="right" class="wrapper">
+    <div class="header">
+      <h4>Trinity Shell <div id="time"></div></h4>
+    </div>
+
+    <div class="shell-box">
+      <ul id="results" class="shell-body">
+        <li>&nbsp;Welcome to Trinity-py Shell</li>
+        <li>(type help for command list)</li>
+        <br />
+      </ul>
+      <form class="shell-form">
+        <input id="shell-input" class="shell-input" type="text" name="shellinput" placeholder="..." /> <button id="submit" class="shell-button">[ENTER]</button>
+      </form>
+    </div>
+
+  </div>
+  <div style="height: 600px;"></div>
+</div>
+<script src="{{ url_for('static', filename='admin/js/main.js')}}"></script>
+<script src="{{ url_for('static', filename='admin/js/shell.js')}}"></script>
+</body>
+</html>

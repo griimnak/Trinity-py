@@ -1,0 +1,30 @@
+{
+    "mysqld":{
+        "host":"localhost",
+        "user":"root",
+        "pass":"secret",
+        "db":"phpsite"
+    },
+    "site":{
+        "name":"Trinity-py",
+        "desc":"A python-based content management system using flask"
+    },
+    "server":{
+        "port":5000,
+        "host":"127.0.0.1",
+        "secret_key":"seckey123",
+        "debug":true
+    },
+
+    "mimetypes":[
+        "text/html", 
+        "text/css",
+        "text/xml",
+        "application/json",
+        "application/javascript",
+        "image/jpeg", 
+        "image/png",
+        "image/gif", 
+        "text/javascript"
+    ]
+}

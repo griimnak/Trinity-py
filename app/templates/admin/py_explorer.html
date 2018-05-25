@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin File Explorer</title>
+  <link href="{{ url_for('static', filename='css/animate.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/ionicons/css/ionicons.min.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='admin/css/trinity-admin.css') }}" type="text/css" rel="stylesheet">
+  <!-- Ace editor resources -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/ace_editor/ace.js')}}" type="text/javascript" charset="utf-8"></script>
+  <script>
+    $(document).ready(function() {
+      var editor = ace.edit('editor');
+      var req = window.location.href.slice(-4);
+      if (req == 'html') {
+        editor.getSession().setMode('ace/mode/html');
+      } else {
+        editor.getSession().setMode('ace/mode/python');
+      }
+
+      editor.setTheme('ace/theme/monokai');
+      editor.renderer.setShowGutter(false);
+      var textarea = $('#content');
+      setInterval(function() {
+        textarea.val(editor.getSession().getValue());
+      }, 1000);
+    });
+  </script>
+</head>
+
+<body>
+  <div id="navi" class="navi">
+    <a href="#" id="nav-trigger" class="nav-trigger"><span></span></a>
+  </div>
+  <div id="side-nav" class="side-nav">
+    <div class="logo">
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="{{url_for('admin_dashboard')}}">
+            <i class="ion-ios-home"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="selected">
+          <a class="selected active" href="{{url_for('admin_explorer')}}">
+            <i class="ion-social-python"></i>
+            <span>File Explorer</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="ion-android-globe"></i>
+            <span>Public Assets</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="ion-settings"></i>
+            <span>Database</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url_for('admin_trinity_shell')}}">
+            <i class="ion-pound"></i>
+            <span>Trinity-Shell</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="ion-android-time"></i>
+            <span>Logs</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url_for('logout')}}">
+            <i class="ion-android-exit"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+      <div class="footer light-text">
+        <a href="#">IsoLite</a> by griimnak
+      </div>
+    </nav>
+  </div>
+  <div id="right" class="wrapper">
+    <div class="header">
+      <h4>File Explorer <div id="time"></div></h4>
+    </div>
+
+    <div class="container">
+
+     {% with messages = get_flashed_messages(category_filter=["error"]) %}
+     {% if messages %}
+     {% for message in messages %}
+     <div id="error-pop" style="margin-top: 10px;" class="error animated bounce">Error: {{ message }}</div>
+     <script>
+      setTimeout(function(){
+        document.getElementById('error-pop').style.opacity = '0.5';
+      }, 3000);
+    </script>
+    {% endfor %}
+
+    {% endif %}
+    {% endwith %}
+
+    {% with messages = get_flashed_messages(category_filter=["success"]) %}
+    {% if messages %}
+    {% for message in messages %}
+    <div id="pop" style="margin-top: 10px;" class="success animated bounce">Success: {{ message }}</div>
+    <script>
+      setTimeout(function(){
+        document.getElementById('pop').style.opacity = '0.5';
+      }, 3000);
+    </script>
+    {% endfor %}
+
+    {% endif %}
+    {% endwith %}
+    <br />
+    <div class="hold">
+      <div class="explorer-side">
+        <div class="manage-box">
+          <div class="box-title">New file</div>
+          <form method="post" action="{{url_for('admin_newfile_submit')}}">
+
+            <!-- Update modal -->
+            <div onclick="add_close()" class="overlay" id="add">
+              <div class="modal-outer">
+                <div class="modal-middle">
+                  <div class="modal-inner">
+                    <div class="modal-box">
+                      <div class="box-title">Confirm add </div>
+                      <div class="box-desc">Press the button below to confirm action</div>
+
+                      <div class="btn-span">
+                        <button value="Add" name="new-file-submit" type="submit" class="btn btn-blue">
+                          <i class="ion-checkmark"> </i>Add
+                        </button>
+                        <span>or <a onclick="add_close()">cancel</a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <select name="new-file-path" style="max-width: 60px;">
+              <option value="app">app</option>
+              <option value="app/posts">app/posts</option>
+              <option value="app/models">app/models</option>
+              <option value="app/modules">app/modules</option>
+              <option value="app/views">app/views</option>
+              <option value="app/templates">app/templates</option>
+            </select>
+            <input style="max-width: 88px;" placeholder="File name" class="input-width" type="text" name="new-file">
+
+            <select name="new-file-type">
+              <option value=".py">.py</option>
+              <option value=".html">.html</option>
+              <option value=".json">.json</option>
+            </select>
+            <div class="btn-span">
+
+            </div>
+          </form>
+          <button class="btn btn-blue" onclick="add_open()" value="Add">Add</button>
+        </div>
+
+        <div class="manage-box">
+          <div class="box-title">Delete existing</div>
+          <div class="btn-span">
+            <form method="post" action="{{url_for('admin_deletefile_submit')}}">
+
+              <!-- Update modal -->
+              <div onclick="delete_close()" class="overlay" id="delete">
+                <div class="modal-outer">
+                  <div class="modal-middle">
+                    <div class="modal-inner">
+                      <div class="modal-box">
+                        <div class="box-title">Are you sure? </div>
+                        <div class="box-desc">The file will be deleted <b> forever</b>. </div>
+
+                        <div class="btn-span">
+                          <button value="Delete" name="delete-file-submit" type="submit" class="btn btn-red">
+                            <i class="ion-checkmark"> </i>Delete
+                          </button>
+                          <span>or <a onclick="delete_close()">cancel</a></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <select name="delete-file">
+                {% if root %}
+                {% for files in root %}
+                <option value="app/{{ files }}">app/{{ files }}</option>
+                {% endfor %}
+                {% endif %}
+
+                {% if auth %}
+                {% for file in auth %}
+                <option value="app/posts/{{ file }}">app/posts/{{ file }}</option>
+                {% endfor %}
+                {% endif %}
+
+                {% if models %}
+                {% for model in models %}
+                <option value="app/models/{{ model }}">app/models/{{ model }}</option>
+                {% endfor %}
+                {% endif %}
+
+                {% if modules %}
+                {% for module in modules %}
+                <option value="app/modules/{{ module }}">app/modules/{{ module }}</option>
+                {% endfor %}
+                {% endif %}
+
+                {% if views %}
+                {% for view in views %}
+                <option value="app/views/{{ view }}">app/views/{{ view }}</option>
+                {% endfor %}
+                {% endif %}
+
+                {% if tpls %}
+                {% for template in tpls %}
+                <option value="app/templates/{{ template }}">app/templates/{{ template }}</option>
+                {% endfor %}
+                {% endif %}
+              </select>
+            </div>
+
+          </form>
+          <button class="btn btn-red top-margin" onclick="delete_open()" value="Delete">Delete</button>
+        </div>
+
+
+        <div id="dirs-box" class="dirs-box">
+          <div class="box-title">Trinity-py Map </div>
+          <div id="text" class="box-desc light-text">Click a file below to view or modify.</div>
+          <div class="dir-area">
+            <ul id="tree" class="dir-tree">
+              <li class="root">
+                <b class="dir-tree-bold"><i class="ion-ios-arrow-forward stat-icon"></i> app</b>
+              </li>
+              <li>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> posts</b>
+                <ul class="dir-tree">
+                  {% if auth %}
+                  {% for file in auth %}
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_explorer')}}/posts/{{file}}">{{ file }}</a></li>
+                  {% endfor %}
+                  {% endif %}
+                </ul>
+              </li>
+
+              <li>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> models</b>
+                <ul class="dir-tree">
+                  {% if models %}
+                  {% for model in models %}
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_explorer')}}/models/{{model}}">{{ model }}</a></li>
+                  {% endfor %}
+                  {% endif %}
+                </ul>
+              </li>
+              <li>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> modules</b>
+                <ul class="dir-tree">
+                  {% if modules %}
+                  {% for module in modules %}
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_explorer')}}/modules/{{module}}">{{ module }}</a></li>
+                  {% endfor %}
+                  {% endif %}
+                </ul>
+              </li>
+              <li>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> views</b>
+                <ul class="dir-tree">
+                  {% if views %}
+                  {% for view in views %}
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_explorer')}}/views/{{view}}">{{ view }}</a></li>
+                  {% endfor %}
+                  {% endif %}
+                </ul>
+              </li>
+              <li>
+                <b class="dir-tree-bold"><i class="ion-folder stat-icon"></i> templates</b>
+                <ul class="dir-tree">
+                  {% if tpls %}
+                  {% for template in tpls %}
+                  <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_explorer')}}/templates/{{template}}">{{ template }}</a></li>
+                  {% endfor %}
+                  {% endif %}
+                </ul>
+              </li>
+
+              {% if root %}
+              {% for files in root %}
+              <li><i class="ion-android-document stat-icon"></i> <a href="{{url_for('admin_explorer')}}/app/{{files}}">{{ files }}</a></li>
+              {% endfor %}
+              {% endif %}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <div id="right-editor" class="right-editor">
+        <div style="display:inline;width: 100%;">
+
+          <div class="generic-box">
+            {% if content %}
+            <div class="box-title">File loaded </div>
+            Working with <i style="text-decoration:underline;color:#4482ff;">{{ dir }}/{{ file }}</i>
+            {% endif %}
+
+            {% if content %}
+            <div>
+              <button style="width: 100%;margin: 25px 0px 15px;" id="update" name="update" onclick="modal_open()" class="btn btn-blue" value="Update">Update</button>
+            </div>
+            {% endif %}
+            <div style="padding-top:5px;" class="btn-span">
+              <span>  Click <a onclick="collapse()">here </a>to collapse controls.</span>
+            </div>
+          </div>
+
+          <form method="post">
+
+            <!-- Update modal -->
+            <div onclick="modal_close()" class="overlay" id="overlay">
+              <div class="modal-outer">
+                <div class="modal-middle">
+                  <div class="modal-inner">
+                    <div class="modal-box">
+                      <div class="box-title">Are you sure? </div>
+                      <div class="box-desc">This will overwrite the file completely, continue?</div>
+
+                      <div class="btn-span">
+                        <button id="update-submit" name="update-submit" type="submit" class="btn btn-blue" value="Update">
+                          <i class="ion-checkmark"> </i>Confirm
+                        </button>
+                        <span>or <a onclick="modal_close()">cancel</a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="">
+              <input name="content" id="content" type=hidden />
+              <!-- real input ^ -->
+
+              <div>
+                {% if content %}
+                <div class="big" id="editor">{{ content }}</div>
+                {% else %}
+                <div class="big" id="editor">
+"""
+ _____      _       _ _
+/__   \_ __(_)_ __ (_) |_ _   _       _ __  _   _
+  / /\/ '__| | '_ \| | __| | | |_____| '_ \| | | |
+ / /  | |  | | | | | | |_| |_| |_____| |_) | |_| |
+ \/   |_|  |_|_| |_|_|\__|\__, |     | .__/ \__, |
+        build tr4.4       |___/      |_|    |___/
+            https://griimnak.me
+            https://github.com/marcus-sa
+
+            Click a file to begin
+
+"""
+explorer.ready(True)
+                </div>
+                {% endif %}
+
+              </div>
+              <br />
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="height: 600px;"></div>
+</div>
+<script src="{{ url_for('static', filename='admin/js/main.js')}}"></script>
+<script>
+  var update = document.getElementById("overlay");
+  var add = document.getElementById("add");
+  var remove = document.getElementById("delete");
+
+  function modal_open() { update.style.display = "block"; }
+  function modal_close() { update.style.display = "none"; }
+  function add_open() { add.style.display = "block"; }
+  function add_close() { add.style.display = "none"; }
+  function delete_open() { remove.style.display = "block"; }
+  function delete_close() { remove.style.display = "none"; }
+
+  function collapse() {
+    document.getElementById('right-editor').classList.toggle('editor-toggle');
+    document.getElementById('tree').classList.toggle('toggle-off');
+    document.getElementById('text').classList.toggle('toggle-off');
+  }
+</script>
+</body>
+</html>

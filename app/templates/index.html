@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+ _____      _       _ _                           
+/__   \_ __(_)_ __ (_) |_ _   _       _ __  _   _ 
+  / /\/ '__| | '_ \| | __| | | |_____| '_ \| | | |
+ / /  | |  | | | | | | |_| |_| |_____| |_) | |_| |
+ \/   |_|  |_|_| |_|_|\__|\__, |     | .__/ \__, |
+        build tr4.4       |___/      |_|    |___/ 
+            https://griimnak.me
+            https://github.com/marcus-sa           -->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Welcome to Trinity 3</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.min.css') }}">
+  <style>
+    /* css made possible by http://mark-eriksson.com/ :) */
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+    body {
+      background-color: #efefef;
+      font: 400 14px/1.6 'Roboto', sans-serif;
+      color: #212121;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container { max-width: 960px; margin: 0 auto; }
+    header { text-align: center; padding: 30px 0; border-bottom: 1px dashed #858991; }
+    header h1 { margin: 10px 0; }
+    header b { display:block; margin-top:-15px; margin-bottom: 20px; font-size: 11px; color: #6b6868;}
+    header h4 { margin: 0; }
+    
+    section {
+      margin: 100px 0;
+      background-color: #fff;
+      border-radius: 2px;
+      padding: 15px 30px;
+      padding-bottom: 60px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Trinity-py</h1><b class="animated flash infinite"> build tr4.4</b>
+      <h4>Installation complete, now what?</h4>
+    </header>
+
+    <main>
+      <section class="animated fadeInDown">
+        <div class="section-content">
+        <h2>Welcome</h2>
+          <p>You can access the administration panel: <a href="{{url_for('admin')}}">here</a>.</p> <br />
+
+        <h2>Statistics</h2>
+          <ul>
+            <li>Site name: {{ sitename }}</li>
+            <li>Site desc: {{ sitedesc }}</li>
+            <li>Python version: {{ pyinfo }}</li>
+            <li>Port in use by Trinity: {{ siteport }}</li>
+            <li>Mimetypes to compress: {{ mimetypes }}</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-content">
+          <h2>Developing with Trinity</h2>
+          <p>Trinity uses flask as it's main web module, click below to learn more about flask.</p>
+            <center>
+              <a href="flask.pocoo.org">
+                <img width="60%" height="60%" src="http://flask.pocoo.org/static/logo/flask.png"/>
+              </a>
+            </center>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
