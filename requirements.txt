@@ -1,6 +1,4 @@
-flask
-flask-compress
 pymysql
+dbutils
 passlib
 argon2_cffi
-ujson
