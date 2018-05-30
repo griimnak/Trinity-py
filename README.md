@@ -2,10 +2,12 @@
   <img src="https://i.imgur.com/RLmwuQK.png" alt="Trinity-py"/>
 </p>
 
-[![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
+[![stability-experimental](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/emersion/stability-badges#stable)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
-*WIP* [Youtube Demonstration](https://youtu.be/4mDjhz5wBPU)<br /> 
+*WIP* [Youtube Demonstration](https://youtu.be/4mDjhz5wBPU)<br />
+
+This is a flask build of Trinity-py. <a href="https://github.com/griimnak/Trinity-py/tree/tr4.5">Pure WSGI branch</a> is in development and the future of Trinity-py.
 
 Recently rewritten for performance
 -------------------
