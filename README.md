@@ -7,7 +7,6 @@
 
 *WIP* [Youtube Demonstration](https://youtu.be/4mDjhz5wBPU)<br />
 
-This is a flask build of Trinity-py. <a href="https://github.com/griimnak/Trinity-py/tree/tr4.5">Pure WSGI branch</a> is in development and the future of Trinity-py.
 
 Recently rewritten for performance
 -------------------
