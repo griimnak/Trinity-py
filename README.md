@@ -1,3 +1,4 @@
+griimnak@sinister.ly
 <p align="center">
   <img src="https://i.imgur.com/RLmwuQK.png" alt="Trinity-py"/>
 </p>
