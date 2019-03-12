@@ -3,5 +3,4 @@ flask-compress
 pymysql
 passlib
 argon2_cffi
-libffi
 ujson
